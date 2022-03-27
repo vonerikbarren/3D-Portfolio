@@ -862,6 +862,13 @@
 			let mesh_mainContainer
 			let mesh_mainContainerGrid
 			let mesh_mainContainerGridL1
+			let mesh_mainContainerGridL2
+
+			let mainContainerEntranceA0_L0
+			let mesh_mainContainerEntranceA0_L0
+			let mainContainerEntranceVideoContainerA1_L0 // Container for video
+			let mesh_mainContainerEntranceVideoContainerA1_L0
+			let mainContainerVideoContainer_Params
 
 
 			// CommunicationContainer_Template - Assuming x-rotation from front / z-rotation side
@@ -1102,7 +1109,7 @@
 
 
 				// Particle Setup
-				const particleTexture01 = textureLoader.load('./assets/textures/textures_lib/particles/1.png')
+				const particleTexture01 = textureLoader.load('./assets/textures/textures_lib/particles-A1/1.png')
 
 				// Blocker and Instructions Setup
 				const blocker = document.getElementById( 'blocker' );
@@ -1314,7 +1321,12 @@
 				}
 
 
-
+				function updateGroupGeometry( mesh, geometry) {
+					mesh.children[0].geometry.dispose();
+					mesh.children[1].geometry.dispose();
+					mesh.children[0].geometry = new WireFrameGeometry( geometry )
+					mesh.children[1].geometry = new geometry
+				}
 
 
 				function makeElementObject(type, width, height) {
@@ -1383,7 +1395,7 @@
 				  //
 
 				  const object = new THREE.Object3D();
-				  object.position.x = (table[i + 3] * 145) + 1330;
+				  object.position.x = (table[i + 3] * 145) + -210330;
 				  object.position.y = -(table[i + 4] * 180) + 80990;
 
 				  targets.table.push(object);
@@ -1403,11 +1415,11 @@
 
           // size of sphere here...
           object.position.setFromSphericalCoords(1500, phi, theta);
-          object.translateY(12366.118)
+          object.translateY(0)
 
           vector.copy(object.position).multiplyScalar(2);
 
-          object.lookAt(0, 12366.118, 0);
+          object.lookAt(0, 0, 0);
 
           targets.sphere.push(object);
 
@@ -1704,7 +1716,7 @@
 
 				// Large Number here = The box dimensions all at the same time. 
 				for (let i = 0; i < count * 3; i++) {
-					positions[i] = (Math.random() - 0.5) * 5000
+					positions[i] = (Math.random() - 0.5) * 100000
 					colors[i] = Math.random()
 				}
 
@@ -1713,7 +1725,7 @@
 
 				// Particle Material init()
 				const particlesMaterial = new THREE.PointsMaterial()
-				particlesMaterial.size = 1000
+				particlesMaterial.size = 100
 				particlesMaterial.sizeAttenuation = true;
 				// particlesMaterial.color = new THREE.Color('#8ff') // neonblue
 				particlesMaterial.color = new THREE.Color('#FFD700') // Gold
@@ -1725,7 +1737,7 @@
 
 				particles = new THREE.Points(particlesGeometry, particlesMaterial)
 				// particles.position.set(0, 24092, 0)
-				particles.position.set(0, 0, 0)
+				particles.position.set(0, 10000, 0)
 				scene.add(particles);
 
 
@@ -1739,7 +1751,7 @@
 				//Create screen
 				const screen = new THREE.PlaneGeometry(2000, 2000);
 				const videoScreen = new THREE.Mesh(screen, videoMaterial);
-				videoScreen.position.set(9000, 0, -2000);
+				videoScreen.position.set(9000, 0, -10000);
 				videoScreen.rotateY(- Math.PI / 2)
 				videoScreen.scale.set(0.5, 0.5, 0.5)
 				scene.add(videoScreen);
@@ -1786,151 +1798,151 @@
     			// button.css3dObject.element.style.background = '#e64e77'
     			// backgroundTest.add(button)
 
-				writeDiv = new THREE.Group()
-				writeDiv.position.set(9000, 2000, -9000)
-				writeDiv.rotateY(- Math.PI / 2)
-				let messageTest = 'Hello Everyone How are you doing!' + '\n' +  'Welcome to my site!'
-				writeDiv.add( new writeBasicText(
-					'div', 
-					'test01',
-					'contenteditable', 
-					4000, 
-					4000, 
-					0, 0, 0,
-					100, 
-					'left',
-					messageTest
-				))	
+				// writeDiv = new THREE.Group()
+				// writeDiv.position.set(1029000, 2000, -9000)
+				// writeDiv.rotateY(- Math.PI / 2)
+				// let messageTest = 'Hello Everyone How are you doing!' + '\n' +  'Welcome to my site!'
+				// writeDiv.add( new writeBasicText(
+				// 	'div', 
+				// 	'test01',
+				// 	'contenteditable', 
+				// 	4000, 
+				// 	4000, 
+				// 	0, 0, 0,
+				// 	100, 
+				// 	'left',
+				// 	messageTest
+				// ))	
 
-				writeDiv.add( new writeBasicText(
-					'div',
-					'test02',
-					'contenteditable',
-					2000, 2000,
-					5000, 0, 0,
-					100,
-					'center', 
-					messageTest
-				))
+				// writeDiv.add( new writeBasicText(
+				// 	'div',
+				// 	'test02',
+				// 	'contenteditable',
+				// 	2000, 2000,
+				// 	5000, 0, 0,
+				// 	100,
+				// 	'center', 
+				// 	messageTest
+				// ))
 
-				scene.add(writeDiv)
-
-
-				// CONTAINER REALITY
-				// Root 
-				OfficialContainerReality_A1_L0 = new THREE.Group()
-				OfficialContainerReality_A1_L0.position.set(9000, 0, -9000)
-				scene.add(OfficialContainerReality_A1_L0)
-
-				// ContainerShell
-				OfficialContainerShell_A1_L0 = new THREE.Group()
-				OfficialContainerShell_A1_L0.position.set(0, 0, 0)
+				// scene.add(writeDiv)
 
 
-				// ContainerShell Mesh
-				const geo_OfficialContainerShell_A1_L0 = new THREE.BoxGeometry(500, 500, 500, 64, 64, 64)
-				const mat_OfficialContainerShell_A1_L0 = new THREE.MeshBasicMaterial({ map: testImg02, side: THREE.DoubleSide });
-				mesh_OfficialContainerShell_A1_L0 = new THREE.Mesh(geo_OfficialContainerShell_A1_L0, mat_OfficialContainerShell_A1_L0);
-				mat_OfficialContainerShell_A1_L0.transparent = false;
-				mat_OfficialContainerShell_A1_L0.alphaMap = testImg04;
-				mesh_OfficialContainerShell_A1_L0.position.set(0, 0, 0);
-				// mesh_OfficialContainerShell_A1_L0.position.set(-15000, 0, 0);
-				mesh_OfficialContainerShell_A1_L0.scale.set(2, 2, 2);
-				mesh_OfficialContainerShell_A1_L0.rotation.set(0, 0, 0)
-				// mesh_OfficialContainerShell_A1_L0.rotateX( - Math.PI / 2 );
-				OfficialContainerShell_A1_L0.add(mesh_OfficialContainerShell_A1_L0)
-				OfficialContainerReality_A1_L0.add(OfficialContainerShell_A1_L0)
+				// // CONTAINER REALITY
+				// // Root 
+				// OfficialContainerReality_A1_L0 = new THREE.Group()
+				// OfficialContainerReality_A1_L0.position.set(1029000, 0, -9000)
+				// scene.add(OfficialContainerReality_A1_L0)
 
-				// ContainerShell Front Root
-				ContainerShell_Front_A1_L0 = new THREE.Group()
-				ContainerShell_Front_A1_L0.position.set(0, 0, 500)
-
-				// ContainerShell Front Content
-				ContainerShell_Front_A1_L0.add( new importImage(
-					'./assets/img/gifs/dataCovers/DataCoverGif33.gif',
-					'',
-					'imgTest',
-					'contenteditable',
-					70,
-					'center',
-					1000, 1000,
-					500, 500,
-					'lightGrey', 'Hello World',
-					0, 0, 0,
-					100,
-				))
-
-				OfficialContainerReality_A1_L0.add(ContainerShell_Front_A1_L0)
+				// // ContainerShell
+				// OfficialContainerShell_A1_L0 = new THREE.Group()
+				// OfficialContainerShell_A1_L0.position.set(0, 0, 0)
 
 
-				// ContainerShell Left Root
-				ContainerShell_Left_A1_L0 = new THREE.Group()
-				ContainerShell_Left_A1_L0.position.set(-500, 0, 0)
-				ContainerShell_Left_A1_L0.rotateY( - Math.PI / 2 );
+				// // ContainerShell Mesh
+				// const geo_OfficialContainerShell_A1_L0 = new THREE.BoxGeometry(500, 500, 500, 64, 64, 64)
+				// const mat_OfficialContainerShell_A1_L0 = new THREE.MeshBasicMaterial({ map: testImg02, side: THREE.DoubleSide });
+				// mesh_OfficialContainerShell_A1_L0 = new THREE.Mesh(geo_OfficialContainerShell_A1_L0, mat_OfficialContainerShell_A1_L0);
+				// mat_OfficialContainerShell_A1_L0.transparent = false;
+				// mat_OfficialContainerShell_A1_L0.alphaMap = testImg04;
+				// mesh_OfficialContainerShell_A1_L0.position.set(0, 0, 0);
+				// // mesh_OfficialContainerShell_A1_L0.position.set(-15000, 0, 0);
+				// mesh_OfficialContainerShell_A1_L0.scale.set(2, 2, 2);
+				// mesh_OfficialContainerShell_A1_L0.rotation.set(0, 0, 0)
+				// // mesh_OfficialContainerShell_A1_L0.rotateX( - Math.PI / 2 );
+				// OfficialContainerShell_A1_L0.add(mesh_OfficialContainerShell_A1_L0)
+				// OfficialContainerReality_A1_L0.add(OfficialContainerShell_A1_L0)
 
-				// ContainerShell Left Content
-				ContainerShell_Left_A1_L0.add( new importImage(
-					'./assets/img/gifs/dataCovers/DataCoverGif33.gif',
-					'',
-					'imgTest',
-					'contenteditable',
-					70,
-					'center',
-					1000, 1000,
-					500, 500,
-					'lightGrey', 'Hello World',
-					0, 0, 0,
-					100,
-				))
+				// // ContainerShell Front Root
+				// ContainerShell_Front_A1_L0 = new THREE.Group()
+				// ContainerShell_Front_A1_L0.position.set(0, 0, 500)
 
-				OfficialContainerReality_A1_L0.add(ContainerShell_Left_A1_L0)
+				// // ContainerShell Front Content
+				// ContainerShell_Front_A1_L0.add( new importImage(
+				// 	'./assets/img/gifs/dataCovers/DataCoverGif33.gif',
+				// 	'',
+				// 	'imgTest',
+				// 	'contenteditable',
+				// 	70,
+				// 	'center',
+				// 	1000, 1000,
+				// 	500, 500,
+				// 	'lightGrey', 'Hello World',
+				// 	0, 0, 0,
+				// 	100,
+				// ))
 
-
-
-				// ContainerShell Right Root
-				ContainerShell_Right_A1_L0 = new THREE.Group()
-				ContainerShell_Right_A1_L0.position.set(500, 0, 0)
-				ContainerShell_Right_A1_L0.rotateY( - Math.PI / 2 );
-
-				// ContainerShell Right Content
-				ContainerShell_Right_A1_L0.add( new importImage(
-					'./assets/img/gifs/dataCovers/DataCoverGif33.gif',
-					'',
-					'imgTest',
-					'contenteditable',
-					70,
-					'center',
-					1000, 1000,
-					500, 500,
-					'lightGrey', 'Hello World',
-					0, 0, 0,
-					100,
-				))
-
-				OfficialContainerReality_A1_L0.add(ContainerShell_Right_A1_L0)
+				// OfficialContainerReality_A1_L0.add(ContainerShell_Front_A1_L0)
 
 
-				// ContainerShell Back Root
-				ContainerShell_Back_A1_L0 = new THREE.Group()
-				ContainerShell_Back_A1_L0.position.set(0, 0, -500)
-				// ContainerShell_Back_A1_L0.rotateY( - Math.PI / 2 );
+				// // ContainerShell Left Root
+				// ContainerShell_Left_A1_L0 = new THREE.Group()
+				// ContainerShell_Left_A1_L0.position.set(-500, 0, 0)
+				// ContainerShell_Left_A1_L0.rotateY( - Math.PI / 2 );
 
-				// ContainerShell Back Content
-				ContainerShell_Back_A1_L0.add( new importImage(
-					'./assets/img/gifs/dataCovers/DataCoverGif33.gif',
-					'',
-					'imgTest',
-					'contenteditable',
-					70,
-					'center',
-					1000, 1000,
-					500, 500,
-					'lightGrey', 'Hello World',
-					0, 0, 0,
-					100,
-				))
+				// // ContainerShell Left Content
+				// ContainerShell_Left_A1_L0.add( new importImage(
+				// 	'./assets/img/gifs/dataCovers/DataCoverGif33.gif',
+				// 	'',
+				// 	'imgTest',
+				// 	'contenteditable',
+				// 	70,
+				// 	'center',
+				// 	1000, 1000,
+				// 	500, 500,
+				// 	'lightGrey', 'Hello World',
+				// 	0, 0, 0,
+				// 	100,
+				// ))
 
-				OfficialContainerReality_A1_L0.add(ContainerShell_Back_A1_L0)
+				// OfficialContainerReality_A1_L0.add(ContainerShell_Left_A1_L0)
+
+
+
+				// // ContainerShell Right Root
+				// ContainerShell_Right_A1_L0 = new THREE.Group()
+				// ContainerShell_Right_A1_L0.position.set(500, 0, 0)
+				// ContainerShell_Right_A1_L0.rotateY( - Math.PI / 2 );
+
+				// // ContainerShell Right Content
+				// ContainerShell_Right_A1_L0.add( new importImage(
+				// 	'./assets/img/gifs/dataCovers/DataCoverGif33.gif',
+				// 	'',
+				// 	'imgTest',
+				// 	'contenteditable',
+				// 	70,
+				// 	'center',
+				// 	1000, 1000,
+				// 	500, 500,
+				// 	'lightGrey', 'Hello World',
+				// 	0, 0, 0,
+				// 	100,
+				// ))
+
+				// OfficialContainerReality_A1_L0.add(ContainerShell_Right_A1_L0)
+
+
+				// // ContainerShell Back Root
+				// ContainerShell_Back_A1_L0 = new THREE.Group()
+				// ContainerShell_Back_A1_L0.position.set(0, 0, -500)
+				// // ContainerShell_Back_A1_L0.rotateY( - Math.PI / 2 );
+
+				// // ContainerShell Back Content
+				// ContainerShell_Back_A1_L0.add( new importImage(
+				// 	'./assets/img/gifs/dataCovers/DataCoverGif33.gif',
+				// 	'',
+				// 	'imgTest',
+				// 	'contenteditable',
+				// 	70,
+				// 	'center',
+				// 	1000, 1000,
+				// 	500, 500,
+				// 	'lightGrey', 'Hello World',
+				// 	0, 0, 0,
+				// 	100,
+				// ))
+
+				// OfficialContainerReality_A1_L0.add(ContainerShell_Back_A1_L0)
 
 				
 				// UI V2 Start
@@ -2137,12 +2149,14 @@
 				
 				mainHudA.add(mesh_timelens_A1_L1)
 
-
+				// ------------------------------------------------------------
 				// Main Container
 				mainContainer = new THREE.Group()
-				mainContainer.position.set(0, 60000, 0)
+				mainContainer.position.set(0, 35000, 0)
+				mainContainer.scale.set(1, 1, 1)
 
-				const geo_mainContainer = new THREE.BoxGeometry(5500, 5500, 5500, 64, 64, 64)
+				// const geo_mainContainer = new THREE.BoxGeometry(50500, 5500, 5500, 64, 64, 64)
+				const geo_mainContainer = new THREE.CylinderGeometry(10000, 10000, 100000, 128, 1, false)
 				const mat_mainContainer = new THREE.MeshBasicMaterial({ map: mainContainerImgL0, side: THREE.DoubleSide });
 				mesh_mainContainer = new THREE.Mesh(geo_mainContainer, mat_mainContainer);
 				mat_mainContainer.transparent = false;
@@ -2151,14 +2165,15 @@
 				// mesh_mainContainer.position.set(-15000, 0, 0);
 				mesh_mainContainer.scale.set(26, 26, 26);
 				mesh_mainContainer.rotation.set(0, 0, 0)
-				// mesh_mainContainer.rotateX( - Math.PI / 2 );
+				mesh_mainContainer.rotateX( - Math.PI / 2 );
+				mesh_mainContainer.rotateZ( - Math.PI / 2 );
 
 				mainContainer.add(mesh_mainContainer)
 				// camera.lookAt(mesh_mainContainer)
 				
 
 				// |- Main Container Grid
-				const geo_mainContainerGrid = new THREE.BoxGeometry(1900, 4850, 4500, 64, 64, 64)
+				const geo_mainContainerGrid = new THREE.BoxGeometry(900, 2850, 2500, 64, 64, 64)
 				const mat_mainContainerGrid = new THREE.MeshBasicMaterial({ map: mainContainerImgL1, side: THREE.DoubleSide });
 				mesh_mainContainerGrid = new THREE.Mesh(geo_mainContainerGrid, mat_mainContainerGrid);
 				mat_mainContainerGrid.transparent = false;
@@ -2172,11 +2187,11 @@
 
 
 				mainContainer.add(mesh_mainContainerGrid)
-
+				
 
 
 				// |- Main Container GridL1
-				const geo_mainContainerGridL1 = new THREE.BoxGeometry(4900, 4900, 4900, 64, 64, 64)
+				const geo_mainContainerGridL1 = new THREE.BoxGeometry(2900, 2900, 2900, 64, 64, 64)
 				const mat_mainContainerGridL1 = new THREE.MeshBasicMaterial({ map: mainContainerImgL1, side: THREE.DoubleSide });
 				mesh_mainContainerGridL1 = new THREE.Mesh(geo_mainContainerGridL1, mat_mainContainerGridL1);
 				mat_mainContainerGridL1.transparent = true;
@@ -2191,11 +2206,99 @@
 
 				mainContainer.add(mesh_mainContainerGridL1)
 
-				// mainContainer Final Push to Scene
-				scene.add(mainContainer)
+
+				
+				// |- Main Container GridL2
+				const geo_mainContainerGridL2 = new THREE.BoxGeometry(3500, 3500, 3500, 64, 64, 64)
+				const mat_mainContainerGridL2 = new THREE.MeshBasicMaterial({ map: mainContainerImgL0, side: THREE.DoubleSide });
+				mesh_mainContainerGridL2 = new THREE.Mesh(geo_mainContainerGridL2, mat_mainContainerGridL2);
+				mat_mainContainerGridL2.transparent = false;
+				mat_mainContainerGridL2.wireframe = false;
+				mat_mainContainerGridL2.alphaMap = mainContainerImgL0;
+				mesh_mainContainerGridL2.position.set(0, 0, 0);
+				// mesh_mainContainerGridL2.position.set(-15000, 0, 0);
+				mesh_mainContainerGridL2.scale.set(26, 26, 26);
+				mesh_mainContainerGridL2.rotation.set(0, 0, 0)
+				// mesh_mainContainerGridL2.rotateX( - Math.PI / 2 );
+
+
+				mainContainer.add(mesh_mainContainerGridL2)
+
+				// mainContainer.Entrance
+				// -------------------
+				mainContainerEntranceA0_L0 = new THREE.Group()
+				mainContainerEntranceA0_L0.position.set(0, 0, 25000)
+
+				
+				
+				const geo_mainContainerEntranceA0_L0 = new THREE.CylinderGeometry(7000, 7000, 500, 128, 1, true)
+				const mat_mainContainerEntranceA0_L0 = new THREE.MeshBasicMaterial({ map: mainContainerImgL0, side: THREE.DoubleSide });
+				mesh_mainContainerEntranceA0_L0 = new THREE.Mesh(geo_mainContainerEntranceA0_L0, mat_mainContainerEntranceA0_L0);
+				mat_mainContainerEntranceA0_L0.transparent = false;
+				mat_mainContainerEntranceA0_L0.alphaMap = mainContainerImgL0;
+				mesh_mainContainerEntranceA0_L0.position.set(0, 0, 0);
+				// mesh_mainContainerEntranceA0_L0.rotateX( - Math.PI / 2 );
+				mesh_mainContainerEntranceA0_L0.scale.y = 90
+				
+
+				mainContainerEntranceA0_L0.add(mesh_mainContainerEntranceA0_L0)
+				mainContainer.add(mainContainerEntranceA0_L0)
+
+
+
+				// Opening Video Test
+				mainContainerEntranceVideoContainerA1_L0 = new THREE.Group()
+				mainContainerEntranceVideoContainerA1_L0.position.set(0, 15000, 25000)
+				mainContainerEntranceVideoContainerA1_L0.rotation.set(0, 3.14, 0)
+
+				mainContainerVideoContainer_Params = {
+					radiusTop: 5000,
+					radiusBottom: 5000,
+					height: 100,
+					radialSegments: 64,
+					heightSegments: 1,
+					openEnded: true,
+					thetaStart: 0,
+					thetaLength: 3.14
+				}
+
+				const geo_mainContainerEntranceVideoContainerA1_L0 = new THREE.CylinderGeometry(
+					mainContainerVideoContainer_Params.radiusTop, 
+					mainContainerVideoContainer_Params.radiusBottom, 
+					mainContainerVideoContainer_Params.height, 
+					mainContainerVideoContainer_Params.radialSegments, 
+					mainContainerVideoContainer_Params.heightSegments, 
+					mainContainerVideoContainer_Params.openEnded,
+					mainContainerVideoContainer_Params.thetaStart,
+					mainContainerVideoContainer_Params.thetaLength
+				)
+				const mat_mainContainerEntranceVideoContainerA1_L0 = new THREE.MeshBasicMaterial({ map: mainContainerImgL0, side: THREE.DoubleSide });
+				mesh_mainContainerEntranceVideoContainerA1_L0 = new THREE.Mesh(geo_mainContainerEntranceVideoContainerA1_L0, mat_mainContainerEntranceVideoContainerA1_L0);
+				mat_mainContainerEntranceVideoContainerA1_L0.transparent = false;
+				mat_mainContainerEntranceVideoContainerA1_L0.alphaMap = mainContainerImgL0;
+				mesh_mainContainerEntranceVideoContainerA1_L0.position.set(0, 0, 0);
+				mesh_mainContainerEntranceVideoContainerA1_L0.rotateY( - Math.PI / 2 );
+				mesh_mainContainerEntranceVideoContainerA1_L0.scale.y = 90
+
+				mainContainerEntranceVideoContainerA1_L0.add(mesh_mainContainerEntranceVideoContainerA1_L0)
+				mainContainer.add(mainContainerEntranceVideoContainerA1_L0)
+
 				
 
 
+
+
+				// ---- Final Push to scene.
+				// mainContainer Final Push to Scene
+				scene.add(mainContainer)
+				
+				// ------------------------------------------------------
+				// mainContainer - End.
+
+
+
+				// CommunicationContainer - Start
+				// ***********************************************************
 				CommunicationContainer = new THREE.Group()
 				CommunicationContainer.position.set(0, 0, 0)
 				CommunicationContainer.scale.set(5, 5, 5)
@@ -2308,7 +2411,7 @@
 				CommunicationContainer.add(mesh_CommunicationContainerBottom)
 				scene.add(CommunicationContainer)
 
-				
+				// ***********************************************************************
 				
 
 
@@ -2329,10 +2432,12 @@
 				// THIS WORKS!
 				// camera.attach(writeDiv)
 
+
+				// search.cssButton
 				// ButtonTest
 				buttonTest01 = new THREE.Group()
 				// buttonTest01.position.set(9000, 2000, -8500)
-				buttonTest01.position.set(9000, 0, -2000)
+				buttonTest01.position.set(9000, 0, 10000)
 				buttonTest01.rotateY(- Math.PI / 2)
 
 				buttonTest01.add(new makeButton('',500, 100, 0, 350, 0, 'click me','button clicked', 70))
@@ -2352,7 +2457,7 @@
 				// # Time Wheel
 				//#########################################
 				TimeWheel01 = new THREE.Group()
-				TimeWheel01.position.set(0, 100000, -5000000)
+				TimeWheel01.position.set(-10000, 100000, 15000000)
 
 				// Test Wheel Root
 				const geo_TimeWheel01_Root_L0 = new THREE.SphereGeometry(10000, 32, 32)
@@ -2423,7 +2528,7 @@
 				// # Time Wheel
 				//#########################################
 				TimeWheel02 = new THREE.Group()
-				TimeWheel02.position.set(500000, 100000, -5000000)
+				TimeWheel02.position.set(-500000, 100000, 15000000)
 				// TimeWheel02.rotateX( - Math.PI / 2 );
 				// camera.attach(TimeWheel02)
 
@@ -2594,11 +2699,15 @@
 				scene.add(TimeTunnelB);
 
 
+
+
+				
 				//#########################################
 				// # DataTower_RectPanels
 				//#########################################
 				DataTower_RectPanels_Count8 = new THREE.Group()
-				DataTower_RectPanels_Count8.position.set(-900000, 0, 0)
+				DataTower_RectPanels_Count8.position.set(45000, 7000, -40000)
+				DataTower_RectPanels_Count8.scale.set(0.1, 0.1, 0.1)
 
 				// Front Card
 				const geo_DataTower_RectPanelsA1_L0 = new THREE.PlaneGeometry(4500, 9000)
@@ -2719,1657 +2828,11 @@
  					*/
 
 				DataTower_RectPanels_Decoration_A1_L0 = new THREE.Group()
-				DataTower_RectPanels_Decoration_A1_L0.position.set(-500000, 0, 0)
+				DataTower_RectPanels_Decoration_A1_L0.position.set(-900000, 10000, 0)
 
 
 				
-				// ---\### [DataTower_RectPanel_Front_A1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Front Card
-					* |-- Status: Complete
-					* |-- Search.DTDA
- 					*/
-				DataTower_RectPanel_Front_A1_L0 = new THREE.Group()
-				DataTower_RectPanel_Front_A1_L0.position.set(0, 10, -15000)
-				DataTower_RectPanel_Front_A1_L0.lookAt(0, 0, 0)
-
-				const geo_DataTower_RectPanels_Decoration_A1_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_A1_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_A1_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_A1_L0, mat_DataTower_RectPanels_Decoration_A1_L0);
-				mat_DataTower_RectPanels_Decoration_A1_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_A1_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_A1_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_A1_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_A1_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_A1_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Front_A1_L0.add(mesh_DataTower_RectPanels_Decoration_A1_L0)
-
-				// Front Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_A1_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_A1_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_A1_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_A1_L0, mat_DataTower_RectPanels_DecorationPanels_A1_L0);
-				mat_DataTower_RectPanels_DecorationPanels_A1_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_A1_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_A1_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_A1_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_A1_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_A1_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Front_A1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_A1_L0)
-
-				DataTower_RectPanels_Decoration_A1_L0.add(DataTower_RectPanel_Front_A1_L0)				
-				// ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-				
-				
-				// ---\### [DataTower_RectPanel_Back_A1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Back Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_Back_A1_L0 = new THREE.Group()
-				DataTower_RectPanel_Back_A1_L0.position.set(0, 10, 15000)
-				DataTower_RectPanel_Back_A1_L0.lookAt(0, 0, 0)
-				
-				const geo_DataTower_RectPanels_Decoration_A2_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_A2_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_A2_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_A2_L0, mat_DataTower_RectPanels_Decoration_A2_L0);
-				mat_DataTower_RectPanels_Decoration_A2_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_A2_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_A2_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_A2_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_A2_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_A2_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Back_A1_L0.add(mesh_DataTower_RectPanels_Decoration_A2_L0)
-
-				// Back Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_A2_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_A2_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_A2_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_A2_L0, mat_DataTower_RectPanels_DecorationPanels_A2_L0);
-				mat_DataTower_RectPanels_DecorationPanels_A2_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_A2_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_A2_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_A2_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_A2_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_A2_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Back_A1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_A2_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_A1_L0.add(DataTower_RectPanel_Back_A1_L0)	
-				// ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				
-				// ---\### [DataTower_RectPanel_Left_A1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Left Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_Left_A1_L0 = new THREE.Group()
-				DataTower_RectPanel_Left_A1_L0.position.set(-15000, 10, 0)
-				DataTower_RectPanel_Left_A1_L0.lookAt(0, 0, 0)
-
-				const geo_DataTower_RectPanels_Decoration_A3_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_A3_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_A3_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_A3_L0, mat_DataTower_RectPanels_Decoration_A3_L0);
-				mat_DataTower_RectPanels_Decoration_A3_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_A3_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_A3_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_A3_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_A3_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_A3_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Left_A1_L0.add(mesh_DataTower_RectPanels_Decoration_A3_L0)
-
-				// Left Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_A3_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_A3_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_A3_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_A3_L0, mat_DataTower_RectPanels_DecorationPanels_A3_L0);
-				mat_DataTower_RectPanels_DecorationPanels_A3_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_A3_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_A3_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_A3_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_A3_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_A3_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Left_A1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_A3_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_A1_L0.add(DataTower_RectPanel_Left_A1_L0)	
-
-				// ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-
-	
-				// ---\### [DataTower_RectPanel_Right_A1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Right Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_Right_A1_L0 = new THREE.Group()
-				DataTower_RectPanel_Right_A1_L0.position.set(15000, 10, 0)
-				DataTower_RectPanel_Right_A1_L0.lookAt(0, 0, 0)
-
-				// Right Card
-				const geo_DataTower_RectPanels_Decoration_A4_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_A4_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_A4_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_A4_L0, mat_DataTower_RectPanels_Decoration_A4_L0);
-				mat_DataTower_RectPanels_Decoration_A4_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_A4_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_A4_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_A4_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_A4_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_A4_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Right_A1_L0.add(mesh_DataTower_RectPanels_Decoration_A4_L0)
-
-				// Right Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_A4_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_A4_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_A4_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_A4_L0, mat_DataTower_RectPanels_DecorationPanels_A4_L0);
-				mat_DataTower_RectPanels_DecorationPanels_A4_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_A4_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_A4_L0.position.set(0, 10, -500); 
-				// mesh_DataTower_RectPanels_DecorationPanels_A4_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_A4_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_A4_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Right_A1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_A4_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_A1_L0.add(DataTower_RectPanel_Right_A1_L0)	
-
-				// ---\### [DataTower_RectPanel_Right_A1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				// ---\### [DataTower_RectPanel_FrontRight_A1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Front Card
-					* |-- Status: Done @ 11:29 @ 3/14/22 @ Laboure
- 					*/
-				DataTower_RectPanel_FrontRight_A1_L0 = new THREE.Group()
-				DataTower_RectPanel_FrontRight_A1_L0.position.set(10000, 10, -10000)
-				DataTower_RectPanel_FrontRight_A1_L0.lookAt(0, 0, 0)
-
-				// Front Right Card
-				const geo_DataTower_RectPanels_Decoration_A5_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_A5_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_A5_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_A5_L0, mat_DataTower_RectPanels_Decoration_A5_L0);
-				mat_DataTower_RectPanels_Decoration_A5_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_A5_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_A5_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_A5_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_A5_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_A5_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_FrontRight_A1_L0.add(mesh_DataTower_RectPanels_Decoration_A5_L0)
-
-				// Front Right Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_A5_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_A5_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_A5_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_A5_L0, mat_DataTower_RectPanels_DecorationPanels_A5_L0);
-				mat_DataTower_RectPanels_DecorationPanels_A5_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_A5_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_A5_L0.position.set(0, 10, -1000); 
-				mesh_DataTower_RectPanels_DecorationPanels_A5_L0.rotation.set(0, 0, 0); 
-				// mesh_DataTower_RectPanels_DecorationPanels_A5_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_A5_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_A5_L0.lookAt(0, 10, 0)
-				mesh_DataTower_RectPanels_DecorationPanels_A5_L0.rotation.set(0, 0, 0)
-				DataTower_RectPanel_FrontRight_A1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_A5_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_A1_L0.add(DataTower_RectPanel_FrontRight_A1_L0)	
-
-				// ---\### [DataTower_RectPanel_FrontRight_A1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				// ---\### [DataTower_RectPanel_Right_A1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Left Card
-					* |-- Status: Done
- 					*/
-				DataTower_RectPanel_BackRight_A1_L0 = new THREE.Group()
-				DataTower_RectPanel_BackRight_A1_L0.position.set(10000, 10, 10000)
-				DataTower_RectPanel_BackRight_A1_L0.lookAt(0, 0, 0)
-
-				// Back Right Card
-				const geo_DataTower_RectPanels_Decoration_A6_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_A6_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_A6_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_A6_L0, mat_DataTower_RectPanels_Decoration_A6_L0);
-				mat_DataTower_RectPanels_Decoration_A6_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_A6_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_A6_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_A6_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_A6_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_A6_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackRight_A1_L0.add(mesh_DataTower_RectPanels_Decoration_A6_L0)
-
-				// Back Right Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_A6_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_A6_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_A6_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_A6_L0, mat_DataTower_RectPanels_DecorationPanels_A6_L0);
-				mat_DataTower_RectPanels_DecorationPanels_A6_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_A6_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_A6_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_A6_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_A6_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_A6_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackRight_A1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_A6_L0)
-
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_A1_L0.add(DataTower_RectPanel_BackRight_A1_L0)	
-				// ---\### [DataTower_RectPanel_Right_A1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				
-
-				// ---\### [DataTower_RectPanel_Right_A1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Left Card
-					* |-- Status: Done
- 					*/
-				DataTower_RectPanel_BackLeft_A1_L0 = new THREE.Group()
-				DataTower_RectPanel_BackLeft_A1_L0.position.set(-10000, 10, 10000)
-				DataTower_RectPanel_BackLeft_A1_L0.lookAt(0, 0, 0)
-
-				// Back Left Card
-				const geo_DataTower_RectPanels_Decoration_A7_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_A7_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_A7_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_A7_L0, mat_DataTower_RectPanels_Decoration_A7_L0);
-				mat_DataTower_RectPanels_Decoration_A7_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_A7_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_A7_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_A7_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_A7_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_A7_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackLeft_A1_L0.add(mesh_DataTower_RectPanels_Decoration_A7_L0)
-
-				// Back Left Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_A7_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_A7_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_A7_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_A7_L0, mat_DataTower_RectPanels_DecorationPanels_A7_L0);
-				mat_DataTower_RectPanels_DecorationPanels_A7_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_A7_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_A7_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_A7_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_A7_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_A7_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackLeft_A1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_A7_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_A1_L0.add(DataTower_RectPanel_BackLeft_A1_L0)	
-				// ---\### [DataTower_RectPanel_Right_A1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				// ---\### [DataTower_RectPanel_Right_A1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: FrontLeft Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_FrontLeft_A1_L0 = new THREE.Group()
-				DataTower_RectPanel_FrontLeft_A1_L0.position.set(-10000, 10, -10000)
-				DataTower_RectPanel_FrontLeft_A1_L0.lookAt(0, 0, 0)
-
-				// Front Left Card
-				const geo_DataTower_RectPanels_Decoration_A8_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_A8_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_A8_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_A8_L0, mat_DataTower_RectPanels_Decoration_A8_L0);
-				mat_DataTower_RectPanels_Decoration_A8_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_A8_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_A8_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_A8_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_A8_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_A8_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_FrontLeft_A1_L0.add(mesh_DataTower_RectPanels_Decoration_A8_L0)
-
-				// Front Left Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_A8_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_A8_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_A8_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_A8_L0, mat_DataTower_RectPanels_DecorationPanels_A8_L0);
-				mat_DataTower_RectPanels_DecorationPanels_A8_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_A8_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_A8_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_A8_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_A8_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_A8_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_FrontLeft_A1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_A8_L0)
-
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_A1_L0.add(DataTower_RectPanel_FrontLeft_A1_L0)	
-				// ---\### [DataTower_RectPanel_Right_A1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				scene.add(DataTower_RectPanels_Decoration_A1_L0)
-				// ---\## [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				
-
-				//#########################################
-				// # DataTower_RectPanels_Decoration_B
-				//#########################################
-
-
-				// ---\## [DataTower_RectPanels_Decoration] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-				  * |- Details
- 					*/
-
-				DataTower_RectPanels_Decoration_B1_L0 = new THREE.Group()
-				DataTower_RectPanels_Decoration_B1_L0.position.set(-500000, 30000, 0)
-
-
-				
-				// ---\### [DataTower_RectPanel_Front_B1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Front Card
-					* |-- Status: Complete
-					* |-- Search.DTDB
- 					*/
-				DataTower_RectPanel_Front_B1_L0 = new THREE.Group()
-				DataTower_RectPanel_Front_B1_L0.position.set(0, 10, -15000)
-				DataTower_RectPanel_Front_B1_L0.lookAt(0, 0, 0)
-
-				const geo_DataTower_RectPanels_Decoration_B1_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_B1_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_B1_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_B1_L0, mat_DataTower_RectPanels_Decoration_B1_L0);
-				mat_DataTower_RectPanels_Decoration_B1_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_B1_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_B1_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_B1_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_B1_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_B1_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Front_B1_L0.add(mesh_DataTower_RectPanels_Decoration_B1_L0)
-
-				// Front Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_B1_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_B1_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_B1_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_B1_L0, mat_DataTower_RectPanels_DecorationPanels_B1_L0);
-				mat_DataTower_RectPanels_DecorationPanels_B1_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_B1_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_B1_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_B1_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_B1_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_B1_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Front_B1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_B1_L0)
-
-				DataTower_RectPanels_Decoration_B1_L0.add(DataTower_RectPanel_Front_B1_L0)				
-				// ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-				
-				
-				// ---\### [DataTower_RectPanel_Back_B1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Back Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_Back_B1_L0 = new THREE.Group()
-				DataTower_RectPanel_Back_B1_L0.position.set(0, 10, 15000)
-				DataTower_RectPanel_Back_B1_L0.lookAt(0, 0, 0)
-				
-				const geo_DataTower_RectPanels_Decoration_B2_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_B2_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_B2_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_B2_L0, mat_DataTower_RectPanels_Decoration_B2_L0);
-				mat_DataTower_RectPanels_Decoration_B2_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_B2_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_B2_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_B2_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_B2_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_B2_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Back_B1_L0.add(mesh_DataTower_RectPanels_Decoration_B2_L0)
-
-				// Back Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_B2_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_B2_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_B2_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_B2_L0, mat_DataTower_RectPanels_DecorationPanels_B2_L0);
-				mat_DataTower_RectPanels_DecorationPanels_B2_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_B2_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_B2_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_B2_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_B2_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_B2_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Back_B1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_B2_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_B1_L0.add(DataTower_RectPanel_Back_B1_L0)	
-				// ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				
-				// ---\### [DataTower_RectPanel_Left_B1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Left Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_Left_B1_L0 = new THREE.Group()
-				DataTower_RectPanel_Left_B1_L0.position.set(-15000, 10, 0)
-				DataTower_RectPanel_Left_B1_L0.lookAt(0, 0, 0)
-
-				const geo_DataTower_RectPanels_Decoration_B3_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_B3_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_B3_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_B3_L0, mat_DataTower_RectPanels_Decoration_B3_L0);
-				mat_DataTower_RectPanels_Decoration_B3_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_B3_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_B3_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_B3_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_B3_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_B3_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Left_B1_L0.add(mesh_DataTower_RectPanels_Decoration_B3_L0)
-
-				// Left Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_B3_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_B3_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_B3_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_B3_L0, mat_DataTower_RectPanels_DecorationPanels_B3_L0);
-				mat_DataTower_RectPanels_DecorationPanels_B3_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_B3_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_B3_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_B3_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_B3_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_B3_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Left_B1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_B3_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_B1_L0.add(DataTower_RectPanel_Left_B1_L0)	
-
-				// ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-
-	
-				// ---\### [DataTower_RectPanel_Right_B1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Right Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_Right_B1_L0 = new THREE.Group()
-				DataTower_RectPanel_Right_B1_L0.position.set(15000, 10, 0)
-				DataTower_RectPanel_Right_B1_L0.lookAt(0, 0, 0)
-
-				// Right Card
-				const geo_DataTower_RectPanels_Decoration_B4_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_B4_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_B4_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_B4_L0, mat_DataTower_RectPanels_Decoration_B4_L0);
-				mat_DataTower_RectPanels_Decoration_B4_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_B4_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_B4_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_B4_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_B4_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_B4_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Right_B1_L0.add(mesh_DataTower_RectPanels_Decoration_B4_L0)
-
-				// Right Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_B4_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_B4_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_B4_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_B4_L0, mat_DataTower_RectPanels_DecorationPanels_B4_L0);
-				mat_DataTower_RectPanels_DecorationPanels_B4_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_B4_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_B4_L0.position.set(0, 10, -500); 
-				// mesh_DataTower_RectPanels_DecorationPanels_B4_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_B4_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_B4_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Right_B1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_B4_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_B1_L0.add(DataTower_RectPanel_Right_B1_L0)	
-
-				// ---\### [DataTower_RectPanel_Right_B1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				// ---\### [DataTower_RectPanel_FrontRight_B1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Front Card
-					* |-- Status: Done @ 11:29 @ 3/14/22 @ Laboure
- 					*/
-				DataTower_RectPanel_FrontRight_B1_L0 = new THREE.Group()
-				DataTower_RectPanel_FrontRight_B1_L0.position.set(10000, 10, -10000)
-				DataTower_RectPanel_FrontRight_B1_L0.lookAt(0, 0, 0)
-
-				// Front Right Card
-				const geo_DataTower_RectPanels_Decoration_B5_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_B5_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_B5_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_B5_L0, mat_DataTower_RectPanels_Decoration_B5_L0);
-				mat_DataTower_RectPanels_Decoration_B5_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_B5_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_B5_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_B5_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_B5_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_B5_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_FrontRight_B1_L0.add(mesh_DataTower_RectPanels_Decoration_B5_L0)
-
-				// Front Right Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_B5_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_B5_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_B5_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_B5_L0, mat_DataTower_RectPanels_DecorationPanels_B5_L0);
-				mat_DataTower_RectPanels_DecorationPanels_B5_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_B5_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_B5_L0.position.set(0, 10, -1000); 
-				mesh_DataTower_RectPanels_DecorationPanels_B5_L0.rotation.set(0, 0, 0); 
-				// mesh_DataTower_RectPanels_DecorationPanels_B5_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_B5_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_B5_L0.lookAt(0, 10, 0)
-				mesh_DataTower_RectPanels_DecorationPanels_B5_L0.rotation.set(0, 0, 0)
-				DataTower_RectPanel_FrontRight_B1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_B5_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_B1_L0.add(DataTower_RectPanel_FrontRight_B1_L0)	
-
-				// ---\### [DataTower_RectPanel_FrontRight_B1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				// ---\### [DataTower_RectPanel_Right_B1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Left Card
-					* |-- Status: Done
- 					*/
-				DataTower_RectPanel_BackRight_B1_L0 = new THREE.Group()
-				DataTower_RectPanel_BackRight_B1_L0.position.set(10000, 10, 10000)
-				DataTower_RectPanel_BackRight_B1_L0.lookAt(0, 0, 0)
-
-				// Back Right Card
-				const geo_DataTower_RectPanels_Decoration_B6_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_B6_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_B6_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_B6_L0, mat_DataTower_RectPanels_Decoration_B6_L0);
-				mat_DataTower_RectPanels_Decoration_B6_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_B6_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_B6_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_B6_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_B6_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_B6_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackRight_B1_L0.add(mesh_DataTower_RectPanels_Decoration_B6_L0)
-
-				// Back Right Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_B6_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_B6_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_B6_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_B6_L0, mat_DataTower_RectPanels_DecorationPanels_B6_L0);
-				mat_DataTower_RectPanels_DecorationPanels_B6_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_B6_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_B6_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_B6_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_B6_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_B6_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackRight_B1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_B6_L0)
-
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_B1_L0.add(DataTower_RectPanel_BackRight_B1_L0)	
-				// ---\### [DataTower_RectPanel_Right_B1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				
-
-				// ---\### [DataTower_RectPanel_Right_B1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Left Card
-					* |-- Status: Done
- 					*/
-				DataTower_RectPanel_BackLeft_B1_L0 = new THREE.Group()
-				DataTower_RectPanel_BackLeft_B1_L0.position.set(-10000, 10, 10000)
-				DataTower_RectPanel_BackLeft_B1_L0.lookAt(0, 0, 0)
-
-				// Back Left Card
-				const geo_DataTower_RectPanels_Decoration_B7_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_B7_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_B7_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_B7_L0, mat_DataTower_RectPanels_Decoration_B7_L0);
-				mat_DataTower_RectPanels_Decoration_B7_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_B7_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_B7_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_B7_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_B7_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_B7_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackLeft_B1_L0.add(mesh_DataTower_RectPanels_Decoration_B7_L0)
-
-				// Back Left Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_B7_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_B7_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_B7_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_B7_L0, mat_DataTower_RectPanels_DecorationPanels_B7_L0);
-				mat_DataTower_RectPanels_DecorationPanels_B7_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_B7_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_B7_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_B7_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_B7_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_B7_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackLeft_B1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_B7_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_B1_L0.add(DataTower_RectPanel_BackLeft_B1_L0)	
-				// ---\### [DataTower_RectPanel_Right_B1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				// ---\### [DataTower_RectPanel_Right_B1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: FrontLeft Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_FrontLeft_B1_L0 = new THREE.Group()
-				DataTower_RectPanel_FrontLeft_B1_L0.position.set(-10000, 10, -10000)
-				DataTower_RectPanel_FrontLeft_B1_L0.lookAt(0, 0, 0)
-
-				// Front Left Card
-				const geo_DataTower_RectPanels_Decoration_B8_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_B8_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_B8_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_B8_L0, mat_DataTower_RectPanels_Decoration_B8_L0);
-				mat_DataTower_RectPanels_Decoration_B8_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_B8_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_B8_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_B8_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_B8_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_B8_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_FrontLeft_B1_L0.add(mesh_DataTower_RectPanels_Decoration_B8_L0)
-
-				// Front Left Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_B8_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_B8_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_B8_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_B8_L0, mat_DataTower_RectPanels_DecorationPanels_B8_L0);
-				mat_DataTower_RectPanels_DecorationPanels_B8_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_B8_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_B8_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_B8_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_B8_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_B8_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_FrontLeft_B1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_B8_L0)
-
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_B1_L0.add(DataTower_RectPanel_FrontLeft_B1_L0)	
-				// ---\### [DataTower_RectPanel_Right_B1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				scene.add(DataTower_RectPanels_Decoration_B1_L0)
-				// ---\## [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-
-
-				//#########################################
-				// # DataTower_RectPanels_Decoration_C
-				//#########################################
-
-
-				// ---\## [DataTower_RectPanels_Decoration] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-				  * |- Details
- 					*/
-
-				DataTower_RectPanels_Decoration_C1_L0 = new THREE.Group()
-				DataTower_RectPanels_Decoration_C1_L0.position.set(-500000, 60000, 0)
-
-
-				
-				// ---\### [DataTower_RectPanel_Front_B1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Front Card
-					* |-- Status: Complete
-					* |-- Search.DTDC
- 					*/
-				DataTower_RectPanel_Front_C1_L0 = new THREE.Group()
-				DataTower_RectPanel_Front_C1_L0.position.set(0, 10, -15000)
-				DataTower_RectPanel_Front_C1_L0.lookAt(0, 0, 0)
-
-				const geo_DataTower_RectPanels_Decoration_C1_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_C1_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_C1_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_C1_L0, mat_DataTower_RectPanels_Decoration_C1_L0);
-				mat_DataTower_RectPanels_Decoration_C1_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_C1_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_C1_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_C1_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_C1_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_C1_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Front_C1_L0.add(mesh_DataTower_RectPanels_Decoration_C1_L0)
-
-				// Front Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_C1_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_C1_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_C1_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_C1_L0, mat_DataTower_RectPanels_DecorationPanels_C1_L0);
-				mat_DataTower_RectPanels_DecorationPanels_C1_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_C1_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_C1_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_C1_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_C1_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_C1_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Front_C1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_C1_L0)
-
-				DataTower_RectPanels_Decoration_C1_L0.add(DataTower_RectPanel_Front_C1_L0)				
-				// ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-				
-				
-				// ---\### [DataTower_RectPanel_Back_C1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Back Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_Back_C1_L0 = new THREE.Group()
-				DataTower_RectPanel_Back_C1_L0.position.set(0, 10, 15000)
-				DataTower_RectPanel_Back_C1_L0.lookAt(0, 0, 0)
-				
-				const geo_DataTower_RectPanels_Decoration_C2_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_C2_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_C2_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_C2_L0, mat_DataTower_RectPanels_Decoration_C2_L0);
-				mat_DataTower_RectPanels_Decoration_C2_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_C2_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_C2_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_C2_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_C2_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_C2_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Back_C1_L0.add(mesh_DataTower_RectPanels_Decoration_C2_L0)
-
-				// Back Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_C2_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_C2_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_C2_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_C2_L0, mat_DataTower_RectPanels_DecorationPanels_C2_L0);
-				mat_DataTower_RectPanels_DecorationPanels_C2_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_C2_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_C2_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_C2_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_C2_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_C2_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Back_C1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_C2_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_C1_L0.add(DataTower_RectPanel_Back_C1_L0)	
-				// ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				
-				// ---\### [DataTower_RectPanel_Left_C1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Left Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_Left_C1_L0 = new THREE.Group()
-				DataTower_RectPanel_Left_C1_L0.position.set(-15000, 10, 0)
-				DataTower_RectPanel_Left_C1_L0.lookAt(0, 0, 0)
-
-				const geo_DataTower_RectPanels_Decoration_C3_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_C3_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_C3_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_C3_L0, mat_DataTower_RectPanels_Decoration_C3_L0);
-				mat_DataTower_RectPanels_Decoration_C3_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_C3_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_C3_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_C3_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_C3_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_C3_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Left_C1_L0.add(mesh_DataTower_RectPanels_Decoration_C3_L0)
-
-				// Left Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_C3_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_C3_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_C3_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_C3_L0, mat_DataTower_RectPanels_DecorationPanels_C3_L0);
-				mat_DataTower_RectPanels_DecorationPanels_C3_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_C3_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_C3_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_C3_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_C3_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_C3_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Left_C1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_C3_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_C1_L0.add(DataTower_RectPanel_Left_C1_L0)	
-
-				// ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-
-	
-				// ---\### [DataTower_RectPanel_Right_C1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Right Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_Right_C1_L0 = new THREE.Group()
-				DataTower_RectPanel_Right_C1_L0.position.set(15000, 10, 0)
-				DataTower_RectPanel_Right_C1_L0.lookAt(0, 0, 0)
-
-				// Right Card
-				const geo_DataTower_RectPanels_Decoration_C4_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_C4_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_C4_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_C4_L0, mat_DataTower_RectPanels_Decoration_C4_L0);
-				mat_DataTower_RectPanels_Decoration_C4_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_C4_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_C4_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_C4_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_C4_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_C4_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Right_C1_L0.add(mesh_DataTower_RectPanels_Decoration_C4_L0)
-
-				// Right Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_C4_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_C4_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_C4_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_C4_L0, mat_DataTower_RectPanels_DecorationPanels_C4_L0);
-				mat_DataTower_RectPanels_DecorationPanels_C4_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_C4_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_C4_L0.position.set(0, 10, -500); 
-				// mesh_DataTower_RectPanels_DecorationPanels_C4_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_C4_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_C4_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Right_C1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_C4_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_C1_L0.add(DataTower_RectPanel_Right_C1_L0)	
-
-				// ---\### [DataTower_RectPanel_Right_C1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				// ---\### [DataTower_RectPanel_FrontRight_C1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Front Card
-					* |-- Status: Done @ 11:29 @ 3/14/22 @ Laboure
- 					*/
-				DataTower_RectPanel_FrontRight_C1_L0 = new THREE.Group()
-				DataTower_RectPanel_FrontRight_C1_L0.position.set(10000, 10, -10000)
-				DataTower_RectPanel_FrontRight_C1_L0.lookAt(0, 0, 0)
-
-				// Front Right Card
-				const geo_DataTower_RectPanels_Decoration_C5_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_C5_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_C5_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_C5_L0, mat_DataTower_RectPanels_Decoration_C5_L0);
-				mat_DataTower_RectPanels_Decoration_C5_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_C5_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_C5_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_C5_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_C5_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_C5_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_FrontRight_C1_L0.add(mesh_DataTower_RectPanels_Decoration_C5_L0)
-
-				// Front Right Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_C5_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_C5_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_C5_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_C5_L0, mat_DataTower_RectPanels_DecorationPanels_C5_L0);
-				mat_DataTower_RectPanels_DecorationPanels_C5_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_C5_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_C5_L0.position.set(0, 10, -1000); 
-				mesh_DataTower_RectPanels_DecorationPanels_C5_L0.rotation.set(0, 0, 0); 
-				// mesh_DataTower_RectPanels_DecorationPanels_C5_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_C5_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_C5_L0.lookAt(0, 10, 0)
-				mesh_DataTower_RectPanels_DecorationPanels_C5_L0.rotation.set(0, 0, 0)
-				DataTower_RectPanel_FrontRight_C1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_C5_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_C1_L0.add(DataTower_RectPanel_FrontRight_C1_L0)	
-
-				// ---\### [DataTower_RectPanel_FrontRight_C1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				// ---\### [DataTower_RectPanel_Right_C1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Left Card
-					* |-- Status: Done
- 					*/
-				DataTower_RectPanel_BackRight_C1_L0 = new THREE.Group()
-				DataTower_RectPanel_BackRight_C1_L0.position.set(10000, 10, 10000)
-				DataTower_RectPanel_BackRight_C1_L0.lookAt(0, 0, 0)
-
-				// Back Right Card
-				const geo_DataTower_RectPanels_Decoration_C6_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_C6_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_C6_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_C6_L0, mat_DataTower_RectPanels_Decoration_C6_L0);
-				mat_DataTower_RectPanels_Decoration_C6_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_C6_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_C6_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_C6_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_C6_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_C6_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackRight_C1_L0.add(mesh_DataTower_RectPanels_Decoration_C6_L0)
-
-				// Back Right Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_C6_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_C6_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_C6_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_C6_L0, mat_DataTower_RectPanels_DecorationPanels_C6_L0);
-				mat_DataTower_RectPanels_DecorationPanels_C6_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_C6_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_C6_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_C6_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_C6_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_C6_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackRight_C1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_C6_L0)
-
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_C1_L0.add(DataTower_RectPanel_BackRight_C1_L0)	
-				// ---\### [DataTower_RectPanel_Right_C1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				
-
-				// ---\### [DataTower_RectPanel_Right_C1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Left Card
-					* |-- Status: Done
- 					*/
-				DataTower_RectPanel_BackLeft_C1_L0 = new THREE.Group()
-				DataTower_RectPanel_BackLeft_C1_L0.position.set(-10000, 10, 10000)
-				DataTower_RectPanel_BackLeft_C1_L0.lookAt(0, 0, 0)
-
-				// Back Left Card
-				const geo_DataTower_RectPanels_Decoration_C7_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_C7_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_C7_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_C7_L0, mat_DataTower_RectPanels_Decoration_C7_L0);
-				mat_DataTower_RectPanels_Decoration_C7_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_C7_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_C7_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_C7_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_C7_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_C7_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackLeft_C1_L0.add(mesh_DataTower_RectPanels_Decoration_C7_L0)
-
-				// Back Left Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_C7_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_C7_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_C7_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_C7_L0, mat_DataTower_RectPanels_DecorationPanels_C7_L0);
-				mat_DataTower_RectPanels_DecorationPanels_C7_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_C7_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_C7_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_C7_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_C7_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_C7_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackLeft_C1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_C7_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_C1_L0.add(DataTower_RectPanel_BackLeft_C1_L0)	
-				// ---\### [DataTower_RectPanel_Right_B1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				// ---\### [DataTower_RectPanel_Right_B1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: FrontLeft Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_FrontLeft_C1_L0 = new THREE.Group()
-				DataTower_RectPanel_FrontLeft_C1_L0.position.set(-10000, 10, -10000)
-				DataTower_RectPanel_FrontLeft_C1_L0.lookAt(0, 0, 0)
-
-				// Front Left Card
-				const geo_DataTower_RectPanels_Decoration_C8_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_C8_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_C8_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_C8_L0, mat_DataTower_RectPanels_Decoration_C8_L0);
-				mat_DataTower_RectPanels_Decoration_C8_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_C8_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_C8_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_C8_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_C8_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_C8_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_FrontLeft_C1_L0.add(mesh_DataTower_RectPanels_Decoration_C8_L0)
-
-				// Front Left Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_C8_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_C8_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_C8_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_C8_L0, mat_DataTower_RectPanels_DecorationPanels_C8_L0);
-				mat_DataTower_RectPanels_DecorationPanels_C8_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_C8_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_C8_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_C8_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_C8_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_C8_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_FrontLeft_C1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_C8_L0)
-
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_C1_L0.add(DataTower_RectPanel_FrontLeft_C1_L0)	
-				// ---\### [DataTower_RectPanel_Right_C1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				scene.add(DataTower_RectPanels_Decoration_C1_L0)
-				// ---\## [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-
-				//#########################################
-				// # DataTower_RectPanels_Decoration_D
-				//#########################################
-
-
-				// ---\## [DataTower_RectPanels_Decoration] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-				  * |- Details
- 					*/
-
-				DataTower_RectPanels_Decoration_D1_L0 = new THREE.Group()
-				DataTower_RectPanels_Decoration_D1_L0.position.set(-500000, 120000, 0)
-
-
-				
-				// ---\### [DataTower_RectPanel_Front_B1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Front Card
-					* |-- Status: Complete
-					* |-- Search.DTDD
- 					*/
-				DataTower_RectPanel_Front_D1_L0 = new THREE.Group()
-				DataTower_RectPanel_Front_D1_L0.position.set(0, 10, -15000)
-				DataTower_RectPanel_Front_D1_L0.lookAt(0, 0, 0)
-
-				const geo_DataTower_RectPanels_Decoration_D1_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_D1_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_D1_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_D1_L0, mat_DataTower_RectPanels_Decoration_D1_L0);
-				mat_DataTower_RectPanels_Decoration_D1_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_D1_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_D1_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_D1_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_D1_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_D1_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Front_D1_L0.add(mesh_DataTower_RectPanels_Decoration_D1_L0)
-
-				// Front Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_D1_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_D1_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_D1_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_D1_L0, mat_DataTower_RectPanels_DecorationPanels_D1_L0);
-				mat_DataTower_RectPanels_DecorationPanels_D1_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_D1_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_D1_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_D1_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_D1_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_D1_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Front_D1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_D1_L0)
-
-				DataTower_RectPanels_Decoration_D1_L0.add(DataTower_RectPanel_Front_D1_L0)				
-				// ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-				
-				
-				// ---\### [DataTower_RectPanel_Back_D1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Back Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_Back_D1_L0 = new THREE.Group()
-				DataTower_RectPanel_Back_D1_L0.position.set(0, 10, 15000)
-				DataTower_RectPanel_Back_D1_L0.lookAt(0, 0, 0)
-				
-				const geo_DataTower_RectPanels_Decoration_D2_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_D2_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_D2_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_D2_L0, mat_DataTower_RectPanels_Decoration_D2_L0);
-				mat_DataTower_RectPanels_Decoration_D2_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_D2_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_D2_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_D2_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_D2_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_D2_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Back_D1_L0.add(mesh_DataTower_RectPanels_Decoration_D2_L0)
-
-				// Back Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_D2_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_D2_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_D2_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_D2_L0, mat_DataTower_RectPanels_DecorationPanels_D2_L0);
-				mat_DataTower_RectPanels_DecorationPanels_D2_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_D2_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_D2_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_D2_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_D2_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_D2_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Back_D1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_D2_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_D1_L0.add(DataTower_RectPanel_Back_D1_L0)	
-				// ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				
-				// ---\### [DataTower_RectPanel_Left_D1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Left Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_Left_D1_L0 = new THREE.Group()
-				DataTower_RectPanel_Left_D1_L0.position.set(-15000, 10, 0)
-				DataTower_RectPanel_Left_D1_L0.lookAt(0, 0, 0)
-
-				const geo_DataTower_RectPanels_Decoration_D3_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_D3_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_D3_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_D3_L0, mat_DataTower_RectPanels_Decoration_D3_L0);
-				mat_DataTower_RectPanels_Decoration_D3_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_D3_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_D3_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_D3_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_D3_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_D3_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Left_D1_L0.add(mesh_DataTower_RectPanels_Decoration_D3_L0)
-
-				// Left Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_D3_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_D3_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_D3_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_D3_L0, mat_DataTower_RectPanels_DecorationPanels_D3_L0);
-				mat_DataTower_RectPanels_DecorationPanels_D3_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_D3_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_D3_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_D3_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_D3_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_D3_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Left_D1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_D3_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_D1_L0.add(DataTower_RectPanel_Left_D1_L0)	
-
-				// ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-
-	
-				// ---\### [DataTower_RectPanel_Right_D1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Right Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_Right_D1_L0 = new THREE.Group()
-				DataTower_RectPanel_Right_D1_L0.position.set(15000, 10, 0)
-				DataTower_RectPanel_Right_D1_L0.lookAt(0, 0, 0)
-
-				// Right Card
-				const geo_DataTower_RectPanels_Decoration_D4_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_D4_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_D4_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_D4_L0, mat_DataTower_RectPanels_Decoration_D4_L0);
-				mat_DataTower_RectPanels_Decoration_D4_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_D4_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_D4_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_D4_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_D4_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_D4_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Right_D1_L0.add(mesh_DataTower_RectPanels_Decoration_D4_L0)
-
-				// Right Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_D4_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_D4_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_D4_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_D4_L0, mat_DataTower_RectPanels_DecorationPanels_D4_L0);
-				mat_DataTower_RectPanels_DecorationPanels_D4_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_D4_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_D4_L0.position.set(0, 10, -500); 
-				// mesh_DataTower_RectPanels_DecorationPanels_D4_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_D4_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_D4_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_Right_D1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_D4_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_D1_L0.add(DataTower_RectPanel_Right_D1_L0)	
-
-				// ---\### [DataTower_RectPanel_Right_D1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				// ---\### [DataTower_RectPanel_FrontRight_D1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Front Card
-					* |-- Status: Done @ 11:29 @ 3/14/22 @ Laboure
- 					*/
-				DataTower_RectPanel_FrontRight_D1_L0 = new THREE.Group()
-				DataTower_RectPanel_FrontRight_D1_L0.position.set(10000, 10, -10000)
-				DataTower_RectPanel_FrontRight_D1_L0.lookAt(0, 0, 0)
-
-				// Front Right Card
-				const geo_DataTower_RectPanels_Decoration_D5_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_D5_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_D5_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_D5_L0, mat_DataTower_RectPanels_Decoration_D5_L0);
-				mat_DataTower_RectPanels_Decoration_D5_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_D5_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_D5_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_D5_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_D5_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_D5_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_FrontRight_D1_L0.add(mesh_DataTower_RectPanels_Decoration_D5_L0)
-
-				// Front Right Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_D5_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_D5_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_D5_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_D5_L0, mat_DataTower_RectPanels_DecorationPanels_D5_L0);
-				mat_DataTower_RectPanels_DecorationPanels_D5_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_D5_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_D5_L0.position.set(0, 10, -1000); 
-				mesh_DataTower_RectPanels_DecorationPanels_D5_L0.rotation.set(0, 0, 0); 
-				// mesh_DataTower_RectPanels_DecorationPanels_D5_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_D5_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_D5_L0.lookAt(0, 10, 0)
-				mesh_DataTower_RectPanels_DecorationPanels_D5_L0.rotation.set(0, 0, 0)
-				DataTower_RectPanel_FrontRight_D1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_D5_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_D1_L0.add(DataTower_RectPanel_FrontRight_D1_L0)	
-
-				// ---\### [DataTower_RectPanel_FrontRight_D1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				// ---\### [DataTower_RectPanel_Right_D1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Left Card
-					* |-- Status: Done
- 					*/
-				DataTower_RectPanel_BackRight_D1_L0 = new THREE.Group()
-				DataTower_RectPanel_BackRight_D1_L0.position.set(10000, 10, 10000)
-				DataTower_RectPanel_BackRight_D1_L0.lookAt(0, 0, 0)
-
-				// Back Right Card
-				const geo_DataTower_RectPanels_Decoration_D6_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_D6_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_D6_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_D6_L0, mat_DataTower_RectPanels_Decoration_D6_L0);
-				mat_DataTower_RectPanels_Decoration_D6_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_D6_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_D6_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_D6_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_D6_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_D6_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackRight_D1_L0.add(mesh_DataTower_RectPanels_Decoration_D6_L0)
-
-				// Back Right Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_D6_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_D6_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_D6_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_D6_L0, mat_DataTower_RectPanels_DecorationPanels_D6_L0);
-				mat_DataTower_RectPanels_DecorationPanels_D6_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_D6_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_D6_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_D6_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_D6_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_D6_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackRight_D1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_D6_L0)
-
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_D1_L0.add(DataTower_RectPanel_BackRight_D1_L0)	
-				// ---\### [DataTower_RectPanel_Right_D1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				
-
-				// ---\### [DataTower_RectPanel_Right_D1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: Left Card
-					* |-- Status: Done
- 					*/
-				DataTower_RectPanel_BackLeft_D1_L0 = new THREE.Group()
-				DataTower_RectPanel_BackLeft_D1_L0.position.set(-10000, 10, 10000)
-				DataTower_RectPanel_BackLeft_D1_L0.lookAt(0, 0, 0)
-
-				// Back Left Card
-				const geo_DataTower_RectPanels_Decoration_D7_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_D7_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_D7_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_D7_L0, mat_DataTower_RectPanels_Decoration_D7_L0);
-				mat_DataTower_RectPanels_Decoration_D7_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_D7_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_D7_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_D7_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_D7_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_D7_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackLeft_D1_L0.add(mesh_DataTower_RectPanels_Decoration_D7_L0)
-
-				// Back Left Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_D7_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_D7_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_D7_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_D7_L0, mat_DataTower_RectPanels_DecorationPanels_D7_L0);
-				mat_DataTower_RectPanels_DecorationPanels_D7_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_D7_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_D7_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_D7_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_D7_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_D7_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_BackLeft_D1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_D7_L0)
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_D1_L0.add(DataTower_RectPanel_BackLeft_D1_L0)	
-				// ---\### [DataTower_RectPanel_Right_B1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				// ---\### [DataTower_RectPanel_Right_B1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-					* |- # Title: FrontLeft Card
-					* |-- Details
- 					*/
-				DataTower_RectPanel_FrontLeft_D1_L0 = new THREE.Group()
-				DataTower_RectPanel_FrontLeft_D1_L0.position.set(-10000, 10, -10000)
-				DataTower_RectPanel_FrontLeft_D1_L0.lookAt(0, 0, 0)
-
-				// Front Left Card
-				const geo_DataTower_RectPanels_Decoration_D8_L0 = new THREE.PlaneGeometry(4500, 9000)
-				const mat_DataTower_RectPanels_Decoration_D8_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_Decoration_D8_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_D8_L0, mat_DataTower_RectPanels_Decoration_D8_L0);
-				mat_DataTower_RectPanels_Decoration_D8_L0.transparent = false;
-				mat_DataTower_RectPanels_Decoration_D8_L0.alphaMap = DTD01;
-				mesh_DataTower_RectPanels_Decoration_D8_L0.position.set(0, 10, 0); 
-				// mesh_DataTower_RectPanels_Decoration_D8_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_Decoration_D8_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_Decoration_D8_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_FrontLeft_D1_L0.add(mesh_DataTower_RectPanels_Decoration_D8_L0)
-
-				// Front Left Card Frame
-				const geo_DataTower_RectPanels_DecorationPanels_D8_L0 = new THREE.PlaneGeometry(7500, 15000)
-				const mat_DataTower_RectPanels_DecorationPanels_D8_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-				mesh_DataTower_RectPanels_DecorationPanels_D8_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_D8_L0, mat_DataTower_RectPanels_DecorationPanels_D8_L0);
-				mat_DataTower_RectPanels_DecorationPanels_D8_L0.transparent = true;
-				mat_DataTower_RectPanels_DecorationPanels_D8_L0.alphaMap = DTDB01;
-				mesh_DataTower_RectPanels_DecorationPanels_D8_L0.position.set(0, 10, -1000); 
-				// mesh_DataTower_RectPanels_DecorationPanels_D8_L0.rotateX( - Math.PI / 2 );
-				mesh_DataTower_RectPanels_DecorationPanels_D8_L0.scale.set(2, 2, 2)
-				mesh_DataTower_RectPanels_DecorationPanels_D8_L0.lookAt(0, 10, 0)
-				DataTower_RectPanel_FrontLeft_D1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_D8_L0)
-
-
-				// Final Push to DTD Rect Panels Decoration A1_L0
-				DataTower_RectPanels_Decoration_D1_L0.add(DataTower_RectPanel_FrontLeft_D1_L0)	
-				// ---\### [DataTower_RectPanel_Right_D1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-				scene.add(DataTower_RectPanels_Decoration_D1_L0)
-				// ---\## [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-
-
-				
-				//#########################################
-				// # DataTower_RectPanels_Decoration_E
-				//#########################################
-
-
-				// ---\## [DataTower_RectPanels_Decoration] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-				/** 
-				  * |- Details _D
- 					*/
-
-                DataTower_RectPanels_Decoration_E1_L0 = new THREE.Group()
-                DataTower_RectPanels_Decoration_E1_L0.position.set(-500000, 90000, 0)
-    
-    
-                
-                // ---\### [DataTower_RectPanel_Front_B1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                /** 
-                   * |- # Title: Front Card
-                   * |-- Status: Complete
-						 * * |-- Search.DTDE
-                    */
-                DataTower_RectPanel_Front_E1_L0 = new THREE.Group()
-                DataTower_RectPanel_Front_E1_L0.position.set(0, 10, -15000)
-                DataTower_RectPanel_Front_E1_L0.lookAt(0, 0, 0)
-    
-                const geo_DataTower_RectPanels_Decoration_E1_L0 = new THREE.PlaneGeometry(4500, 9000)
-                const mat_DataTower_RectPanels_Decoration_E1_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_Decoration_E1_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_E1_L0, mat_DataTower_RectPanels_Decoration_E1_L0);
-                mat_DataTower_RectPanels_Decoration_E1_L0.transparent = false;
-                mat_DataTower_RectPanels_Decoration_E1_L0.alphaMap = DTD01;
-                mesh_DataTower_RectPanels_Decoration_E1_L0.position.set(0, 10, 0); 
-                // mesh_DataTower_RectPanels_Decoration_E1_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_Decoration_E1_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_Decoration_E1_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_Front_E1_L0.add(mesh_DataTower_RectPanels_Decoration_E1_L0)
-    
-                // Front Card Frame
-                const geo_DataTower_RectPanels_DecorationPanels_E1_L0 = new THREE.PlaneGeometry(7500, 15000)
-                const mat_DataTower_RectPanels_DecorationPanels_E1_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_DecorationPanels_E1_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_E1_L0, mat_DataTower_RectPanels_DecorationPanels_E1_L0);
-                mat_DataTower_RectPanels_DecorationPanels_E1_L0.transparent = true;
-                mat_DataTower_RectPanels_DecorationPanels_E1_L0.alphaMap = DTDB01;
-                mesh_DataTower_RectPanels_DecorationPanels_E1_L0.position.set(0, 10, -1000); 
-                // mesh_DataTower_RectPanels_DecorationPanels_E1_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_DecorationPanels_E1_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_DecorationPanels_E1_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_Front_E1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_E1_L0)
-    
-                DataTower_RectPanels_Decoration_E1_L0.add(DataTower_RectPanel_Front_E1_L0)				
-                // ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    
-                
-                
-                // ---\### [DataTower_RectPanel_Back_E1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                /** 
-                   * |- # Title: Back Card
-                   * |-- Details
-                    */
-                DataTower_RectPanel_Back_E1_L0 = new THREE.Group()
-                DataTower_RectPanel_Back_E1_L0.position.set(0, 10, 15000)
-                DataTower_RectPanel_Back_E1_L0.lookAt(0, 0, 0)
-                
-                const geo_DataTower_RectPanels_Decoration_E2_L0 = new THREE.PlaneGeometry(4500, 9000)
-                const mat_DataTower_RectPanels_Decoration_E2_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_Decoration_E2_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_E2_L0, mat_DataTower_RectPanels_Decoration_E2_L0);
-                mat_DataTower_RectPanels_Decoration_E2_L0.transparent = false;
-                mat_DataTower_RectPanels_Decoration_E2_L0.alphaMap = DTD01;
-                mesh_DataTower_RectPanels_Decoration_E2_L0.position.set(0, 10, 0); 
-                // mesh_DataTower_RectPanels_Decoration_E2_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_Decoration_E2_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_Decoration_E2_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_Back_E1_L0.add(mesh_DataTower_RectPanels_Decoration_E2_L0)
-    
-                // Back Card Frame
-                const geo_DataTower_RectPanels_DecorationPanels_E2_L0 = new THREE.PlaneGeometry(7500, 15000)
-                const mat_DataTower_RectPanels_DecorationPanels_E2_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_DecorationPanels_E2_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_E2_L0, mat_DataTower_RectPanels_DecorationPanels_E2_L0);
-                mat_DataTower_RectPanels_DecorationPanels_E2_L0.transparent = true;
-                mat_DataTower_RectPanels_DecorationPanels_E2_L0.alphaMap = DTDB01;
-                mesh_DataTower_RectPanels_DecorationPanels_E2_L0.position.set(0, 10, -1000); 
-                // mesh_DataTower_RectPanels_DecorationPanels_E2_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_DecorationPanels_E2_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_DecorationPanels_E2_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_Back_E1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_E2_L0)
-    
-                // Final Push to DTD Rect Panels Decoration A1_L0
-                DataTower_RectPanels_Decoration_E1_L0.add(DataTower_RectPanel_Back_E1_L0)	
-                // ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    
-    
-                
-                // ---\### [DataTower_RectPanel_Left_E1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                /** 
-                   * |- # Title: Left Card
-                   * |-- Details
-                    */
-                DataTower_RectPanel_Left_E1_L0 = new THREE.Group()
-                DataTower_RectPanel_Left_E1_L0.position.set(-15000, 10, 0)
-                DataTower_RectPanel_Left_E1_L0.lookAt(0, 0, 0)
-    
-                const geo_DataTower_RectPanels_Decoration_E3_L0 = new THREE.PlaneGeometry(4500, 9000)
-                const mat_DataTower_RectPanels_Decoration_E3_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_Decoration_E3_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_E3_L0, mat_DataTower_RectPanels_Decoration_E3_L0);
-                mat_DataTower_RectPanels_Decoration_E3_L0.transparent = false;
-                mat_DataTower_RectPanels_Decoration_E3_L0.alphaMap = DTD01;
-                mesh_DataTower_RectPanels_Decoration_E3_L0.position.set(0, 10, 0); 
-                // mesh_DataTower_RectPanels_Decoration_E3_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_Decoration_E3_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_Decoration_E3_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_Left_E1_L0.add(mesh_DataTower_RectPanels_Decoration_E3_L0)
-    
-                // Left Card Frame
-                const geo_DataTower_RectPanels_DecorationPanels_E3_L0 = new THREE.PlaneGeometry(7500, 15000)
-                const mat_DataTower_RectPanels_DecorationPanels_E3_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_DecorationPanels_E3_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_E3_L0, mat_DataTower_RectPanels_DecorationPanels_E3_L0);
-                mat_DataTower_RectPanels_DecorationPanels_E3_L0.transparent = true;
-                mat_DataTower_RectPanels_DecorationPanels_E3_L0.alphaMap = DTDB01;
-                mesh_DataTower_RectPanels_DecorationPanels_E3_L0.position.set(0, 10, -1000); 
-                // mesh_DataTower_RectPanels_DecorationPanels_E3_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_DecorationPanels_E3_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_DecorationPanels_E3_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_Left_E1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_E3_L0)
-    
-                // Final Push to DTD Rect Panels Decoration A1_L0
-                DataTower_RectPanels_Decoration_E1_L0.add(DataTower_RectPanel_Left_E1_L0)	
-    
-                // ---\### [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    
-    
-    
-       
-                // ---\### [DataTower_RectPanel_Right_E1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                /** 
-                   * |- # Title: Right Card
-                   * |-- Details
-                    */
-                DataTower_RectPanel_Right_E1_L0 = new THREE.Group()
-                DataTower_RectPanel_Right_E1_L0.position.set(15000, 10, 0)
-                DataTower_RectPanel_Right_E1_L0.lookAt(0, 0, 0)
-    
-                // Right Card
-                const geo_DataTower_RectPanels_Decoration_E4_L0 = new THREE.PlaneGeometry(4500, 9000)
-                const mat_DataTower_RectPanels_Decoration_E4_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_Decoration_E4_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_E4_L0, mat_DataTower_RectPanels_Decoration_E4_L0);
-                mat_DataTower_RectPanels_Decoration_E4_L0.transparent = false;
-                mat_DataTower_RectPanels_Decoration_E4_L0.alphaMap = DTD01;
-                mesh_DataTower_RectPanels_Decoration_E4_L0.position.set(0, 10, 0); 
-                // mesh_DataTower_RectPanels_Decoration_E4_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_Decoration_E4_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_Decoration_E4_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_Right_E1_L0.add(mesh_DataTower_RectPanels_Decoration_E4_L0)
-    
-                // Right Card Frame
-                const geo_DataTower_RectPanels_DecorationPanels_E4_L0 = new THREE.PlaneGeometry(7500, 15000)
-                const mat_DataTower_RectPanels_DecorationPanels_E4_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_DecorationPanels_E4_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_E4_L0, mat_DataTower_RectPanels_DecorationPanels_E4_L0);
-                mat_DataTower_RectPanels_DecorationPanels_E4_L0.transparent = true;
-                mat_DataTower_RectPanels_DecorationPanels_E4_L0.alphaMap = DTDB01;
-                mesh_DataTower_RectPanels_DecorationPanels_E4_L0.position.set(0, 10, -500); 
-                // mesh_DataTower_RectPanels_DecorationPanels_E4_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_DecorationPanels_E4_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_DecorationPanels_E4_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_Right_E1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_E4_L0)
-    
-                // Final Push to DTD Rect Panels Decoration A1_L0
-                DataTower_RectPanels_Decoration_E1_L0.add(DataTower_RectPanel_Right_E1_L0)	
-    
-                // ---\### [DataTower_RectPanel_Right_E1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    
-    
-                // ---\### [DataTower_RectPanel_FrontRight_E1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                /** 
-                   * |- # Title: Front Card
-                   * |-- Status: Done @ 11:29 @ 3/14/22 @ Laboure
-                    */
-                DataTower_RectPanel_FrontRight_E1_L0 = new THREE.Group()
-                DataTower_RectPanel_FrontRight_E1_L0.position.set(10000, 10, -10000)
-                DataTower_RectPanel_FrontRight_E1_L0.lookAt(0, 0, 0)
-    
-                // Front Right Card
-                const geo_DataTower_RectPanels_Decoration_E5_L0 = new THREE.PlaneGeometry(4500, 9000)
-                const mat_DataTower_RectPanels_Decoration_E5_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_Decoration_E5_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_E5_L0, mat_DataTower_RectPanels_Decoration_E5_L0);
-                mat_DataTower_RectPanels_Decoration_E5_L0.transparent = false;
-                mat_DataTower_RectPanels_Decoration_E5_L0.alphaMap = DTD01;
-                mesh_DataTower_RectPanels_Decoration_E5_L0.position.set(0, 10, 0); 
-                // mesh_DataTower_RectPanels_Decoration_E5_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_Decoration_E5_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_Decoration_E5_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_FrontRight_E1_L0.add(mesh_DataTower_RectPanels_Decoration_E5_L0)
-    
-                // Front Right Card Frame
-                const geo_DataTower_RectPanels_DecorationPanels_E5_L0 = new THREE.PlaneGeometry(7500, 15000)
-                const mat_DataTower_RectPanels_DecorationPanels_E5_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_DecorationPanels_E5_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_E5_L0, mat_DataTower_RectPanels_DecorationPanels_E5_L0);
-                mat_DataTower_RectPanels_DecorationPanels_E5_L0.transparent = true;
-                mat_DataTower_RectPanels_DecorationPanels_E5_L0.alphaMap = DTDB01;
-                mesh_DataTower_RectPanels_DecorationPanels_E5_L0.position.set(0, 10, -1000); 
-                mesh_DataTower_RectPanels_DecorationPanels_E5_L0.rotation.set(0, 0, 0); 
-                // mesh_DataTower_RectPanels_DecorationPanels_E5_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_DecorationPanels_E5_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_DecorationPanels_E5_L0.lookAt(0, 10, 0)
-                mesh_DataTower_RectPanels_DecorationPanels_E5_L0.rotation.set(0, 0, 0)
-                DataTower_RectPanel_FrontRight_E1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_E5_L0)
-    
-                // Final Push to DTD Rect Panels Decoration A1_L0
-                DataTower_RectPanels_Decoration_E1_L0.add(DataTower_RectPanel_FrontRight_E1_L0)	
-    
-                // ---\### [DataTower_RectPanel_FrontRight_E1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    
-    
-                // ---\### [DataTower_RectPanel_Right_E1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                /** 
-                   * |- # Title: Left Card
-                   * |-- Status: Done
-                    */
-                DataTower_RectPanel_BackRight_E1_L0 = new THREE.Group()
-                DataTower_RectPanel_BackRight_E1_L0.position.set(10000, 10, 10000)
-                DataTower_RectPanel_BackRight_E1_L0.lookAt(0, 0, 0)
-    
-                // Back Right Card
-                const geo_DataTower_RectPanels_Decoration_E6_L0 = new THREE.PlaneGeometry(4500, 9000)
-                const mat_DataTower_RectPanels_Decoration_E6_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_Decoration_E6_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_E6_L0, mat_DataTower_RectPanels_Decoration_E6_L0);
-                mat_DataTower_RectPanels_Decoration_E6_L0.transparent = false;
-                mat_DataTower_RectPanels_Decoration_E6_L0.alphaMap = DTD01;
-                mesh_DataTower_RectPanels_Decoration_E6_L0.position.set(0, 10, 0); 
-                // mesh_DataTower_RectPanels_Decoration_E6_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_Decoration_E6_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_Decoration_E6_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_BackRight_E1_L0.add(mesh_DataTower_RectPanels_Decoration_E6_L0)
-    
-                // Back Right Card Frame
-                const geo_DataTower_RectPanels_DecorationPanels_E6_L0 = new THREE.PlaneGeometry(7500, 15000)
-                const mat_DataTower_RectPanels_DecorationPanels_E6_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_DecorationPanels_E6_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_E6_L0, mat_DataTower_RectPanels_DecorationPanels_E6_L0);
-                mat_DataTower_RectPanels_DecorationPanels_E6_L0.transparent = true;
-                mat_DataTower_RectPanels_DecorationPanels_E6_L0.alphaMap = DTDB01;
-                mesh_DataTower_RectPanels_DecorationPanels_E6_L0.position.set(0, 10, -1000); 
-                // mesh_DataTower_RectPanels_DecorationPanels_E6_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_DecorationPanels_E6_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_DecorationPanels_E6_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_BackRight_E1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_E6_L0)
-    
-    
-                // Final Push to DTD Rect Panels Decoration A1_L0
-                DataTower_RectPanels_Decoration_E1_L0.add(DataTower_RectPanel_BackRight_E1_L0)	
-                // ---\### [DataTower_RectPanel_Right_E1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                
-    
-                // ---\### [DataTower_RectPanel_Right_E1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                /** 
-                   * |- # Title: Left Card
-                   * |-- Status: Done
-                    */
-                DataTower_RectPanel_BackLeft_E1_L0 = new THREE.Group()
-                DataTower_RectPanel_BackLeft_E1_L0.position.set(-10000, 10, 10000)
-                DataTower_RectPanel_BackLeft_E1_L0.lookAt(0, 0, 0)
-    
-                // Back Left Card
-                const geo_DataTower_RectPanels_Decoration_E7_L0 = new THREE.PlaneGeometry(4500, 9000)
-                const mat_DataTower_RectPanels_Decoration_E7_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_Decoration_E7_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_E7_L0, mat_DataTower_RectPanels_Decoration_E7_L0);
-                mat_DataTower_RectPanels_Decoration_E7_L0.transparent = false;
-                mat_DataTower_RectPanels_Decoration_E7_L0.alphaMap = DTD01;
-                mesh_DataTower_RectPanels_Decoration_E7_L0.position.set(0, 10, 0); 
-                // mesh_DataTower_RectPanels_Decoration_E7_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_Decoration_E7_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_Decoration_E7_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_BackLeft_E1_L0.add(mesh_DataTower_RectPanels_Decoration_E7_L0)
-    
-                // Back Left Card Frame
-                const geo_DataTower_RectPanels_DecorationPanels_E7_L0 = new THREE.PlaneGeometry(7500, 15000)
-                const mat_DataTower_RectPanels_DecorationPanels_E7_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_DecorationPanels_E7_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_E7_L0, mat_DataTower_RectPanels_DecorationPanels_E7_L0);
-                mat_DataTower_RectPanels_DecorationPanels_E7_L0.transparent = true;
-                mat_DataTower_RectPanels_DecorationPanels_E7_L0.alphaMap = DTDB01;
-                mesh_DataTower_RectPanels_DecorationPanels_E7_L0.position.set(0, 10, -1000); 
-                // mesh_DataTower_RectPanels_DecorationPanels_E7_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_DecorationPanels_E7_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_DecorationPanels_E7_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_BackLeft_E1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_E7_L0)
-    
-                // Final Push to DTD Rect Panels Decoration A1_L0
-                DataTower_RectPanels_Decoration_E1_L0.add(DataTower_RectPanel_BackLeft_E1_L0)	
-                // ---\### [DataTower_RectPanel_Right_B1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    
-    
-                // ---\### [DataTower_RectPanel_Right_B1_L0] Start\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                /** 
-                   * |- # Title: FrontLeft Card
-                   * |-- Details
-                    */
-                DataTower_RectPanel_FrontLeft_E1_L0 = new THREE.Group()
-                DataTower_RectPanel_FrontLeft_E1_L0.position.set(-10000, 10, -10000)
-                DataTower_RectPanel_FrontLeft_E1_L0.lookAt(0, 0, 0)
-    
-                // Front Left Card
-                const geo_DataTower_RectPanels_Decoration_E8_L0 = new THREE.PlaneGeometry(4500, 9000)
-                const mat_DataTower_RectPanels_Decoration_E8_L0 = new THREE.MeshStandardMaterial({ map: DTD01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_Decoration_E8_L0 = new THREE.Mesh(geo_DataTower_RectPanels_Decoration_E8_L0, mat_DataTower_RectPanels_Decoration_E8_L0);
-                mat_DataTower_RectPanels_Decoration_E8_L0.transparent = false;
-                mat_DataTower_RectPanels_Decoration_E8_L0.alphaMap = DTD01;
-                mesh_DataTower_RectPanels_Decoration_E8_L0.position.set(0, 10, 0); 
-                // mesh_DataTower_RectPanels_Decoration_E8_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_Decoration_E8_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_Decoration_E8_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_FrontLeft_E1_L0.add(mesh_DataTower_RectPanels_Decoration_E8_L0)
-    
-                // Front Left Card Frame
-                const geo_DataTower_RectPanels_DecorationPanels_E8_L0 = new THREE.PlaneGeometry(7500, 15000)
-                const mat_DataTower_RectPanels_DecorationPanels_E8_L0 = new THREE.MeshStandardMaterial({ map: DTDB01, side: THREE.DoubleSide });
-                mesh_DataTower_RectPanels_DecorationPanels_E8_L0 = new THREE.Mesh(geo_DataTower_RectPanels_DecorationPanels_E8_L0, mat_DataTower_RectPanels_DecorationPanels_E8_L0);
-                mat_DataTower_RectPanels_DecorationPanels_E8_L0.transparent = true;
-                mat_DataTower_RectPanels_DecorationPanels_E8_L0.alphaMap = DTDB01;
-                mesh_DataTower_RectPanels_DecorationPanels_E8_L0.position.set(0, 10, -1000); 
-                // mesh_DataTower_RectPanels_DecorationPanels_E8_L0.rotateX( - Math.PI / 2 );
-                mesh_DataTower_RectPanels_DecorationPanels_E8_L0.scale.set(2, 2, 2)
-                mesh_DataTower_RectPanels_DecorationPanels_E8_L0.lookAt(0, 10, 0)
-                DataTower_RectPanel_FrontLeft_E1_L0.add(mesh_DataTower_RectPanels_DecorationPanels_E8_L0)
-    
-    
-                // Final Push to DTD Rect Panels Decoration A1_L0
-                DataTower_RectPanels_Decoration_E1_L0.add(DataTower_RectPanel_FrontLeft_E1_L0)	
-                // ---\### [DataTower_RectPanel_Right_E1_L0] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    
-    
-                scene.add(DataTower_RectPanels_Decoration_E1_L0)
-                // ---\## [DataTower_RectPanels_Decoration] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+			
 
 				
 				//#########################################
@@ -4379,7 +2842,7 @@
 				// Component Root
 				RealityOfUnknowns_Root_L0 = new THREE.Group()
 				// Distance Location
-				RealityOfUnknowns_Root_L0.position.set(4000000, 100000, -1500000)
+				RealityOfUnknowns_Root_L0.position.set(0, 100000, 9500000)
 
 				// Near Location
 				// RealityOfUnknowns_Root_L0.position.set(0, 100000, 0)
@@ -4801,7 +3264,7 @@
 				//Command Center
 				//#########################################
 				const CommandCenter = new THREE.Group()
-            CommandCenter.position.set(1000000, 0, 0)
+            CommandCenter.position.set(500000, 0, 90000000)
             
 				// CommandCenterSphere
 				const geo_CommandCenterSphere_L0 = new THREE.SphereGeometry(10000, 32, 32)
@@ -5169,7 +3632,7 @@
 				// GUI Options
 				const gui = new GUI(
 					{
-						width: 300,
+						width: 500,
 						closed: true,
 						hide: true,
 					}
@@ -5200,7 +3663,7 @@
 				const folderMainSettings = gui.addFolder('User Settings')
 
 				folderMainSettings.add(camera.position, 'x').min(-60000).max(60000).step(10000).name('Side Movement')
-				folderMainSettings.add(camera.position, 'y').min(0).max(120000).step(10000).name('Elevator')
+				folderMainSettings.add(camera.position, 'y').min(0).max(120000).step(100).name('Elevator')
 				folderMainSettings.add(camera.position, 'z').min(-60000).max(60000).step(10000).name('Forward / BackWards')
 				
 				// For Unknown Reality
@@ -5225,19 +3688,52 @@
 				folderMainSettings.add(CommandCenter.rotation, 'z').min(-100).max(100).step(1).name('Rotation-z');
 
 
-				const folderMainHud2 = gui.addFolder('RealityTesting')
+				const folderMainHud2 = gui.addFolder('Component1 Testing')
 
-				folderMainHud2.add(mesh_CommunicationContainer_StartIndicator.position, 'x').min(-60000).max(60000).step(10000).name('Cc-Back-x');
-				folderMainHud2.add(mesh_CommunicationContainer_StartIndicator.position, 'y').min(-5000).max(5000).step(100).name('Cc-Back-y');
-				folderMainHud2.add(mesh_CommunicationContainer_StartIndicator.position, 'z').min(-5000).max(5000).step(100).name('Cc-Back-z');
+				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.position, 'x').min(-60000).max(60000).step(10000).name('Cc-Back-x');
+				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.position, 'y').min(-5000).max(50000).step(100).name('Cc-Back-y');
+				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.position, 'z').min(-5000).max(35000).step(100).name('Cc-Back-z');
 
-				folderMainHud2.add(mesh_CommunicationContainer_StartIndicator.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
-				folderMainHud2.add(mesh_CommunicationContainer_StartIndicator.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
-				folderMainHud2.add(mesh_CommunicationContainer_StartIndicator.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
+				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
+				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
+				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
 
-				folderMainHud2.add(mesh_CommunicationContainer_StartIndicator.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
-				folderMainHud2.add(mesh_CommunicationContainer_StartIndicator.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
-				folderMainHud2.add(mesh_CommunicationContainer_StartIndicator.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+
+				// folderMainHud2.add(
+				// 	mainContainerVideoContainer_Params.radiusTop, '')
+				// 	.min(-100).max(100).step(1).name('Scale-z');
+
+
+				const folderMainHud3 = gui.addFolder('Component2 Testing')
+
+				folderMainHud3.add(mainContainerEntranceA0_L0.position, 'x').min(-60000).max(60000).step(10000).name('Entrance-x');
+				folderMainHud3.add(mainContainerEntranceA0_L0.position, 'y').min(-5000).max(50000).step(100).name('Entrance-y');
+				folderMainHud3.add(mainContainerEntranceA0_L0.position, 'z').min(-25000).max(25000).step(100).name('Entrance-z');
+
+				folderMainHud3.add(mainContainerEntranceA0_L0.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
+				folderMainHud3.add(mainContainerEntranceA0_L0.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
+				folderMainHud3.add(mainContainerEntranceA0_L0.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
+
+				folderMainHud3.add(mainContainerEntranceA0_L0.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				folderMainHud3.add(mainContainerEntranceA0_L0.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				folderMainHud3.add(mainContainerEntranceA0_L0.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+
+				const folderMainHud4 = gui.addFolder('Component3 Testing')
+
+				folderMainHud4.add(DataTower_RectPanels_Count8.position, 'x').min(-60000).max(60000).step(10000).name('Cc-Back-x');
+				folderMainHud4.add(DataTower_RectPanels_Count8.position, 'y').min(-5000).max(50000).step(100).name('Cc-Back-y');
+				folderMainHud4.add(DataTower_RectPanels_Count8.position, 'z').min(-5000).max(5000).step(100).name('Cc-Back-z');
+
+				folderMainHud4.add(DataTower_RectPanels_Count8.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
+				folderMainHud4.add(DataTower_RectPanels_Count8.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
+				folderMainHud4.add(DataTower_RectPanels_Count8.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
+
+				folderMainHud4.add(DataTower_RectPanels_Count8.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				folderMainHud4.add(DataTower_RectPanels_Count8.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				folderMainHud4.add(DataTower_RectPanels_Count8.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
 
 				// ---\### [Reality Interface] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 				
@@ -5245,48 +3741,6 @@
 
 
 
-
-				
-
-				// const folderDTD_Front = gui.addFolder('DTD Front')
-				// folderDTD_Front.add(DataTower_RectPanel_Front_A1_L0.position, 'x').min(-90000).max(-15000).step(15000).name('CardTester-x');
-				// folderDTD_Front.add(DataTower_RectPanel_Front_A1_L0.position, 'y').min(0).max(100000).step(25000).name('CardTester-y');
-				// folderDTD_Front.add(DataTower_RectPanel_Front_A1_L0.position, 'z').min(-90000).max(-15000).step(15000).name('CardTester-z');
-
-				// const folderDTD_Back = gui.addFolder('DTD Back')
-				// folderDTD_Back.add(DataTower_RectPanel_Back_A1_L0.position, 'x').min(-90000).max(-15000).step(15000).name('CardTester-x');
-				// folderDTD_Back.add(DataTower_RectPanel_Back_A1_L0.position, 'y').min(0).max(100000).step(25000).name('CardTester-y');
-				// folderDTD_Back.add(DataTower_RectPanel_Back_A1_L0.position, 'z').min(-90000).max(-15000).step(15000).name('CardTester-z');
-
-				// const folderDTD_Left = gui.addFolder('DTD Left')
-				// folderDTD_Left.add(DataTower_RectPanel_Left_A1_L0.position, 'x').min(-90000).max(-15000).step(15000).name('CardTester-x');
-				// folderDTD_Left.add(DataTower_RectPanel_Left_A1_L0.position, 'y').min(0).max(100000).step(25000).name('CardTester-y');
-				// folderDTD_Left.add(DataTower_RectPanel_Left_A1_L0.position, 'z').min(-90000).max(-15000).step(15000).name('CardTester-z');
-
-				// const folderDTD_Right = gui.addFolder('DTD Right')
-				// folderDTD_Right.add(DataTower_RectPanel_Right_A1_L0.position, 'x').min(-90000).max(-15000).step(15000).name('CardTester-x');
-				// folderDTD_Right.add(DataTower_RectPanel_Right_A1_L0.position, 'y').min(0).max(100000).step(25000).name('CardTester-y');
-				// folderDTD_Right.add(DataTower_RectPanel_Right_A1_L0.position, 'z').min(-90000).max(-15000).step(15000).name('CardTester-z');
-
-				// const folderDTD_FrontRight = gui.addFolder('DTD FrontRight')
-				// folderDTD_FrontRight.add(DataTower_RectPanel_FrontRight_A1_L0.position, 'x').min(-90000).max(55000).step(5000).name('CardTester-x');
-				// folderDTD_FrontRight.add(DataTower_RectPanel_FrontRight_A1_L0.position, 'y').min(0).max(100000).step(25000).name('CardTester-y');
-				// folderDTD_FrontRight.add(DataTower_RectPanel_FrontRight_A1_L0.position, 'z').min(-90000).max(-15000).step(15000).name('CardTester-z');
-
-				// const folderDTD_BackRight = gui.addFolder('DTD BackRight')
-				// folderDTD_BackRight.add(DataTower_RectPanel_BackRight_A1_L0.position, 'x').min(-90000).max(55000).step(5000).name('CardTester-x');
-				// folderDTD_BackRight.add(DataTower_RectPanel_BackRight_A1_L0.position, 'y').min(0).max(100000).step(25000).name('CardTester-y');
-				// folderDTD_BackRight.add(DataTower_RectPanel_BackRight_A1_L0.position, 'z').min(-90000).max(-15000).step(15000).name('CardTester-z');
-
-				// const folderDTD_BackLeft = gui.addFolder('DTD BackLeft')
-				// folderDTD_BackLeft.add(DataTower_RectPanel_BackLeft_A1_L0.position, 'x').min(-90000).max(55000).step(5000).name('CardTester-x');
-				// folderDTD_BackLeft.add(DataTower_RectPanel_BackLeft_A1_L0.position, 'y').min(0).max(100000).step(25000).name('CardTester-y');
-				// folderDTD_BackLeft.add(DataTower_RectPanel_BackLeft_A1_L0.position, 'z').min(-90000).max(-15000).step(15000).name('CardTester-z');
-
-				// const folderDTD_FontLeft = gui.addFolder('DTD FrontLeft')
-				// folderDTD_FontLeft.add(DataTower_RectPanel_FrontLeft_A1_L0.position, 'x').min(-90000).max(55000).step(5000).name('CardTester-x');
-				// folderDTD_FontLeft.add(DataTower_RectPanel_FrontLeft_A1_L0.position, 'y').min(0).max(100000).step(25000).name('CardTester-y');
-				// folderDTD_FontLeft.add(DataTower_RectPanel_FrontLeft_A1_L0.position, 'z').min(-90000).max(-15000).step(15000).name('CardTester-z');
 
 
 				// Search.GUI.RealityTestSettings.Main
@@ -5308,18 +3762,18 @@
 
 
 
-				const folderVideo = gui.addFolder('Video Settings')
-				folderVideo.add(videoScreen.position, 'x').min(-50000).max(100000).step(1).name('Position-x');
-				folderVideo.add(videoScreen.position, 'y').min(-50000).max(100000).step(1).name('Position-y');
-				folderVideo.add(videoScreen.position, 'z').min(-50000).max(100000).step(1).name('Position-z');
+				// const folderVideo = gui.addFolder('Video Settings')
+				// folderVideo.add(videoScreen.position, 'x').min(-50000).max(100000).step(1).name('Position-x');
+				// folderVideo.add(videoScreen.position, 'y').min(-50000).max(100000).step(1).name('Position-y');
+				// folderVideo.add(videoScreen.position, 'z').min(-50000).max(100000).step(1).name('Position-z');
 
-				folderVideo.add(videoScreen.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
-				folderVideo.add(videoScreen.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
-				folderVideo.add(videoScreen.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+				// folderVideo.add(videoScreen.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				// folderVideo.add(videoScreen.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				// folderVideo.add(videoScreen.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
 
-				folderVideo.add(videoScreen.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
-				folderVideo.add(videoScreen.rotation, 'y').min(-100).max(100).step(1).name('Rotation-y');
-				folderVideo.add(videoScreen.rotation, 'z').min(-100).max(100).step(1).name('Rotation-z');
+				// folderVideo.add(videoScreen.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
+				// folderVideo.add(videoScreen.rotation, 'y').min(-100).max(100).step(1).name('Rotation-y');
+				// folderVideo.add(videoScreen.rotation, 'z').min(-100).max(100).step(1).name('Rotation-z');
 
 
 
@@ -5642,6 +4096,14 @@
 				mesh_Cc_StartIndicatorIcon.position.x = Math.cos(time * 0.001) * -125.5 + -250
 				mesh_CommunicationContainer_StartIndicator.rotation.y = time * 0.001
 				mesh_CommunicationContainer_StartIndicator.position.x = Math.cos(time * 0.001) * -125.5  + -250
+
+
+				// mainContainer Animations
+				mesh_mainContainer.rotation.x = time * 0.0001
+
+
+				// mainContainer Entrance
+				mainContainerEntranceA0_L0.rotation.y = time * 0.001
 
 
 				// Camera Testing
