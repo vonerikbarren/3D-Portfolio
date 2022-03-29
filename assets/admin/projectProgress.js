@@ -7,16 +7,20 @@ const projectProgress = {
       PortfolioActual_FinishDate: ["", ''],
    }
 
+
+   // Templates
    logTemplate: {
 
       Entry00: {
          Header: {
             Level: ["Goal", 'Objective', 'task'],
             Title: "",
+            EntryDate: '',
             TimeExpectedStart: '',
             TimeExpectedFinish: '',
             TimeActualStart: '',
             TimeActualFinish: '',
+            NumOfCommits: Number
          },
    
          Data: {
@@ -34,14 +38,14 @@ const projectProgress = {
    // LogBook
 
    PortfolioLogBook: {
-      Entry00: {
+      Entry01: {
          Header: {
             Level: ["Goal", 'Objective', 'task'],
-            Title: "",
-            TimeExpectedStart: '',
-            TimeExpectedFinish: '',
-            TimeActualStart: '',
-            TimeActualFinish: '',
+            Title: "Getting something done",
+            TimeExpectedStart: 'N/A',
+            TimeExpectedFinish: 'N/A',
+            TimeActualStart: 'N/A',
+            TimeActualFinish: 'N/A',
          },
    
          Data: {
@@ -50,6 +54,32 @@ const projectProgress = {
                'Decide how we are going to use the GIFs in our project, and consider doing a looped video instead of a GIF if the gif files do not work in the image files. Find alternatives for the css renderer and use as few as them as possible. Save those only for buttons. As they dont seem to take up alot of GL.',
             ],
          },
+      },
+
+
+      // Entry #02
+      Entry02: {
+
+         // |- Development of items
+         Header: {
+            Level: ["Goal", 'Objective', 'task'],
+            Title: "Social Presence Container Realities",
+            EntryDate: '1-29-22',
+            TimeExpectedStart: '11:38',
+            TimeExpectedFinish: '12:30',
+            TimeActualStart: '11:30',
+            TimeActualFinish: '...',
+            NumOfCommits: 1
+         },
+   
+         Data: {
+            Chapter00: [
+               "Aim to Complete portfolio by the end of the day",
+               'We still have plenty of components to make, but the goal is that we stay true and try to figure out the solution to that we can code faster.',
+            ],
+         },
+
+
       },
    },
 
