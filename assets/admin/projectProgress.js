@@ -103,8 +103,13 @@ const projectProgress = {
    
          Data: {
             Chapter00: [
-               "",
-               '',
+               "Pre-Second Location @ Work",
+               'We were struggling to add a component until I took my time and just breathed. Keep up the good work! You got this!',
+            ],
+
+            Chapter01: [
+               "Post-Second Location @ Work",
+               'We are starting to work on the second photo for the first panel in the second column. We should probably build the third columns too.'
             ],
          },
       },

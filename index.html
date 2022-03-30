@@ -888,10 +888,17 @@
 
 			// Column 2
 			let panelColumn02
+
 			let panels_3d_project00_unknown_root
 			let mesh_panels_3d_project00_unknown_root
+
+			let panelParemsA2
 			let panels_3d_project00_scenePortal_root
 			let mesh_panels_3d_project00_scenePortal_root
+			let scenePortal_button_root
+			let panels_3d_project01_sceneGalaxy_root
+			let mesh_panels_3d_project01_sceneGalaxy_root
+
 			let panels_3d_project01_Maslows_root
 			let mesh_panels_3d_project01_Maslows_root
 			let panels_3d_project02_Galaxy_root
@@ -1097,6 +1104,10 @@
 				const MissionStatementImg = textureLoader.load('./assets/img/ui_Components/ColumnImgs/ColumnLeft01/MissionStatement.png')
 
 				const TechStackImg = textureLoader.load('./assets/img/ui_Components/ColumnImgs/ColumnLeft01/Technology_Info.png')
+
+				const PortalSceneImg = textureLoader.load('./assets/img/ui_Components/ColumnImgs/ColumnLeft02/PortalScene.png')
+
+				const GalaxySceneImg = textureLoader.load('./assets/img/ui_Components/ColumnImgs/ColumnLeft02/sceneGalaxy.png')
 
 
 				// CommunicationConainer
@@ -2538,40 +2549,97 @@
 				panelColumn02.add(panels_3d_project00_unknown_root)
 
 
-				// Portal Scene Image
+				// Portal Scene Image Start
+				// ----------
 				panels_3d_project00_scenePortal_root = new THREE.Group()
-				panels_3d_project00_scenePortal_root.position.set(0, 0, 0)
+				panels_3d_project00_scenePortal_root.position.set(1000, 5000, 0)
 
-				panelParemsA1 = {
+				panelParemsA2 = {
 					width: 500,
-					height: 700,
+					height: 400,
 					widthSegments: 1,
 					heightSegments: 1, 
 				}
 
 				const geo_panels_3d_project00_scenePortal_root = new THREE.PlaneGeometry(
-					panelParemsA1.width,
-					panelParemsA1.height, 
-					panelParemsA1.widthSegments,
-					panelParemsA1.heightSegments,
+					panelParemsA2.width,
+					panelParemsA2.height, 
+					panelParemsA2.widthSegments,
+					panelParemsA2.heightSegments,
 				)
 				const mat_panels_3d_project00_scenePortal_root = new THREE.MeshBasicMaterial(
 					{ 
-						map: GeneralPanelImg01, 
+						map: PortalSceneImg, 
 						side: THREE.DoubleSide 
 					});
 				mesh_panels_3d_project00_scenePortal_root = new THREE.Mesh(geo_panels_3d_project00_scenePortal_root, mat_panels_3d_project00_scenePortal_root);
 				mat_panels_3d_project00_scenePortal_root.transparent = false;
-				mat_panels_3d_project00_scenePortal_root.alphaMap = GeneralPanelImg01;
+				mat_panels_3d_project00_scenePortal_root.alphaMap = PortalSceneImg;
 				mesh_panels_3d_project00_scenePortal_root.position.set(0, 0, 0);
 				// mesh_panels_3d_project00_scenePortal_root.position.set(-15000, 0, 0);
-				mesh_panels_3d_project00_scenePortal_root.scale.set(20, 20, 20);
+				mesh_panels_3d_project00_scenePortal_root.scale.set(15, 15, 15);
 				mesh_panels_3d_project00_scenePortal_root.rotation.set(0, 3.14, 0)
 				mesh_panels_3d_project00_scenePortal_root.rotateY( - Math.PI / 2 );
 				
 				panels_3d_project00_scenePortal_root.add(mesh_panels_3d_project00_scenePortal_root)
 				panels_3d_project00_unknown_root.add(panels_3d_project00_scenePortal_root)
 
+				// ----------
+				// Portal Scene Image - End
+
+				// Portal Scene Button - Start
+				// ----------
+				scenePortal_button_root = new THREE.Group()
+				scenePortal_button_root.position.set(500, -2500, 2500)
+				scenePortal_button_root.rotateY( Math.PI / 2)
+
+				scenePortal_button_root.add(new makeButton(
+					'',
+					500, 
+					100,
+					0,
+					350,
+					0, 
+					'Portal Scene',
+					'button clicked',
+					70,
+				))
+
+				panels_3d_project00_scenePortal_root.add(scenePortal_button_root)
+				// ----------
+				// Portal Scene Button - Start
+
+
+				// Galaxy Scene Image = Start
+				// ----------
+				panels_3d_project01_sceneGalaxy_root = new THREE.Group()
+				panels_3d_project01_sceneGalaxy_root.position.set(1000, -3000, 0)
+
+				const geo_panels_3d_project01_sceneGalaxy_root = new THREE.PlaneGeometry(
+					panelParemsA2.width,
+					panelParemsA2.height, 
+					panelParemsA2.widthSegments,
+					panelParemsA2.heightSegments,
+				)
+				const mat_panels_3d_project01_sceneGalaxy_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: GalaxySceneImg, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panels_3d_project01_sceneGalaxy_root = new THREE.Mesh(geo_panels_3d_project01_sceneGalaxy_root, mat_panels_3d_project01_sceneGalaxy_root);
+				mat_panels_3d_project01_sceneGalaxy_root.transparent = false;
+				mat_panels_3d_project01_sceneGalaxy_root.alphaMap = GalaxySceneImg;
+				mesh_panels_3d_project01_sceneGalaxy_root.position.set(0, 0, 0);
+				// mesh_panels_3d_project01_sceneGalaxy_root.position.set(-15000, 0, 0);
+				mesh_panels_3d_project01_sceneGalaxy_root.scale.set(15, 15, 15);
+				mesh_panels_3d_project01_sceneGalaxy_root.rotation.set(0, 3.14, 0)
+				mesh_panels_3d_project01_sceneGalaxy_root.rotateY( - Math.PI / 2 );
+				
+				panels_3d_project01_sceneGalaxy_root.add(mesh_panels_3d_project01_sceneGalaxy_root)
+				panels_3d_project00_unknown_root.add(panels_3d_project01_sceneGalaxy_root)
+
+				// ----------
+				// Galaxy Scene Image = Start
 
 
 
@@ -4107,17 +4175,17 @@
 
 				const folderMainHud2 = gui.addFolder('Component1 Testing')
 
-				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.position, 'x').min(-60000).max(60000).step(10000).name('Cc-Back-x');
-				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.position, 'y').min(-5000).max(50000).step(100).name('Cc-Back-y');
-				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.position, 'z').min(-5000).max(35000).step(100).name('Cc-Back-z');
+				folderMainHud2.add(scenePortal_button_root.position, 'x').min(-60000).max(60000).step(10000).name('Cc-Back-x');
+				folderMainHud2.add(scenePortal_button_root.position, 'y').min(-5000).max(50000).step(100).name('Cc-Back-y');
+				folderMainHud2.add(scenePortal_button_root.position, 'z').min(-5000).max(35000).step(100).name('Cc-Back-z');
 
-				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
-				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
-				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
+				folderMainHud2.add(scenePortal_button_root.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
+				folderMainHud2.add(scenePortal_button_root.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
+				folderMainHud2.add(scenePortal_button_root.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
 
-				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
-				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
-				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+				folderMainHud2.add(scenePortal_button_root.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				folderMainHud2.add(scenePortal_button_root.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				folderMainHud2.add(scenePortal_button_root.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
 
 				// folderMainHud2.add(
 				// 	mainContainerVideoContainer_Params.radiusTop, '')
@@ -4521,6 +4589,12 @@
 
 				// mainContainer Entrance
 				mainContainerEntranceA0_L0.rotation.y = time * 0.001
+
+				// panels floating
+				panels_3d_project00_scenePortal_root.position.y = Math.sin(time * 0.001) * 100 + 3000
+				scenePortal_button_root.position.y = Math.sin(time * 0.001) * 100 - 2500
+
+				panels_3d_project01_sceneGalaxy_root.position.y = Math.sin(time * 0.001) * 100 - 3500
 
 
 				// Camera Testing
