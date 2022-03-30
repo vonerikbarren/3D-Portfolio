@@ -86,6 +86,29 @@ const projectProgress = {
 
 
       },
+
+
+      // Entry #03
+      Entry00: {
+         Header: {
+            Level: ["Goal", 'Objective', 'task'],
+            Title: "At work - Testing pictures on panels",
+            EntryDate: '03-30-22',
+            TimeExpectedStart: '01:13:00',
+            TimeExpectedFinish: '',
+            TimeActualStart: '',
+            TimeActualFinish: '',
+            NumOfCommits: 1
+         },
+   
+         Data: {
+            Chapter00: [
+               "",
+               '',
+            ],
+         },
+      },
+
    },
 
 
