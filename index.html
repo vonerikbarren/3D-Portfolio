@@ -1090,6 +1090,8 @@
 				const mainContainerImgL1 = textureLoader.load('./assets/img/backgrounds/Grids/Grid19.jpg')
 
 				// Column Panels
+				const GeneralPanelImg01 = textureLoader.load('./assets/img/ui_Components/ColumnImgs/01-General/Portfolio_main_panel_background_01.png')
+
 				const MissionStatementImg = textureLoader.load('./assets/img/ui_Components/ColumnImgs/ColumnLeft01/MissionStatement.png')
 
 				const TechStackImg = textureLoader.load('./assets/img/ui_Components/ColumnImgs/ColumnLeft01/Technology_Info.png')
@@ -2240,7 +2242,7 @@
 
 
 				// |- Main Container GridL1
-				const geo_mainContainerGridL1 = new THREE.BoxGeometry(2900, 2900, 2900, 64, 64, 64)
+				const geo_mainContainerGridL1 = new THREE.BoxGeometry(2900, 2900, 9000, 64, 64, 64)
 				const mat_mainContainerGridL1 = new THREE.MeshBasicMaterial({ map: mainContainerImgL1, side: THREE.DoubleSide });
 				mesh_mainContainerGridL1 = new THREE.Mesh(geo_mainContainerGridL1, mat_mainContainerGridL1);
 				mat_mainContainerGridL1.transparent = true;
@@ -2257,8 +2259,8 @@
 
 
 				
-				// |- Main Container GridL2
-				const geo_mainContainerGridL2 = new THREE.BoxGeometry(3500, 3500, 3500, 64, 64, 64)
+				// |- Main Container GridL2 - Outside border
+				const geo_mainContainerGridL2 = new THREE.BoxGeometry(3500, 3500, 10000, 64, 64, 64)
 				const mat_mainContainerGridL2 = new THREE.MeshBasicMaterial({ map: mainContainerImgL0, side: THREE.DoubleSide });
 				mesh_mainContainerGridL2 = new THREE.Mesh(geo_mainContainerGridL2, mat_mainContainerGridL2);
 				mat_mainContainerGridL2.transparent = false;
@@ -2276,7 +2278,7 @@
 				// mainContainer.Entrance
 				// -------------------
 				mainContainerEntranceA0_L0 = new THREE.Group()
-				mainContainerEntranceA0_L0.position.set(0, 0, 25000)
+				mainContainerEntranceA0_L0.position.set(0, 13000, 25000)
 
 				
 				
@@ -2297,7 +2299,7 @@
 
 				// Opening Video Test
 				mainContainerEntranceVideoContainerA1_L0 = new THREE.Group()
-				mainContainerEntranceVideoContainerA1_L0.position.set(0, 15000, 25000)
+				mainContainerEntranceVideoContainerA1_L0.position.set(0, 27000, 25000)
 				mainContainerEntranceVideoContainerA1_L0.rotation.set(0, 3.14, 0)
 
 				mainContainerVideoContainer_Params = {
@@ -2396,7 +2398,7 @@
 				mesh_panels_TechStacks_Root.position.set(0, 0, 0);
 				// mesh_panels_TechStacks_Root.position.set(-15000, 0, 0);
 				mesh_panels_TechStacks_Root.scale.set(20, 20, 20);
-				mesh_panels_TechStacks_Root.rotation.set(0, 3.14, 0)
+				mesh_panels_TechStacks_Root.rotation.set(0, 3.14, 0);
 				mesh_panels_TechStacks_Root.rotateY( - Math.PI / 2 );
 				
 				panels_TechStacks_Root.add(mesh_panels_TechStacks_Root)
@@ -2415,12 +2417,12 @@
 				)
 				const mat_panels_ExtraA1_Root = new THREE.MeshBasicMaterial(
 					{ 
-						map: testImg02, 
+						map: GeneralPanelImg01, 
 						side: THREE.DoubleSide 
 					});
 				mesh_panels_ExtraA1_Root = new THREE.Mesh(geo_panels_ExtraA1_Root, mat_panels_ExtraA1_Root);
 				mat_panels_ExtraA1_Root.transparent = false;
-				mat_panels_ExtraA1_Root.alphaMap = testImg04;
+				mat_panels_ExtraA1_Root.alphaMap = GeneralPanelImg01;
 				mesh_panels_ExtraA1_Root.position.set(0, 0, 0);
 				// mesh_panels_ExtraA1_Root.position.set(-15000, 0, 0);
 				mesh_panels_ExtraA1_Root.scale.set(20, 20, 20);
@@ -2443,12 +2445,12 @@
 				)
 				const mat_panels_ExtraA2_Root = new THREE.MeshBasicMaterial(
 					{ 
-						map: testImg02, 
+						map: GeneralPanelImg01, 
 						side: THREE.DoubleSide 
 					});
 				mesh_panels_ExtraA2_Root = new THREE.Mesh(geo_panels_ExtraA2_Root, mat_panels_ExtraA2_Root);
 				mat_panels_ExtraA2_Root.transparent = false;
-				mat_panels_ExtraA2_Root.alphaMap = testImg04;
+				mat_panels_ExtraA2_Root.alphaMap = GeneralPanelImg01;
 				mesh_panels_ExtraA2_Root.position.set(0, 0, 0);
 				// mesh_panels_ExtraA2_Root.position.set(-15000, 0, 0);
 				mesh_panels_ExtraA2_Root.scale.set(20, 20, 20);
@@ -2470,12 +2472,12 @@
 				)
 				const mat_panels_ExtraA3_Root = new THREE.MeshBasicMaterial(
 					{ 
-						map: testImg02, 
+						map: GeneralPanelImg01, 
 						side: THREE.DoubleSide 
 					});
 				mesh_panels_ExtraA3_Root = new THREE.Mesh(geo_panels_ExtraA3_Root, mat_panels_ExtraA3_Root);
 				mat_panels_ExtraA3_Root.transparent = false;
-				mat_panels_ExtraA3_Root.alphaMap = testImg04;
+				mat_panels_ExtraA3_Root.alphaMap = GeneralPanelImg01;
 				mesh_panels_ExtraA3_Root.position.set(0, 0, 0);
 				// mesh_panels_ExtraA3_Root.position.set(-15000, 0, 0);
 				mesh_panels_ExtraA3_Root.scale.set(20, 20, 20);
@@ -2516,16 +2518,16 @@
 				)
 				const mat_panels_3d_project00_unknown_root = new THREE.MeshBasicMaterial(
 					{ 
-						map: testImg02, 
+						map: GeneralPanelImg01, 
 						side: THREE.DoubleSide 
 					});
 				mesh_panels_3d_project00_unknown_root = new THREE.Mesh(geo_panels_3d_project00_unknown_root, mat_panels_3d_project00_unknown_root);
 				mat_panels_3d_project00_unknown_root.transparent = false;
-				mat_panels_3d_project00_unknown_root.alphaMap = testImg04;
+				mat_panels_3d_project00_unknown_root.alphaMap = GeneralPanelImg01;
 				mesh_panels_3d_project00_unknown_root.position.set(0, 0, 0);
 				// mesh_panels_3d_project00_unknown_root.position.set(-15000, 0, 0);
 				mesh_panels_3d_project00_unknown_root.scale.set(20, 20, 20);
-				mesh_panels_3d_project00_unknown_root.rotation.set(0, 0, 0)
+				mesh_panels_3d_project00_unknown_root.rotation.set(0, 3.14, 0)
 				mesh_panels_3d_project00_unknown_root.rotateY( - Math.PI / 2 );
 				
 				panels_3d_project00_unknown_root.add(mesh_panels_3d_project00_unknown_root)
@@ -2545,16 +2547,16 @@
 				)
 				const mat_panels_3d_project01_Maslows_root = new THREE.MeshBasicMaterial(
 					{ 
-						map: testImg02, 
+						map: GeneralPanelImg01, 
 						side: THREE.DoubleSide 
 					});
 				mesh_panels_3d_project01_Maslows_root = new THREE.Mesh(geo_panels_3d_project01_Maslows_root, mat_panels_3d_project01_Maslows_root);
 				mat_panels_3d_project01_Maslows_root.transparent = false;
-				mat_panels_3d_project01_Maslows_root.alphaMap = testImg04;
+				mat_panels_3d_project01_Maslows_root.alphaMap = GeneralPanelImg01;
 				mesh_panels_3d_project01_Maslows_root.position.set(0, 0, 0);
 				// mesh_panels_3d_project01_Maslows_root.position.set(-15000, 0, 0);
 				mesh_panels_3d_project01_Maslows_root.scale.set(20, 20, 20);
-				mesh_panels_3d_project01_Maslows_root.rotation.set(0, 0, 0)
+				mesh_panels_3d_project01_Maslows_root.rotation.set(0, 3.14, 0)
 				mesh_panels_3d_project01_Maslows_root.rotateY( - Math.PI / 2 );
 				
 				panels_3d_project01_Maslows_root.add(mesh_panels_3d_project01_Maslows_root)
@@ -2573,12 +2575,12 @@
 				)
 				const mat_panels_3d_project02_Galaxy_root = new THREE.MeshBasicMaterial(
 					{ 
-						map: testImg02, 
+						map: GeneralPanelImg01, 
 						side: THREE.DoubleSide 
 					});
 				mesh_panels_3d_project02_Galaxy_root = new THREE.Mesh(geo_panels_3d_project02_Galaxy_root, mat_panels_3d_project02_Galaxy_root);
 				mat_panels_3d_project02_Galaxy_root.transparent = false;
-				mat_panels_3d_project02_Galaxy_root.alphaMap = testImg04;
+				mat_panels_3d_project02_Galaxy_root.alphaMap = GeneralPanelImg01;
 				mesh_panels_3d_project02_Galaxy_root.position.set(0, 0, 0);
 				// mesh_panels_3d_project02_Galaxy_root.position.set(-15000, 0, 0);
 				mesh_panels_3d_project02_Galaxy_root.scale.set(20, 20, 20);
@@ -2601,12 +2603,12 @@
 				)
 				const mat_panels_3d_project03_HauntedHouse_root = new THREE.MeshBasicMaterial(
 					{ 
-						map: testImg02, 
+						map: GeneralPanelImg01, 
 						side: THREE.DoubleSide 
 					});
 				mesh_panels_3d_project03_HauntedHouse_root = new THREE.Mesh(geo_panels_3d_project03_HauntedHouse_root, mat_panels_3d_project03_HauntedHouse_root);
 				mat_panels_3d_project03_HauntedHouse_root.transparent = false;
-				mat_panels_3d_project03_HauntedHouse_root.alphaMap = testImg04;
+				mat_panels_3d_project03_HauntedHouse_root.alphaMap = GeneralPanelImg01;
 				mesh_panels_3d_project03_HauntedHouse_root.position.set(0, 0, 0);
 				// mesh_panels_3d_project03_HauntedHouse_root.position.set(-15000, 0, 0);
 				mesh_panels_3d_project03_HauntedHouse_root.scale.set(20, 20, 20);
@@ -2628,12 +2630,12 @@
 				)
 				const mat_panels_3d_project01_WarpholeRain_root = new THREE.MeshBasicMaterial(
 					{ 
-						map: testImg02, 
+						map: GeneralPanelImg01, 
 						side: THREE.DoubleSide 
 					});
 				mesh_panels_3d_project01_WarpholeRain_root = new THREE.Mesh(geo_panels_3d_project01_WarpholeRain_root, mat_panels_3d_project01_WarpholeRain_root);
 				mat_panels_3d_project01_WarpholeRain_root.transparent = false;
-				mat_panels_3d_project01_WarpholeRain_root.alphaMap = testImg04;
+				mat_panels_3d_project01_WarpholeRain_root.alphaMap = GeneralPanelImg01;
 				mesh_panels_3d_project01_WarpholeRain_root.position.set(0, 0, 0);
 				// mesh_panels_3d_project01_WarpholeRain_root.position.set(-15000, 0, 0);
 				mesh_panels_3d_project01_WarpholeRain_root.scale.set(20, 20, 20);
@@ -4060,9 +4062,9 @@
 
 				const folderMainHud2 = gui.addFolder('Component1 Testing')
 
-				folderMainHud2.add(panelColumn02.position, 'x').min(-60000).max(60000).step(10000).name('Cc-Back-x');
-				folderMainHud2.add(panelColumn02.position, 'y').min(-5000).max(50000).step(100).name('Cc-Back-y');
-				folderMainHud2.add(panelColumn02.position, 'z').min(-5000).max(35000).step(100).name('Cc-Back-z');
+				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.position, 'x').min(-60000).max(60000).step(10000).name('Cc-Back-x');
+				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.position, 'y').min(-5000).max(50000).step(100).name('Cc-Back-y');
+				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.position, 'z').min(-5000).max(35000).step(100).name('Cc-Back-z');
 
 				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
 				folderMainHud2.add(mainContainerEntranceVideoContainerA1_L0.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
