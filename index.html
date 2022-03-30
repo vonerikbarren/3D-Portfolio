@@ -890,6 +890,8 @@
 			let panelColumn02
 			let panels_3d_project00_unknown_root
 			let mesh_panels_3d_project00_unknown_root
+			let panels_3d_project00_scenePortal_root
+			let mesh_panels_3d_project00_scenePortal_root
 			let panels_3d_project01_Maslows_root
 			let mesh_panels_3d_project01_Maslows_root
 			let panels_3d_project02_Galaxy_root
@@ -2494,6 +2496,8 @@
 				// Column01 End
 
 
+
+
 				// Column02 Start
 				// ----------------
 				panelColumn02 = new THREE.Group()
@@ -2532,6 +2536,43 @@
 				
 				panels_3d_project00_unknown_root.add(mesh_panels_3d_project00_unknown_root)
 				panelColumn02.add(panels_3d_project00_unknown_root)
+
+
+				// Portal Scene Image
+				panels_3d_project00_scenePortal_root = new THREE.Group()
+				panels_3d_project00_scenePortal_root.position.set(0, 0, 0)
+
+				panelParemsA1 = {
+					width: 500,
+					height: 700,
+					widthSegments: 1,
+					heightSegments: 1, 
+				}
+
+				const geo_panels_3d_project00_scenePortal_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panels_3d_project00_scenePortal_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: GeneralPanelImg01, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panels_3d_project00_scenePortal_root = new THREE.Mesh(geo_panels_3d_project00_scenePortal_root, mat_panels_3d_project00_scenePortal_root);
+				mat_panels_3d_project00_scenePortal_root.transparent = false;
+				mat_panels_3d_project00_scenePortal_root.alphaMap = GeneralPanelImg01;
+				mesh_panels_3d_project00_scenePortal_root.position.set(0, 0, 0);
+				// mesh_panels_3d_project00_scenePortal_root.position.set(-15000, 0, 0);
+				mesh_panels_3d_project00_scenePortal_root.scale.set(20, 20, 20);
+				mesh_panels_3d_project00_scenePortal_root.rotation.set(0, 3.14, 0)
+				mesh_panels_3d_project00_scenePortal_root.rotateY( - Math.PI / 2 );
+				
+				panels_3d_project00_scenePortal_root.add(mesh_panels_3d_project00_scenePortal_root)
+				panels_3d_project00_unknown_root.add(panels_3d_project00_scenePortal_root)
+
+
 
 
 				// panel_TechStack
@@ -2645,8 +2686,12 @@
 				panels_3d_project01_WarpholeRain_root.add(mesh_panels_3d_project01_WarpholeRain_root)
 				panelColumn02.add(panels_3d_project01_WarpholeRain_root)
 
-				// ----- Column 01 - Push to scene
+				// ----- Column 02 - Push to scene
 				scene.add(panelColumn02)
+
+
+
+				// ----- Column 03 - Start
 
 
 

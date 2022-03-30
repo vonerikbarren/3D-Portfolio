@@ -77,6 +77,11 @@ const projectProgress = {
                "Aim to Complete portfolio by the end of the day",
                'We still have plenty of components to make, but the goal is that we stay true and try to figure out the solution to that we can code faster.',
             ],
+
+            Chapter01: [
+               "Failed to meet goal",
+               'We got started but then had to get ready to go to appointment then schedule changes then issues with Greysi. So it was a very unsuccessful day for this project',
+            ],
          },
 
 
