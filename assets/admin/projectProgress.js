@@ -111,6 +111,20 @@ const projectProgress = {
                "Post-Second Location @ Work",
                'We are starting to work on the second photo for the first panel in the second column. We should probably build the third columns too.'
             ],
+
+            Chapter02: [
+               "Ideas Ideas Ideas",
+               'So we have some pretty interesting ideas but I think I should focus on finishing the Reality first, then add to it where I can. So I am going to just develop the component containers first, then I can just develop things easily.',
+
+               'Much more importantly, I want to know if I should keep the outside room bigger or smaller. I cant decide.',
+
+               'HW for tomorrow:',
+               '1. Create some extra Communication Containers so they can be used for the UI as well as to fly on the walls.', //
+
+               '2. Focus tomorrow on creating all of the components necessary. We will focus on decoration on friday. Tomorrow is lets have everthing we need available.', //
+
+               '3. Finally tomorrow also focus on creating other projects especially the ones for languages and the 3D excel also.'
+            ],
          },
       },
 
