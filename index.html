@@ -925,6 +925,35 @@
 			let panel_Financial_Other // Extra
 			let mesh_panel_Financial_Other 
 
+			// Column 04 - Left - Panels
+			let panelColumn04
+
+			let panel_LesMeilluresVino_root // panel 1
+			let mesh_panel_LesMeilluresVino_root
+			let panel_AppleSite_root // panel 2
+			let mesh_panel_AppleSite_root
+			let panel_AppleSiteOriginal_root // panel 3
+			let mesh_panel_AppleSiteOriginal_root
+			let panel_ArchitectureSite_root // panel 4
+			let mesh_panel_ArchitectureSite_root
+			let panel_PayPalClone_root // panel 5
+			let mesh_panel_PayPalClone_root
+
+			// Panel 05 - Right
+			let panelColumn06
+
+			let panel_GoalsAspirations01_root // panel 1
+			let mesh_panel_GoalsAspirations01_root
+			let panel_OtherSkills_root // panel 2
+			let mesh_panel_OtherSkills_root
+			let panel_OnlinePresence_root // panel 3
+			let mesh_panel_OnlinePresence_root
+			let panel_FunFacts_root // panel 4
+			let mesh_panel_FunFacts_root
+			let panel_DonatorsAndSupporters_root // panel 5
+			let mesh_panel_DonatorsAndSupporters_root
+
+
 
 			let panels_component_projects_root
 			let panels_goals_root // panel 2
@@ -2261,7 +2290,7 @@
 				
 
 				// |- Main Container Grid
-				const geo_mainContainerGrid = new THREE.BoxGeometry(900, 2850, 2500, 64, 64, 64)
+				const geo_mainContainerGrid = new THREE.BoxGeometry(900, 2850, 3000, 64, 64, 64)
 				const mat_mainContainerGrid = new THREE.MeshBasicMaterial({ map: mainContainerImgL1, side: THREE.DoubleSide });
 				mesh_mainContainerGrid = new THREE.Mesh(geo_mainContainerGrid, mat_mainContainerGrid);
 				mat_mainContainerGrid.transparent = false;
@@ -2279,7 +2308,7 @@
 
 
 				// |- Main Container GridL1
-				const geo_mainContainerGridL1 = new THREE.BoxGeometry(2900, 2900, 9000, 64, 64, 64)
+				const geo_mainContainerGridL1 = new THREE.BoxGeometry(3500, 3500, 3500, 64, 64, 64)
 				const mat_mainContainerGridL1 = new THREE.MeshBasicMaterial({ map: mainContainerImgL1, side: THREE.DoubleSide });
 				mesh_mainContainerGridL1 = new THREE.Mesh(geo_mainContainerGridL1, mat_mainContainerGridL1);
 				mat_mainContainerGridL1.transparent = true;
@@ -2297,7 +2326,7 @@
 
 				
 				// |- Main Container GridL2 - Outside border
-				const geo_mainContainerGridL2 = new THREE.BoxGeometry(3500, 3500, 10000, 64, 64, 64)
+				const geo_mainContainerGridL2 = new THREE.BoxGeometry(4500, 4500, 4500, 64, 64, 64)
 				const mat_mainContainerGridL2 = new THREE.MeshBasicMaterial({ map: mainContainerImgL0, side: THREE.DoubleSide });
 				mesh_mainContainerGridL2 = new THREE.Mesh(geo_mainContainerGridL2, mat_mainContainerGridL2);
 				mat_mainContainerGridL2.transparent = false;
@@ -2796,7 +2825,7 @@
 
 				// ----- Column 03 - Start
 				panelColumn03 = new THREE.Group()
-				panelColumn03.position.set(-10000, 65000, -9600)
+				panelColumn03.position.set(-10000, 65000, -20700)
 
 				// |- Panel A1 - MissionStatement
 				panel_financial_projects_root = new THREE.Group()
@@ -2958,6 +2987,324 @@
 				// ###########################################################################################
 
 
+				// ----- Column 04 - Start
+				panelColumn04 = new THREE.Group()
+				panelColumn04.position.set(-10000, 65000, -31700)
+
+				// |- Panel A1 - MissionStatement
+				panel_LesMeilluresVino_root = new THREE.Group()
+				panel_LesMeilluresVino_root.position.set(0, 0, 0)
+
+				panelParemsA1 = {
+					width: 500,
+					height: 700,
+					widthSegments: 1,
+					heightSegments: 1, 
+				}
+
+				const geo_panel_LesMeilluresVino_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panel_LesMeilluresVino_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: MissionStatementImg, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panel_LesMeilluresVino_root = new THREE.Mesh(geo_panel_LesMeilluresVino_root, mat_panel_LesMeilluresVino_root);
+				mat_panel_LesMeilluresVino_root.transparent = false;
+				mat_panel_LesMeilluresVino_root.alphaMap = MissionStatementImg;
+				mesh_panel_LesMeilluresVino_root.position.set(0, 0, 0);
+				// mesh_panel_LesMeilluresVino_root.position.set(-15000, 0, 0);
+				mesh_panel_LesMeilluresVino_root.scale.set(20, 20, 20);
+				mesh_panel_LesMeilluresVino_root.rotation.set(0, 3.14, 0)
+				mesh_panel_LesMeilluresVino_root.rotateY( - Math.PI / 2 );
+				
+				panel_LesMeilluresVino_root.add(mesh_panel_LesMeilluresVino_root)
+				panelColumn04.add(panel_LesMeilluresVino_root)
+
+
+				// panel_TechStack
+				// |- Type: Component
+				panel_AppleSite_root = new THREE.Group()
+				panel_AppleSite_root.position.set(0, -15000, 0)
+
+				const geo_panel_AppleSite_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panel_AppleSite_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: TechStackImg, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panel_AppleSite_root = new THREE.Mesh(geo_panel_AppleSite_root, mat_panel_AppleSite_root);
+				mat_panel_AppleSite_root.transparent = false;
+				mat_panel_AppleSite_root.alphaMap = TechStackImg;
+				mesh_panel_AppleSite_root.position.set(0, 0, 0);
+				// mesh_panel_AppleSite_root.position.set(-15000, 0, 0);
+				mesh_panel_AppleSite_root.scale.set(20, 20, 20);
+				mesh_panel_AppleSite_root.rotation.set(0, 3.14, 0);
+				mesh_panel_AppleSite_root.rotateY( - Math.PI / 2 );
+				
+				panel_AppleSite_root.add(mesh_panel_AppleSite_root)
+				panelColumn04.add(panel_AppleSite_root)
+
+
+				// panel_ExtraA1
+				panel_AppleSiteOriginal_root = new THREE.Group()
+				panel_AppleSiteOriginal_root.position.set(0, -30000, 0)
+
+				const geo_panel_AppleSiteOriginal_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panel_AppleSiteOriginal_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: GeneralPanelImg01, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panel_AppleSiteOriginal_root = new THREE.Mesh(geo_panel_AppleSiteOriginal_root, mat_panel_AppleSiteOriginal_root);
+				mat_panel_AppleSiteOriginal_root.transparent = false;
+				mat_panel_AppleSiteOriginal_root.alphaMap = GeneralPanelImg01;
+				mesh_panel_AppleSiteOriginal_root.position.set(0, 0, 0);
+				// mesh_panel_AppleSiteOriginal_root.position.set(-15000, 0, 0);
+				mesh_panel_AppleSiteOriginal_root.scale.set(20, 20, 20);
+				mesh_panel_AppleSiteOriginal_root.rotation.set(0, 0, 0)
+				mesh_panel_AppleSiteOriginal_root.rotateY( - Math.PI / 2 );
+				
+				panel_AppleSiteOriginal_root.add(mesh_panel_AppleSiteOriginal_root)
+				panelColumn04.add(panel_AppleSiteOriginal_root)
+
+
+				// panel_ExtraA2
+				panel_ArchitectureSite_root = new THREE.Group()
+				panel_ArchitectureSite_root.position.set(0, -45000, 0)
+
+				const geo_panel_ArchitectureSite_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panel_ArchitectureSite_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: GeneralPanelImg01, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panel_ArchitectureSite_root = new THREE.Mesh(geo_panel_ArchitectureSite_root, mat_panel_ArchitectureSite_root);
+				mat_panel_ArchitectureSite_root.transparent = false;
+				mat_panel_ArchitectureSite_root.alphaMap = GeneralPanelImg01;
+				mesh_panel_ArchitectureSite_root.position.set(0, 0, 0);
+				// mesh_panel_ArchitectureSite_root.position.set(-15000, 0, 0);
+				mesh_panel_ArchitectureSite_root.scale.set(20, 20, 20);
+				mesh_panel_ArchitectureSite_root.rotation.set(0, 0, 0)
+				mesh_panel_ArchitectureSite_root.rotateY( - Math.PI / 2 );
+				
+				panel_ArchitectureSite_root.add(mesh_panel_ArchitectureSite_root)
+				panelColumn04.add(panel_ArchitectureSite_root)
+
+				// panel_ExtraA3
+				panel_PayPalClone_root = new THREE.Group()
+				panel_PayPalClone_root.position.set(0, -60000, 0)
+
+				const geo_panel_PayPalClone_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panel_PayPalClone_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: GeneralPanelImg01, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panel_PayPalClone_root = new THREE.Mesh(geo_panel_PayPalClone_root, mat_panel_PayPalClone_root);
+				mat_panel_PayPalClone_root.transparent = false;
+				mat_panel_PayPalClone_root.alphaMap = GeneralPanelImg01;
+				mesh_panel_PayPalClone_root.position.set(0, 0, 0);
+				// mesh_panel_PayPalClone_root.position.set(-15000, 0, 0);
+				mesh_panel_PayPalClone_root.scale.set(20, 20, 20);
+				mesh_panel_PayPalClone_root.rotation.set(0, 0, 0)
+				mesh_panel_PayPalClone_root.rotateY( - Math.PI / 2 );
+				
+				panel_PayPalClone_root.add(mesh_panel_PayPalClone_root)
+				panelColumn04.add(panel_PayPalClone_root)
+
+				// ----- Column 01 - Push to scene
+				scene.add(panelColumn04)
+
+				// ----------------
+				// Column04 End	
+
+
+
+				// ProjectPanels
+				// ###########################################################################################
+				// |- # PANEL #6
+				// ###########################################################################################
+
+				panelColumn06 = new THREE.Group()
+				panelColumn06.position.set(10000, 65000, 12270)
+
+				// |- Panel A1 - MissionStatement
+				panel_GoalsAspirations01_root = new THREE.Group()
+				panel_GoalsAspirations01_root.position.set(0, 0, 0)
+
+				panelParemsA1 = {
+					width: 500,
+					height: 700,
+					widthSegments: 1,
+					heightSegments: 1, 
+				}
+
+				const geo_panel_GoalsAspirations01_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panel_GoalsAspirations01_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: MissionStatementImg, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panel_GoalsAspirations01_root = new THREE.Mesh(geo_panel_GoalsAspirations01_root, mat_panel_GoalsAspirations01_root);
+				mat_panel_GoalsAspirations01_root.transparent = false;
+				mat_panel_GoalsAspirations01_root.alphaMap = MissionStatementImg;
+				mesh_panel_GoalsAspirations01_root.position.set(0, 0, 0);
+				// mesh_panel_GoalsAspirations01_root.position.set(-15000, 0, 0);
+				mesh_panel_GoalsAspirations01_root.scale.set(20, 20, 20);
+				mesh_panel_GoalsAspirations01_root.rotation.set(0, 0, 0)
+				mesh_panel_GoalsAspirations01_root.rotateY( - Math.PI / 2 );
+				
+				panel_GoalsAspirations01_root.add(mesh_panel_GoalsAspirations01_root)
+				panelColumn06.add(panel_GoalsAspirations01_root)
+
+
+				// panel_TechStack
+				// |- Type: Component
+				panel_OtherSkills_root = new THREE.Group()
+				panel_OtherSkills_root.position.set(0, -15000, 0)
+
+				const geo_panel_OtherSkills_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panel_OtherSkills_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: TechStackImg, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panel_OtherSkills_root = new THREE.Mesh(geo_panel_OtherSkills_root, mat_panel_OtherSkills_root);
+				mat_panel_OtherSkills_root.transparent = false;
+				mat_panel_OtherSkills_root.alphaMap = TechStackImg;
+				mesh_panel_OtherSkills_root.position.set(0, 0, 0);
+				// mesh_panel_OtherSkills_root.position.set(-15000, 0, 0);
+				mesh_panel_OtherSkills_root.scale.set(20, 20, 20);
+				mesh_panel_OtherSkills_root.rotation.set(0, 0, 0);
+				mesh_panel_OtherSkills_root.rotateY( - Math.PI / 2 );
+				
+				panel_OtherSkills_root.add(mesh_panel_OtherSkills_root)
+				panelColumn06.add(panel_OtherSkills_root)
+
+
+				// panel_ExtraA1
+				panel_OnlinePresence_root = new THREE.Group()
+				panel_OnlinePresence_root.position.set(0, -30000, 0)
+
+				const geo_panel_OnlinePresence_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panel_OnlinePresence_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: GeneralPanelImg01, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panel_OnlinePresence_root = new THREE.Mesh(geo_panel_OnlinePresence_root, mat_panel_OnlinePresence_root);
+				mat_panel_OnlinePresence_root.transparent = false;
+				mat_panel_OnlinePresence_root.alphaMap = GeneralPanelImg01;
+				mesh_panel_OnlinePresence_root.position.set(0, 0, 0);
+				// mesh_panel_OnlinePresence_root.position.set(-15000, 0, 0);
+				mesh_panel_OnlinePresence_root.scale.set(20, 20, 20);
+				mesh_panel_OnlinePresence_root.rotation.set(0, 0, 0)
+				mesh_panel_OnlinePresence_root.rotateY( - Math.PI / 2 );
+				
+				panel_OnlinePresence_root.add(mesh_panel_OnlinePresence_root)
+				panelColumn06.add(panel_OnlinePresence_root)
+
+
+				// panel_ExtraA2
+				panel_FunFacts_root = new THREE.Group()
+				panel_FunFacts_root.position.set(0, -45000, 0)
+
+				const geo_panel_FunFacts_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panel_FunFacts_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: GeneralPanelImg01, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panel_FunFacts_root = new THREE.Mesh(geo_panel_FunFacts_root, mat_panel_FunFacts_root);
+				mat_panel_FunFacts_root.transparent = false;
+				mat_panel_FunFacts_root.alphaMap = GeneralPanelImg01;
+				mesh_panel_FunFacts_root.position.set(0, 0, 0);
+				// mesh_panel_FunFacts_root.position.set(-15000, 0, 0);
+				mesh_panel_FunFacts_root.scale.set(20, 20, 20);
+				mesh_panel_FunFacts_root.rotation.set(0, 0, 0)
+				mesh_panel_FunFacts_root.rotateY( - Math.PI / 2 );
+				
+				panel_FunFacts_root.add(mesh_panel_FunFacts_root)
+				panelColumn06.add(panel_FunFacts_root)
+
+				// panel_ExtraA3
+				panel_DonatorsAndSupporters_root = new THREE.Group()
+				panel_DonatorsAndSupporters_root.position.set(0, -60000, 0)
+
+				const geo_panel_DonatorsAndSupporters_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panel_DonatorsAndSupporters_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: GeneralPanelImg01, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panel_DonatorsAndSupporters_root = new THREE.Mesh(geo_panel_DonatorsAndSupporters_root, mat_panel_DonatorsAndSupporters_root);
+				mat_panel_DonatorsAndSupporters_root.transparent = false;
+				mat_panel_DonatorsAndSupporters_root.alphaMap = GeneralPanelImg01;
+				mesh_panel_DonatorsAndSupporters_root.position.set(0, 0, 0);
+				// mesh_panel_DonatorsAndSupporters_root.position.set(-15000, 0, 0);
+				mesh_panel_DonatorsAndSupporters_root.scale.set(20, 20, 20);
+				mesh_panel_DonatorsAndSupporters_root.rotation.set(0, 3.14, 0)
+				mesh_panel_DonatorsAndSupporters_root.rotateY( - Math.PI / 2 );
+				
+				panel_DonatorsAndSupporters_root.add(mesh_panel_DonatorsAndSupporters_root)
+				panelColumn06.add(panel_DonatorsAndSupporters_root)
+
+				// ----- Column 01 - Push to scene
+				scene.add(panelColumn06)
+
+				// ----------------
+				// Column01 End
+
 
 
 				// ---- Final Push to scene.
@@ -2972,7 +3319,7 @@
 				// CommunicationContainer - Start
 				// ***********************************************************
 				CommunicationContainer = new THREE.Group()
-				CommunicationContainer.position.set(0, 0, 0)
+				CommunicationContainer.position.set(0, 0, -10000)
 				CommunicationContainer.scale.set(5, 5, 5)
 
 				const geo_CommunicationContainerGridBox = new THREE.BoxGeometry(150, 150, 150, 64, 64, 64)
@@ -4363,19 +4710,21 @@
 				folderMainColumnControl.add(panelColumn01.position, 'y').min(-18000).max(150000).step(100).name('Column 1');
 				folderMainColumnControl.add(panelColumn02.position, 'y').min(-18000).max(150000).step(100).name('Column 2');
 
+
+
 				const folderMainHud2 = gui.addFolder('Component1 Testing')
 
-				folderMainHud2.add(scenePortal_button_root.position, 'x').min(-60000).max(60000).step(10000).name('Cc-Back-x');
-				folderMainHud2.add(scenePortal_button_root.position, 'y').min(-5000).max(50000).step(100).name('Cc-Back-y');
-				folderMainHud2.add(scenePortal_button_root.position, 'z').min(-5000).max(35000).step(100).name('Cc-Back-z');
+				folderMainHud2.add(panelColumn04.position, 'x').min(-60000).max(60000).step(10000).name('Cc-Back-x');
+				folderMainHud2.add(panelColumn04.position, 'y').min(-5000).max(50000).step(100).name('Cc-Back-y');
+				folderMainHud2.add(panelColumn04.position, 'z').min(-50000).max(35000).step(100).name('Cc-Back-z');
 
-				folderMainHud2.add(scenePortal_button_root.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
-				folderMainHud2.add(scenePortal_button_root.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
-				folderMainHud2.add(scenePortal_button_root.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
+				folderMainHud2.add(panelColumn04.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
+				folderMainHud2.add(panelColumn04.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
+				folderMainHud2.add(panelColumn04.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
 
-				folderMainHud2.add(scenePortal_button_root.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
-				folderMainHud2.add(scenePortal_button_root.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
-				folderMainHud2.add(scenePortal_button_root.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+				folderMainHud2.add(panelColumn04.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				folderMainHud2.add(panelColumn04.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				folderMainHud2.add(panelColumn04.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
 
 				// folderMainHud2.add(
 				// 	mainContainerVideoContainer_Params.radiusTop, '')
@@ -4763,6 +5112,7 @@
 				mesh_leftTechField_A1_L0.rotation.z = time * 0.0001
 				mesh_rightTechField_A1_L0.rotation.z = time * -0.0001
 				mesh_timelens_A1_L1.rotation.z = time * 0.001
+				mesh_timelens_A1_L0.rotation.z = time * -0.0001
 
 
 				// CommunicationContainer Animations
