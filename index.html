@@ -912,15 +912,32 @@
 			let panelColumn03
 			let panels_2d_projects_root
 
+			let panel_financial_projects_root // panel 1
+			let mesh_panel_financial_projects_root
+			let panel_ThreeD_Financial_Analysis_root // panel 2
+			let mesh_panel_ThreeD_Financial_Analysis_root
+			let panel_Voxlmart_root // panel 3
+			let mesh_panel_Voxlmart_root
+			let panel_DataAnalysis_root // panel 4
+			let mesh_panel_DataAnalysis_root
+			let Financial_Charts_Analaysis // panel 5
+			let mesh_Financial_Charts_Analaysis
+			let panel_Financial_Other // Extra
+			let mesh_panel_Financial_Other 
 
-			let panels_financial_projects_root
+
 			let panels_component_projects_root
-			let panels_goals_root
+			let panels_goals_root // panel 2
 			let panels_otherSkills_root
-			let panels_onlinePresence_root
+			let panels_onlinePresence_root // panel 3
 			let panels_funFacts_root
-			let panels_otherRealities_root
+			let panels_otherRealities_root // panel 4
 			let panels_testimonials_root
+
+
+
+
+
 			// ------------------------------------------------------
 
 
@@ -1703,6 +1720,9 @@
         		floor.position.set(0, 20000);
 				scene.add( floor );
 
+
+
+
 				// ########################
 				// -----------------
 				// Geometries
@@ -1770,8 +1790,9 @@
 
 
 
-
+			 	// Search.Particles
 				// Particle Geometry - Defined @ beginnning of init()
+				// ******************************************************
 				const particlesGeometry = new THREE.BufferGeometry();
 				const count = 5000
 				const positions = new Float32Array(count * 3);
@@ -1804,8 +1825,11 @@
 				particles.position.set(0, 10000, 0)
 				scene.add(particles);
 
+				// ******************************************************
+				// Particle Geometry - End
 
-				// Search.VideoGeometry
+
+				// Search.Video
 				const video = document.getElementById('video')
 
 				//Create your video texture:
@@ -2349,7 +2373,9 @@
 
 				
 				// ProjectPanels
-				// -------------------------------------------------------------------------------------
+				// ###########################################################################################
+				// |- # PANEL #1
+				// ###########################################################################################
 
 				panelColumn01 = new THREE.Group()
 				panelColumn01.position.set(-10000, 65000, 12270)
@@ -2507,7 +2533,9 @@
 				// Column01 End
 
 
-
+				// ###########################################################################################
+				// |- # PANELCOLUMN #2
+				// ###########################################################################################
 
 				// Column02 Start
 				// ----------------
@@ -2550,6 +2578,7 @@
 
 
 				// Portal Scene Image Start
+				// ##################################################
 				// ----------
 				panels_3d_project00_scenePortal_root = new THREE.Group()
 				panels_3d_project00_scenePortal_root.position.set(1000, 5000, 0)
@@ -2608,6 +2637,9 @@
 				panels_3d_project00_scenePortal_root.add(scenePortal_button_root)
 				// ----------
 				// Portal Scene Button - Start
+
+				// ##################################################
+				// Portal Scene Img Finish
 
 
 				// Galaxy Scene Image = Start
@@ -2758,14 +2790,172 @@
 				scene.add(panelColumn02)
 
 
+				// ###########################################################################################
+				// |- # PANELCOLUMN #3
+				// ###########################################################################################
 
 				// ----- Column 03 - Start
+				panelColumn03 = new THREE.Group()
+				panelColumn03.position.set(-10000, 65000, -9600)
 
+				// |- Panel A1 - MissionStatement
+				panel_financial_projects_root = new THREE.Group()
+				panel_financial_projects_root.position.set(0, 0, 0)
+
+				panelParemsA1 = {
+					width: 500,
+					height: 700,
+					widthSegments: 1,
+					heightSegments: 1, 
+				}
+
+				const geo_panel_financial_projects_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panel_financial_projects_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: MissionStatementImg, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panel_financial_projects_root = new THREE.Mesh(geo_panel_financial_projects_root, mat_panel_financial_projects_root);
+				mat_panel_financial_projects_root.transparent = false;
+				mat_panel_financial_projects_root.alphaMap = MissionStatementImg;
+				mesh_panel_financial_projects_root.position.set(0, 0, 0);
+				// mesh_panel_financial_projects_root.position.set(-15000, 0, 0);
+				mesh_panel_financial_projects_root.scale.set(20, 20, 20);
+				mesh_panel_financial_projects_root.rotation.set(0, 3.14, 0)
+				mesh_panel_financial_projects_root.rotateY( - Math.PI / 2 );
+				
+				panel_financial_projects_root.add(mesh_panel_financial_projects_root)
+				panelColumn03.add(panel_financial_projects_root)
+
+
+				// panel_TechStack
+				// |- Type: Component
+				panel_ThreeD_Financial_Analysis_root = new THREE.Group()
+				panel_ThreeD_Financial_Analysis_root.position.set(0, -15000, 0)
+
+				const geo_panel_ThreeD_Financial_Analysis_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panel_ThreeD_Financial_Analysis_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: TechStackImg, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panel_ThreeD_Financial_Analysis_root = new THREE.Mesh(geo_panel_ThreeD_Financial_Analysis_root, mat_panel_ThreeD_Financial_Analysis_root);
+				mat_panel_ThreeD_Financial_Analysis_root.transparent = false;
+				mat_panel_ThreeD_Financial_Analysis_root.alphaMap = TechStackImg;
+				mesh_panel_ThreeD_Financial_Analysis_root.position.set(0, 0, 0);
+				// mesh_panel_ThreeD_Financial_Analysis_root.position.set(-15000, 0, 0);
+				mesh_panel_ThreeD_Financial_Analysis_root.scale.set(20, 20, 20);
+				mesh_panel_ThreeD_Financial_Analysis_root.rotation.set(0, 3.14, 0);
+				mesh_panel_ThreeD_Financial_Analysis_root.rotateY( - Math.PI / 2 );
+				
+				panel_ThreeD_Financial_Analysis_root.add(mesh_panel_ThreeD_Financial_Analysis_root)
+				panelColumn03.add(panel_ThreeD_Financial_Analysis_root)
+
+
+				// panel_ExtraA1
+				panel_Voxlmart_root = new THREE.Group()
+				panel_Voxlmart_root.position.set(0, -30000, 0)
+
+				const geo_panel_Voxlmart_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panel_Voxlmart_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: GeneralPanelImg01, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panel_Voxlmart_root = new THREE.Mesh(geo_panel_Voxlmart_root, mat_panel_Voxlmart_root);
+				mat_panel_Voxlmart_root.transparent = false;
+				mat_panel_Voxlmart_root.alphaMap = GeneralPanelImg01;
+				mesh_panel_Voxlmart_root.position.set(0, 0, 0);
+				// mesh_panel_Voxlmart_root.position.set(-15000, 0, 0);
+				mesh_panel_Voxlmart_root.scale.set(20, 20, 20);
+				mesh_panel_Voxlmart_root.rotation.set(0, 0, 0)
+				mesh_panel_Voxlmart_root.rotateY( - Math.PI / 2 );
+				
+				panel_Voxlmart_root.add(mesh_panel_Voxlmart_root)
+				panelColumn03.add(panel_Voxlmart_root)
+
+
+				// panel_ExtraA2
+				panel_DataAnalysis_root = new THREE.Group()
+				panel_DataAnalysis_root.position.set(0, -45000, 0)
+
+				const geo_panel_DataAnalysis_root = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_panel_DataAnalysis_root = new THREE.MeshBasicMaterial(
+					{ 
+						map: GeneralPanelImg01, 
+						side: THREE.DoubleSide 
+					});
+				mesh_panel_DataAnalysis_root = new THREE.Mesh(geo_panel_DataAnalysis_root, mat_panel_DataAnalysis_root);
+				mat_panel_DataAnalysis_root.transparent = false;
+				mat_panel_DataAnalysis_root.alphaMap = GeneralPanelImg01;
+				mesh_panel_DataAnalysis_root.position.set(0, 0, 0);
+				// mesh_panel_DataAnalysis_root.position.set(-15000, 0, 0);
+				mesh_panel_DataAnalysis_root.scale.set(20, 20, 20);
+				mesh_panel_DataAnalysis_root.rotation.set(0, 0, 0)
+				mesh_panel_DataAnalysis_root.rotateY( - Math.PI / 2 );
+				
+				panel_DataAnalysis_root.add(mesh_panel_DataAnalysis_root)
+				panelColumn03.add(panel_DataAnalysis_root)
+
+				// panel_ExtraA3
+				Financial_Charts_Analaysis = new THREE.Group()
+				Financial_Charts_Analaysis.position.set(0, -60000, 0)
+
+				const geo_Financial_Charts_Analaysis = new THREE.PlaneGeometry(
+					panelParemsA1.width,
+					panelParemsA1.height, 
+					panelParemsA1.widthSegments,
+					panelParemsA1.heightSegments,
+				)
+				const mat_Financial_Charts_Analaysis = new THREE.MeshBasicMaterial(
+					{ 
+						map: GeneralPanelImg01, 
+						side: THREE.DoubleSide 
+					});
+				mesh_Financial_Charts_Analaysis = new THREE.Mesh(geo_Financial_Charts_Analaysis, mat_Financial_Charts_Analaysis);
+				mat_Financial_Charts_Analaysis.transparent = false;
+				mat_Financial_Charts_Analaysis.alphaMap = GeneralPanelImg01;
+				mesh_Financial_Charts_Analaysis.position.set(0, 0, 0);
+				// mesh_Financial_Charts_Analaysis.position.set(-15000, 0, 0);
+				mesh_Financial_Charts_Analaysis.scale.set(20, 20, 20);
+				mesh_Financial_Charts_Analaysis.rotation.set(0, 0, 0)
+				mesh_Financial_Charts_Analaysis.rotateY( - Math.PI / 2 );
+				
+				Financial_Charts_Analaysis.add(mesh_Financial_Charts_Analaysis)
+				panelColumn03.add(Financial_Charts_Analaysis)
+
+				// ----- Column 01 - Push to scene
+				scene.add(panelColumn03)
+
+				// ----------------
+				// Column03 End	
 
 
 
 				
-
+				// ###########################################################################################
+				// |- # PANEL-LEFT-COLUMN #4
+				// ###########################################################################################
 
 
 
@@ -4194,17 +4384,17 @@
 
 				const folderMainHud3 = gui.addFolder('Component2 Testing')
 
-				folderMainHud3.add(MissionStatement_Root.position, 'x').min(-60000).max(60000).step(10000).name('Entrance-x');
-				folderMainHud3.add(MissionStatement_Root.position, 'y').min(-5000).max(50000).step(100).name('Entrance-y');
-				folderMainHud3.add(MissionStatement_Root.position, 'z').min(-25000).max(25000).step(100).name('Entrance-z');
+				folderMainHud3.add(panelColumn03.position, 'x').min(-60000).max(60000).step(10000).name('Entrance-x');
+				folderMainHud3.add(panelColumn03.position, 'y').min(-5000).max(50000).step(100).name('Entrance-y');
+				folderMainHud3.add(panelColumn03.position, 'z').min(-25000).max(25000).step(100).name('Entrance-z');
 
-				folderMainHud3.add(MissionStatement_Root.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
-				folderMainHud3.add(MissionStatement_Root.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
-				folderMainHud3.add(MissionStatement_Root.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
+				folderMainHud3.add(panelColumn03.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
+				folderMainHud3.add(panelColumn03.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
+				folderMainHud3.add(panelColumn03.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
 
-				folderMainHud3.add(MissionStatement_Root.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
-				folderMainHud3.add(MissionStatement_Root.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
-				folderMainHud3.add(MissionStatement_Root.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+				folderMainHud3.add(panelColumn03.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				folderMainHud3.add(panelColumn03.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				folderMainHud3.add(panelColumn03.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
 
 				const folderMainHud4 = gui.addFolder('Component3 Testing')
 

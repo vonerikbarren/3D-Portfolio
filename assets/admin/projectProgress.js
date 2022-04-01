@@ -89,7 +89,7 @@ const projectProgress = {
 
 
       // Entry #03
-      Entry00: {
+      Entry03: {
          Header: {
             Level: ["Goal", 'Objective', 'task'],
             Title: "At work - Testing pictures on panels",
@@ -128,6 +128,35 @@ const projectProgress = {
          },
       },
 
+   },
+
+
+   // Entry 05
+   Entry00: {
+      Header: {
+         Level: ["Goal", 'Objective', 'task'],
+         Title: "HustleStruts for Shorcuts",
+         EntryDate: '04-01-22',
+         TimeExpectedStart: '13:30',
+         TimeExpectedFinish: '16:00',
+         TimeActualStart: '13:35',
+         TimeActualFinish: '16:05',
+         NumOfCommits: Number
+      },
+
+      Data: {
+         Chapter00: [
+            "",
+            '',
+         ],
+
+         Chapter01: [
+            "Creating The Rest of the Panel Columns",
+            'We took a break from coding yesterday so we could clear our head. Now we need to speed up and see how much we can really get done.',
+            'Especially now that we have all of our assets and what not. We still need to name the assets then add them to the library. But as far',
+            'as I am concerned, everything is going pretty smoothly. So by the end of the day, I want to have the project completed. Can we do it. Are we up for the task! Try to go as fast as you can! GOOOOO! Try to finish in an hour.'
+         ],
+      },
    },
 
 
