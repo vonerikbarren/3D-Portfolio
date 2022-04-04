@@ -875,10 +875,14 @@
 			// ------------------------------------------------------
 			let panelColumn01
 			let panelParemsA1
-			let MissionStatement_Root
+			let MissionStatement_Root // Panel 1
 			let mesh_MissionStatement_Root
-			let panels_TechStacks_Root
+
+			let panels_TechStacks_Root // Panel 2
 			let mesh_panels_TechStacks_Root
+			let container_TechStack_root // Container
+			let mesh_container_TechStack_root
+
 			let panels_ExtraA1_Root
 			let mesh_panels_ExtraA1_Root
 			let panels_ExtraA2_Root
@@ -964,6 +968,11 @@
 			let panels_testimonials_root
 
 
+			// Communication Tubes
+			let tubes_Communication_root
+			let CommunicationTubeLR
+			let mesh_CommunicationTubeLR
+			let mesh_CommunicationTubeFB
 
 
 
@@ -982,6 +991,8 @@
 			let mesh_CommunicationContainerRight
 			let mesh_CommunicationContainer_StartIndicator
 			let mesh_Cc_StartIndicatorIcon
+
+
 
 
 
@@ -1147,6 +1158,8 @@
 				// Column Panels
 				const GeneralPanelImg01 = textureLoader.load('./assets/img/ui_Components/ColumnImgs/01-General/Portfolio_main_panel_background_01.png')
 
+				const GeneralPanelContainerImg01 = textureLoader.load('./assets/img/ui_Components/ColumnImgs/01-General/Portfolio_main_panel_background_01.png')
+
 				const MissionStatementImg = textureLoader.load('./assets/img/ui_Components/ColumnImgs/ColumnLeft01/MissionStatement.png')
 
 				const TechStackImg = textureLoader.load('./assets/img/ui_Components/ColumnImgs/ColumnLeft01/Technology_Info.png')
@@ -1157,7 +1170,7 @@
 
 
 				// CommunicationConainer
-				const CcCube = textureLoader.load('./assets/img/backgrounds/Grids/Grid06.png')
+				const CcCube = textureLoader.load('./assets/img/backgrounds/Grids/Grid24.png')
 				const CcFront = textureLoader.load('./assets/icons/GradientIcons/PublicSigns01/022-arrow.png')
 				const CcTop = textureLoader.load('./assets/icons/GradientIcons/Communication01/016-welcome.png')
 				const CcBack = textureLoader.load('./assets/icons/GradientIcons/Communication01/039-everything.png')
@@ -1758,13 +1771,14 @@
 				// -----------------
 				// ########################
 				const geo_timeSphere_L2 = new THREE.SphereGeometry(3000, 32, 32)
-				const mat_timeSphere_L2 = new THREE.MeshBasicMaterial({ map: testImg03, side: THREE.DoubleSide });
+				const mat_timeSphere_L2 = new THREE.MeshBasicMaterial({ map: testImg05, side: THREE.DoubleSide });
 				mesh_timeSphere_L2 = new THREE.Mesh(geo_timeSphere_L2, mat_timeSphere_L2)
-				mat_timeSphere_L2.transparent = false;
-				// mat_timeSphere_L2.alphaMap = timeSphereImg_01
-				mat_timeSphere_L2.wireframe = true;
-				mesh_timeSphere_L2.position.set(0, 20000, 200)
+				mat_timeSphere_L2.transparent = true;
+				mat_timeSphere_L2.alphaMap = testImg05
+				mat_timeSphere_L2.wireframe = false;
+				mesh_timeSphere_L2.position.set(0, 100, -2000)
 				scene.add(mesh_timeSphere_L2);
+				camera.attach(mesh_timeSphere_L2)
 
 
 				// Width, Height, Depth
@@ -1792,6 +1806,9 @@
 				scene.add(mesh_gridbox3_Tester);
 				objects.push(mesh_gridbox3_Tester)
 
+				
+				
+
 
 				const geo_Tube01 = new THREE.CylinderGeometry(5000, 5000, 500, 128, 1, true)
 				const mat_Tube01 = new THREE.MeshBasicMaterial({ map: testImg02, side: THREE.DoubleSide });
@@ -1816,6 +1833,44 @@
 				// mesh_Torus01.scale.y = 90
 				scene.add(mesh_Torus01);
 				objects.push(mesh_Torus01)
+
+
+				// ###########################################################################################
+				// |- # TUBES_Communication
+				// ###########################################################################################
+
+				tubes_Communication_root = new THREE.Group()
+				tubes_Communication_root.position.set(0, 20200, -10000)
+
+				// Left to Right Tube
+				const geo_CommunicationTubeLR = new THREE.BoxGeometry(25000, 500, 500, 64, 64, 64)
+				const mat_CommunicationTubeLR = new THREE.MeshBasicMaterial({ map: testImg05, side: THREE.DoubleSide });
+				mesh_CommunicationTubeLR = new THREE.Mesh(geo_CommunicationTubeLR, mat_CommunicationTubeLR);
+				mat_CommunicationTubeLR.transparent = true;
+				mat_CommunicationTubeLR.alphaMap = testImg05;
+				mesh_CommunicationTubeLR.position.set(0, 0, 0);
+				// mesh_CommunicationTubeLR.position.set(-15000, 0, 0);
+				mesh_CommunicationTubeLR.scale.set(5, 5, 5);
+				mesh_CommunicationTubeLR.rotation.set(0, 0, 0)
+				// mesh_CommunicationTubeLR.rotateX( - Math.PI / 2 );
+				tubes_Communication_root.add(mesh_CommunicationTubeLR);
+
+			 	// Front to Back Tube
+				const geo_CommunicationTubeFB = new THREE.BoxGeometry(25000, 500, 500, 64, 64, 64)
+				const mat_CommunicationTubeFB = new THREE.MeshBasicMaterial({ map: testImg05, side: THREE.DoubleSide });
+				mesh_CommunicationTubeFB = new THREE.Mesh(geo_CommunicationTubeFB, mat_CommunicationTubeFB);
+				mat_CommunicationTubeFB.transparent = true;
+				mat_CommunicationTubeFB.alphaMap = testImg05;
+				mesh_CommunicationTubeFB.position.set(0, 0, 0);
+				// mesh_CommunicationTubeFB.position.set(-15000, 0, 0);
+				mesh_CommunicationTubeFB.scale.set(5, 5, 5);
+				mesh_CommunicationTubeFB.rotation.set(0, 0, 0)
+				mesh_CommunicationTubeFB.rotateY( - Math.PI / 2 );
+				tubes_Communication_root.add(mesh_CommunicationTubeFB);
+
+
+				// Final Tubes_Communication push to scene
+				scene.add(tubes_Communication_root)
 
 
 
@@ -2344,7 +2399,7 @@
 				// mainContainer.Entrance
 				// -------------------
 				mainContainerEntranceA0_L0 = new THREE.Group()
-				mainContainerEntranceA0_L0.position.set(0, 13000, 25000)
+				mainContainerEntranceA0_L0.position.set(0, 13000, 35000)
 
 				
 				
@@ -2365,7 +2420,7 @@
 
 				// Opening Video Test
 				mainContainerEntranceVideoContainerA1_L0 = new THREE.Group()
-				mainContainerEntranceVideoContainerA1_L0.position.set(0, 27000, 25000)
+				mainContainerEntranceVideoContainerA1_L0.position.set(0, 0, -4000)
 				mainContainerEntranceVideoContainerA1_L0.rotation.set(0, 3.14, 0)
 
 				mainContainerVideoContainer_Params = {
@@ -2398,7 +2453,8 @@
 				mesh_mainContainerEntranceVideoContainerA1_L0.scale.y = 90
 
 				mainContainerEntranceVideoContainerA1_L0.add(mesh_mainContainerEntranceVideoContainerA1_L0)
-				mainContainer.add(mainContainerEntranceVideoContainerA1_L0)
+				scene.add(mainContainerEntranceVideoContainerA1_L0)
+				camera.attach(mainContainerEntranceVideoContainerA1_L0)
 
 				
 				// ProjectPanels
@@ -2444,6 +2500,9 @@
 				panelColumn01.add(MissionStatement_Root)
 
 
+				// 
+
+
 				// panel_TechStack
 				// |- Type: Component
 				panels_TechStacks_Root = new THREE.Group()
@@ -2471,6 +2530,31 @@
 				
 				panels_TechStacks_Root.add(mesh_panels_TechStacks_Root)
 				panelColumn01.add(panels_TechStacks_Root)
+
+
+				// □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+					// |- # Tech-Stack Container
+				// □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+				// |--- Tech Stack Container Start
+				container_TechStack_root = new THREE.Group()
+				container_TechStack_root.position.set(0, 0, 0)
+
+				const geo_container_TechStack_root = new THREE.BoxGeometry(800, 600, 500, 64, 64, 64)
+				const mat_container_TechStack_root = new THREE.MeshBasicMaterial({ map: testImg05, side: THREE.DoubleSide });
+				mesh_container_TechStack_root = new THREE.Mesh(geo_container_TechStack_root, mat_container_TechStack_root);
+				mat_container_TechStack_root.transparent = false;
+				mat_container_TechStack_root.alphaMap = testImg05;
+				mesh_container_TechStack_root.position.set(9000, 0, 1000);
+				// mesh_container_TechStack_root.position.set(-15000, 0, 0);
+				mesh_container_TechStack_root.scale.set(25, 25, 25);
+				mesh_container_TechStack_root.rotation.set(0, 0, 0)
+				// mesh_container_TechStack_root.rotateX( - Math.PI / 2 );
+				container_TechStack_root.add(mesh_container_TechStack_root);
+				panels_TechStacks_Root.add(mesh_container_TechStack_root)
+
+				// |--- Tech Stack Container End
+
+
 
 
 				// panel_ExtraA1
@@ -3151,7 +3235,7 @@
 				// ###########################################################################################
 
 				panelColumn06 = new THREE.Group()
-				panelColumn06.position.set(10000, 65000, 12270)
+				panelColumn06.position.set(10000, 35500, 12270)
 
 				// |- Panel A1 - MissionStatement
 				panel_GoalsAspirations01_root = new THREE.Group()
@@ -3191,7 +3275,7 @@
 				// panel_TechStack
 				// |- Type: Component
 				panel_OtherSkills_root = new THREE.Group()
-				panel_OtherSkills_root.position.set(0, -15000, 0)
+				panel_OtherSkills_root.position.set(0, 0, -12000)
 
 				const geo_panel_OtherSkills_root = new THREE.PlaneGeometry(
 					panelParemsA1.width,
@@ -3219,7 +3303,7 @@
 
 				// panel_ExtraA1
 				panel_OnlinePresence_root = new THREE.Group()
-				panel_OnlinePresence_root.position.set(0, -30000, 0)
+				panel_OnlinePresence_root.position.set(0, 0, -36000)
 
 				const geo_panel_OnlinePresence_root = new THREE.PlaneGeometry(
 					panelParemsA1.width,
@@ -3247,7 +3331,7 @@
 
 				// panel_ExtraA2
 				panel_FunFacts_root = new THREE.Group()
-				panel_FunFacts_root.position.set(0, -45000, 0)
+				panel_FunFacts_root.position.set(0, 0, -24000)
 
 				const geo_panel_FunFacts_root = new THREE.PlaneGeometry(
 					panelParemsA1.width,
@@ -3274,7 +3358,7 @@
 
 				// panel_ExtraA3
 				panel_DonatorsAndSupporters_root = new THREE.Group()
-				panel_DonatorsAndSupporters_root.position.set(0, -60000, 0)
+				panel_DonatorsAndSupporters_root.position.set(0, 0, -48000)
 
 				const geo_panel_DonatorsAndSupporters_root = new THREE.PlaneGeometry(
 					panelParemsA1.width,
@@ -3320,7 +3404,7 @@
 				// ***********************************************************
 				CommunicationContainer = new THREE.Group()
 				CommunicationContainer.position.set(0, 0, -10000)
-				CommunicationContainer.scale.set(5, 5, 5)
+				CommunicationContainer.scale.set(3, 3, 3)
 
 				const geo_CommunicationContainerGridBox = new THREE.BoxGeometry(150, 150, 150, 64, 64, 64)
 				const mat_CommunicationContainerGridBox = new THREE.MeshBasicMaterial({ map: CcCube, side: THREE.DoubleSide });
@@ -3428,7 +3512,7 @@
 
 
 				CommunicationContainer.add(mesh_CommunicationContainerBottom)
-				scene.add(CommunicationContainer)
+				tubes_Communication_root.add(CommunicationContainer)
 
 				// ***********************************************************************
 				
@@ -4673,6 +4757,8 @@
  					*/
 				
 				const folderMainHud = gui.addFolder('Main Hub Position Testing')
+				folderMainHud.add(mainContainerEntranceVideoContainerA1_L0.position, 'x').min(-20000).max(20000).step(20000).name('Surface Layer');
+				folderMainHud.add(mesh_timeSphere_L2.position, 'z').min(-1100).max(2000).step(300).name('Notifier');
 				folderMainHud.add(mainHubBase.position, 'x').min(-1150).max(-80).step(100).name('main Hud Base');
 				folderMainHud.add(mainHudA.position, 'x').min(-1150).max(-80).step(100).name('mainHud A');
 				folderMainHud.add(mainHudB.position, 'x').min(-2150).max(-200).step(100).name('mainHud B');
@@ -4691,40 +4777,45 @@
 				// folderMainSettings.add(camera.position, 'z').min(0).max(2000000).step(1).name('Camera-z')
 
 				// Search.GUI.TestSettings - Scale
-				folderMainSettings.add(CommandCenter.position, 'x').min(-1000000).max(1000000).step(100).name('Position-x');
-				folderMainSettings.add(CommandCenter.position, 'y').min(-50000).max(1000000).step(100).name('Position-y');
-				folderMainSettings.add(CommandCenter.position, 'z').min(-50000).max(1000000).step(100).name('Position-z');
+				// folderMainSettings.add(CommandCenter.position, 'x').min(-1000000).max(1000000).step(100).name('Position-x');
+				// folderMainSettings.add(CommandCenter.position, 'y').min(-50000).max(1000000).step(100).name('Position-y');
+				// folderMainSettings.add(CommandCenter.position, 'z').min(-50000).max(1000000).step(100).name('Position-z');
 
 				// Search.GUI.TestSettings.Scale
 
-				folderMainSettings.add(CommandCenter.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
-				folderMainSettings.add(CommandCenter.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
-				folderMainSettings.add(CommandCenter.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+				// folderMainSettings.add(CommandCenter.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				// folderMainSettings.add(CommandCenter.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				// folderMainSettings.add(CommandCenter.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
 
 				// Search.GUI.TestSettings.Rotation
-				folderMainSettings.add(CommandCenter.rotation, 'x').min(-100).max(100).step(1).name('Rotation-x');
-				folderMainSettings.add(CommandCenter.rotation, 'y').min(-100).max(100).step(1).name('Rotation-y');
-				folderMainSettings.add(CommandCenter.rotation, 'z').min(-100).max(100).step(1).name('Rotation-z');
+				// folderMainSettings.add(CommandCenter.rotation, 'x').min(-100).max(100).step(1).name('Rotation-x');
+				// folderMainSettings.add(CommandCenter.rotation, 'y').min(-100).max(100).step(1).name('Rotation-y');
+				// folderMainSettings.add(CommandCenter.rotation, 'z').min(-100).max(100).step(1).name('Rotation-z');
 				
-				const folderMainColumnControl = gui.addFolder('Column Testing')
+				const folderMainColumnControl = gui.addFolder('Left Side Controls')
 				folderMainColumnControl.add(panelColumn01.position, 'y').min(-18000).max(150000).step(100).name('Column 1');
 				folderMainColumnControl.add(panelColumn02.position, 'y').min(-18000).max(150000).step(100).name('Column 2');
+				folderMainColumnControl.add(panelColumn03.position, 'y').min(-18000).max(150000).step(100).name('Column 2');
+				folderMainColumnControl.add(panelColumn04.position, 'y').min(-18000).max(150000).step(100).name('Column 2');
 
+
+				const folderRightSideControls = gui.addFolder('Right Side Controls')
+				folderRightSideControls.add(panelColumn06.position, 'y').min(-5000).max(50000).step(100).name('Cc-Back-y');
 
 
 				const folderMainHud2 = gui.addFolder('Component1 Testing')
 
-				folderMainHud2.add(panelColumn04.position, 'x').min(-60000).max(60000).step(10000).name('Cc-Back-x');
-				folderMainHud2.add(panelColumn04.position, 'y').min(-5000).max(50000).step(100).name('Cc-Back-y');
-				folderMainHud2.add(panelColumn04.position, 'z').min(-50000).max(35000).step(100).name('Cc-Back-z');
+				folderMainHud2.add(mesh_timelens_A1_L0.position, 'x').min(-60000).max(60000).step(10000).name('Cc-Back-x');
+				folderMainHud2.add(mesh_timelens_A1_L0.position, 'y').min(-5000).max(50000).step(100).name('Cc-Back-y');
+				folderMainHud2.add(mesh_timelens_A1_L0.position, 'z').min(-50000).max(35000).step(100).name('Cc-Back-z');
 
-				folderMainHud2.add(panelColumn04.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
-				folderMainHud2.add(panelColumn04.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
-				folderMainHud2.add(panelColumn04.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
+				folderMainHud2.add(mesh_timelens_A1_L0.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
+				folderMainHud2.add(mesh_timelens_A1_L0.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
+				folderMainHud2.add(mesh_timelens_A1_L0.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
 
-				folderMainHud2.add(panelColumn04.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
-				folderMainHud2.add(panelColumn04.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
-				folderMainHud2.add(panelColumn04.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+				folderMainHud2.add(mesh_timelens_A1_L0.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				folderMainHud2.add(mesh_timelens_A1_L0.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				folderMainHud2.add(mesh_timelens_A1_L0.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
 
 				// folderMainHud2.add(
 				// 	mainContainerVideoContainer_Params.radiusTop, '')
@@ -4733,31 +4824,31 @@
 
 				const folderMainHud3 = gui.addFolder('Component2 Testing')
 
-				folderMainHud3.add(panelColumn03.position, 'x').min(-60000).max(60000).step(10000).name('Entrance-x');
-				folderMainHud3.add(panelColumn03.position, 'y').min(-5000).max(50000).step(100).name('Entrance-y');
-				folderMainHud3.add(panelColumn03.position, 'z').min(-25000).max(25000).step(100).name('Entrance-z');
+				folderMainHud3.add(mesh_timeSphere_L2.position, 'x').min(-60000).max(60000).step(10000).name('Entrance-x');
+				folderMainHud3.add(mesh_timeSphere_L2.position, 'y').min(-5000).max(50000).step(100).name('Entrance-y');
+				folderMainHud3.add(mesh_timeSphere_L2.position, 'z').min(-25000).max(25000).step(100).name('Entrance-z');
 
-				folderMainHud3.add(panelColumn03.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
-				folderMainHud3.add(panelColumn03.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
-				folderMainHud3.add(panelColumn03.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
+				folderMainHud3.add(mesh_timeSphere_L2.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
+				folderMainHud3.add(mesh_timeSphere_L2.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
+				folderMainHud3.add(mesh_timeSphere_L2.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
 
-				folderMainHud3.add(panelColumn03.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
-				folderMainHud3.add(panelColumn03.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
-				folderMainHud3.add(panelColumn03.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+				folderMainHud3.add(mesh_timeSphere_L2.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				folderMainHud3.add(mesh_timeSphere_L2.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				folderMainHud3.add(mesh_timeSphere_L2.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
 
 				const folderMainHud4 = gui.addFolder('Component3 Testing')
 
-				folderMainHud4.add(DataTower_RectPanels_Count8.position, 'x').min(-60000).max(60000).step(10000).name('Cc-Back-x');
-				folderMainHud4.add(DataTower_RectPanels_Count8.position, 'y').min(-5000).max(50000).step(100).name('Cc-Back-y');
-				folderMainHud4.add(DataTower_RectPanels_Count8.position, 'z').min(-5000).max(5000).step(100).name('Cc-Back-z');
+				folderMainHud4.add(mainContainerEntranceVideoContainerA1_L0.position, 'x').min(-60000).max(60000).step(10000).name('Cc-Back-x');
+				folderMainHud4.add(mainContainerEntranceVideoContainerA1_L0.position, 'y').min(-5000).max(50000).step(100).name('Cc-Back-y');
+				folderMainHud4.add(mainContainerEntranceVideoContainerA1_L0.position, 'z').min(-5000).max(5000).step(100).name('Cc-Back-z');
 
-				folderMainHud4.add(DataTower_RectPanels_Count8.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
-				folderMainHud4.add(DataTower_RectPanels_Count8.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
-				folderMainHud4.add(DataTower_RectPanels_Count8.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
+				folderMainHud4.add(mainContainerEntranceVideoContainerA1_L0.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
+				folderMainHud4.add(mainContainerEntranceVideoContainerA1_L0.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
+				folderMainHud4.add(mainContainerEntranceVideoContainerA1_L0.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
 
-				folderMainHud4.add(DataTower_RectPanels_Count8.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
-				folderMainHud4.add(DataTower_RectPanels_Count8.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
-				folderMainHud4.add(DataTower_RectPanels_Count8.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+				folderMainHud4.add(mainContainerEntranceVideoContainerA1_L0.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				folderMainHud4.add(mainContainerEntranceVideoContainerA1_L0.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				folderMainHud4.add(mainContainerEntranceVideoContainerA1_L0.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
 
 				// ---\### [Reality Interface] End\ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 				
@@ -5121,6 +5212,8 @@
 				mesh_Cc_StartIndicatorIcon.position.x = Math.cos(time * 0.001) * -125.5 + -250
 				mesh_CommunicationContainer_StartIndicator.rotation.y = time * 0.001
 				mesh_CommunicationContainer_StartIndicator.position.x = Math.cos(time * 0.001) * -125.5  + -250
+
+				CommunicationContainer.position.z =  Math.sin(time * 0.0002) * 50000
 
 
 				// mainContainer Animations
