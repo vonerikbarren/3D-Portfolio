@@ -855,6 +855,18 @@
 			let mesh_timelens_A1_L0
 			let mesh_timelens_A1_L1
 
+			let leftUI_Hand
+			let mesh_leftUI_Hand
+			let rightUI_Hand
+			let mesh_rightUI_Hand
+
+			let leftHandSphere01
+			let mesh_leftHandSphere01
+
+			let rightHandSphere01
+			let mesh_rightHandSphere01
+
+
 
 
 			// mainContainer - SURROUNDINGBox
@@ -1149,6 +1161,12 @@
 				const TechField_L4 = textureLoader.load('./assets/img/circles/TechField07.png')
 
 				const miniUIA01 = textureLoader.load('./assets/img/circles/TechField12.png')
+
+
+				// UI-Hands
+				const ui_leftHand = textureLoader.load('./assets/img/hands/UI-LeftHand.png')
+
+				const ui_rightHand = textureLoader.load('./assets/img/hands/UI-RightHand.png')
 
 
 				// mainContainer
@@ -1776,7 +1794,7 @@
 				mat_timeSphere_L2.transparent = true;
 				mat_timeSphere_L2.alphaMap = testImg05
 				mat_timeSphere_L2.wireframe = false;
-				mesh_timeSphere_L2.position.set(0, 100, -2000)
+				mesh_timeSphere_L2.position.set(0, 100, 5000)
 				scene.add(mesh_timeSphere_L2);
 				camera.attach(mesh_timeSphere_L2)
 
@@ -2270,7 +2288,7 @@
 
 				/// main HudB
 				mainHudB = new THREE.Group()
-				mainHudB.position.set(-250,0,-1200)
+				mainHudB.position.set(0,0,-1200)
 
 
 				const geo_mainHudB = new THREE.PlaneGeometry(2500, 1300)
@@ -2289,14 +2307,14 @@
 				camera.attach(mainHudB)
 
 
-				/// Left Time Lens L0
+				// |- Left Time Lens L0
 
 				const geo_timelens_A1_L0 = new THREE.CircleGeometry(50, 50)
 				const mat_timelens_A1_L0 = new THREE.MeshBasicMaterial({ map: TechField_L3, side: THREE.DoubleSide });
 				mesh_timelens_A1_L0 = new THREE.Mesh(geo_timelens_A1_L0, mat_timelens_A1_L0);
 				mat_timelens_A1_L0.transparent = true;
 				mat_timelens_A1_L0.alphaMap = TechField_L3;
-				mesh_timelens_A1_L0.position.set(20.5, 4.5, 100);
+				mesh_timelens_A1_L0.position.set(75, 4.5, 100);
 				// mesh_timelens_A1_L0.position.set(-15000, 0, 0);
 				mesh_timelens_A1_L0.scale.set(1.4, 1.4, 1.4);
 				mesh_timelens_A1_L0.rotation.set(0, 0, 0)
@@ -2312,14 +2330,144 @@
 				mesh_timelens_A1_L1 = new THREE.Mesh(geo_timelens_A1_L1, mat_timelens_A1_L1);
 				mat_timelens_A1_L1.transparent = true;
 				mat_timelens_A1_L1.alphaMap = TechField_L4;
-				mesh_timelens_A1_L1.position.set(22.5, 6.5, 100);
+				mesh_timelens_A1_L1.position.set(75, 4.5, 100);
 				// mesh_timelens_A1_L1.position.set(-15000, 0, 0);
 				mesh_timelens_A1_L1.scale.set(0.5, 0.5, 0.5);
 				mesh_timelens_A1_L1.rotation.set(0, 0, 0)
 				// mesh_timelens_A1_L1.rotateX( - Math.PI / 2 );
 
-				
+
 				mainHudA.add(mesh_timelens_A1_L1)
+
+				
+				// Left Hand UI
+				// ###############################################
+				leftUI_Hand = new THREE.Group()
+				leftUI_Hand.position.set(-100, 40, -100)
+
+				const geo_leftUI_Hand = new THREE.CircleGeometry(50, 50)
+				const mat_leftUI_Hand = new THREE.MeshBasicMaterial({ map: ui_leftHand, side: THREE.DoubleSide });
+				mesh_leftUI_Hand = new THREE.Mesh(geo_leftUI_Hand, mat_leftUI_Hand);
+				mat_leftUI_Hand.transparent = true;
+				mat_leftUI_Hand.alphaMap = ui_leftHand;
+				mesh_leftUI_Hand.position.set(0, 0, 0);
+				// mesh_leftUI_Hand.position.set(-15000, 0, 0);
+				mesh_leftUI_Hand.scale.set(1, 1, 1);
+				mesh_leftUI_Hand.rotation.set(0, 0, 0)
+				// mesh_leftUI_Hand.rotateX( - Math.PI / 2 );
+
+				leftUI_Hand.add(mesh_leftUI_Hand)
+				scene.add(leftUI_Hand)
+				camera.add(leftUI_Hand)
+				// ###############################################
+
+				
+				// Right Hand UI
+				// ###############################################
+				rightUI_Hand = new THREE.Group()
+				rightUI_Hand.position.set(100, 40, -100)
+
+				const geo_rightUI_Hand = new THREE.CircleGeometry(50, 50)
+				const mat_rightUI_Hand = new THREE.MeshBasicMaterial({ map: ui_rightHand, side: THREE.DoubleSide });
+				mesh_rightUI_Hand = new THREE.Mesh(geo_rightUI_Hand, mat_rightUI_Hand);
+				mat_rightUI_Hand.transparent = true;
+				mat_rightUI_Hand.alphaMap = ui_rightHand;
+				mesh_rightUI_Hand.position.set(0, 0, 0);
+				// mesh_rightUI_Hand.position.set(-15000, 0, 0);
+				mesh_rightUI_Hand.scale.set(1, 1, 1);
+				mesh_rightUI_Hand.rotation.set(0, 0, 0)
+				// mesh_rightUI_Hand.rotateX( - Math.PI / 2 );
+
+				rightUI_Hand.add(mesh_rightUI_Hand)
+				scene.add(rightUI_Hand)
+				camera.add(rightUI_Hand)
+				// ###############################################
+
+				
+				// Left Hand Sphere 01 - unknown 
+				leftHandSphere01 = new THREE.Group()
+				leftHandSphere01.position.set(0, -60, -5)
+
+				const handSphereParams = {
+					radius: 20,
+					widthSegments: 32,
+					heightSegments: 32,
+					phiStart: 0,
+					phiLength: 0,
+					thetaStart: 0,
+					thetaLength: 3.14159
+				}
+
+				function regenerateLeftSphereGeometry() {
+					let radius = handSphereParams.radius
+					let scaleRadius = radius * 0.1
+					let newGeometry = new THREE.SphereGeometry(
+
+						handSphereParams.radius,
+						handSphereParams.widthSegments,
+						handSphereParams.heightSegments,
+						handSphereParams.phiStart,
+						handSphereParams.phiLength,
+						handSphereParams.thetaStart,
+						handSphereParams.thetaLength,
+					)
+					mesh_leftHandSphere01.scale.x = scaleRadius
+					mesh_leftHandSphere01.scale.y = scaleRadius
+					mesh_leftHandSphere01.scale.z = scaleRadius
+					// mesh_leftHandSphere01.geometry.dispose()
+					// mesh_leftHandSphere01.geometry = newGeometry
+				}
+
+				const geo_leftHandSphere01 = new THREE.SphereGeometry(handSphereParams.radius, handSphereParams.widthSegments, handSphereParams.heightSegments)
+				const mat_leftHandSphere01 = new THREE.MeshBasicMaterial({ map: testImg05, side: THREE.DoubleSide });
+				mesh_leftHandSphere01 = new THREE.Mesh(geo_leftHandSphere01, mat_leftHandSphere01)
+				mat_leftHandSphere01.transparent = true;
+				mat_leftHandSphere01.alphaMap = testImg05
+				mat_leftHandSphere01.wireframe = false;
+				mesh_leftHandSphere01.position.set(0, 0, 0)
+				leftHandSphere01.add(mesh_leftHandSphere01);
+				leftUI_Hand.add(leftHandSphere01)
+				camera.attach(leftHandSphere01)
+
+
+				// Right Hand Sphere 01 - Unknown
+				rightHandSphere01 = new THREE.Group()
+				rightHandSphere01.position.set(0, -60, -5)
+
+				function regenerateRightSphereGeometry() {
+					let radius = handSphereParams.radius
+					let scaleRadius = radius * 0.1
+					let newGeometry = new THREE.SphereGeometry(
+
+						handSphereParams.radius,
+						handSphereParams.widthSegments,
+						handSphereParams.heightSegments,
+						handSphereParams.phiStart,
+						handSphereParams.phiLength,
+						handSphereParams.thetaStart,
+						handSphereParams.thetaLength,
+					)
+					mesh_rightHandSphere01.scale.x = scaleRadius
+					mesh_rightHandSphere01.scale.y = scaleRadius
+					mesh_rightHandSphere01.scale.z = scaleRadius
+					// mesh_leftHandSphere01.geometry.dispose()
+					// mesh_leftHandSphere01.geometry = newGeometry
+				}
+
+				const geo_rightHandSphere01 = new THREE.SphereGeometry(20, 32, 32)
+				const mat_rightHandSphere01 = new THREE.MeshBasicMaterial({ map: testImg05, side: THREE.DoubleSide });
+				mesh_rightHandSphere01 = new THREE.Mesh(geo_rightHandSphere01, mat_rightHandSphere01)
+				mat_rightHandSphere01.transparent = false;
+				mat_rightHandSphere01.alphaMap = testImg05
+				mat_rightHandSphere01.wireframe = false;
+				mesh_rightHandSphere01.position.set(0, 0, 0)
+				rightHandSphere01.add(mesh_rightHandSphere01);
+				rightUI_Hand.add(rightHandSphere01)
+				camera.attach(rightHandSphere01)
+
+
+
+
 
 				// ------------------------------------------------------------
 				// Main Container
@@ -4758,10 +4906,10 @@
 				
 				const folderMainHud = gui.addFolder('Main Hub Position Testing')
 				folderMainHud.add(mainContainerEntranceVideoContainerA1_L0.position, 'x').min(-20000).max(20000).step(20000).name('Surface Layer');
-				folderMainHud.add(mesh_timeSphere_L2.position, 'z').min(-1100).max(2000).step(300).name('Notifier');
-				folderMainHud.add(mainHubBase.position, 'x').min(-1150).max(-80).step(100).name('main Hud Base');
-				folderMainHud.add(mainHudA.position, 'x').min(-1150).max(-80).step(100).name('mainHud A');
-				folderMainHud.add(mainHudB.position, 'x').min(-2150).max(-200).step(100).name('mainHud B');
+				folderMainHud.add(mesh_timeSphere_L2.position, 'z').min(-1100).max(3000).step(300).name('Notifier');
+				folderMainHud.add(mainHubBase.position, 'x').min(-2150).max(0).step(100).name('main Hud Base');
+				folderMainHud.add(mainHudA.position, 'x').min(-1150).max(0).step(100).name('mainHud A');
+				folderMainHud.add(mainHudB.position, 'x').min(-2150).max(0).step(100).name('mainHud B');
 
 
 				// Search.GUI.TestSettings.Main
@@ -4791,6 +4939,17 @@
 				// folderMainSettings.add(CommandCenter.rotation, 'x').min(-100).max(100).step(1).name('Rotation-x');
 				// folderMainSettings.add(CommandCenter.rotation, 'y').min(-100).max(100).step(1).name('Rotation-y');
 				// folderMainSettings.add(CommandCenter.rotation, 'z').min(-100).max(100).step(1).name('Rotation-z');
+
+				// Left Hand Settings
+				const folderLeftHandMenu = gui.addFolder('Left Hand Menu')
+				folderLeftHandMenu.add(leftUI_Hand.position, 'z').min(-5000).max(-100).step(100).name('Movement');
+				folderLeftHandMenu.add(handSphereParams, 'radius', 10, 75).onChange(regenerateLeftSphereGeometry).name('Expand Left Sphere')
+
+				const folderRightHandMenu = gui.addFolder('Left Hand Menu')
+				folderRightHandMenu.add(rightUI_Hand.position, 'z').min(-5000).max(-100).step(100).name('Movement');
+				folderRightHandMenu.add(handSphereParams, 'radius', 10, 75).onChange(regenerateRightSphereGeometry).name('Expand Right Sphere')
+
+
 				
 				const folderMainColumnControl = gui.addFolder('Left Side Controls')
 				folderMainColumnControl.add(panelColumn01.position, 'y').min(-18000).max(150000).step(100).name('Column 1');
@@ -4805,17 +4964,17 @@
 
 				const folderMainHud2 = gui.addFolder('Component1 Testing')
 
-				folderMainHud2.add(mesh_timelens_A1_L0.position, 'x').min(-60000).max(60000).step(10000).name('Cc-Back-x');
-				folderMainHud2.add(mesh_timelens_A1_L0.position, 'y').min(-5000).max(50000).step(100).name('Cc-Back-y');
-				folderMainHud2.add(mesh_timelens_A1_L0.position, 'z').min(-50000).max(35000).step(100).name('Cc-Back-z');
+				folderMainHud2.add(leftHandSphere01.position, 'x').min(-6000).max(6000).step(100).name('Cc-Back-x');
+				folderMainHud2.add(leftHandSphere01.position, 'y').min(-500).max(500).step(100).name('Cc-Back-y');
+				folderMainHud2.add(leftHandSphere01.position, 'z').min(-50000).max(35000).step(100).name('Cc-Back-z');
 
-				folderMainHud2.add(mesh_timelens_A1_L0.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
-				folderMainHud2.add(mesh_timelens_A1_L0.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
-				folderMainHud2.add(mesh_timelens_A1_L0.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
+				folderMainHud2.add(leftHandSphere01.rotation, 'x').min(-360).max(360).step(1).name('Rotation-x');
+				folderMainHud2.add(leftHandSphere01.rotation, 'y').min(-360).max(360).step(1).name('Rotation-y');
+				folderMainHud2.add(leftHandSphere01.rotation, 'z').min(-360).max(360).step(1).name('Rotation-z');
 
-				folderMainHud2.add(mesh_timelens_A1_L0.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
-				folderMainHud2.add(mesh_timelens_A1_L0.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
-				folderMainHud2.add(mesh_timelens_A1_L0.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+				folderMainHud2.add(leftHandSphere01.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				folderMainHud2.add(leftHandSphere01.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				folderMainHud2.add(leftHandSphere01.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
 
 				// folderMainHud2.add(
 				// 	mainContainerVideoContainer_Params.radiusTop, '')
@@ -5205,6 +5364,17 @@
 				mesh_timelens_A1_L1.rotation.z = time * 0.001
 				mesh_timelens_A1_L0.rotation.z = time * -0.0001
 
+				// ui_Hand Animations
+				leftUI_Hand.position.y = Math.abs(Math.cos(time * 0.0005) * 10) - 50
+				rightUI_Hand.position.y = Math.abs(Math.cos(time * 0.0005) * 10) - 50
+
+				// uiHand Object Animations
+				leftHandSphere01.position.y = Math.abs(Math.cos(time * 0.0005) * 10) - 30
+				leftHandSphere01.rotation.y = time * 0.0005
+
+				rightHandSphere01.position.y = Math.abs(Math.cos(time * 0.0005) * 10) - 30
+				rightHandSphere01.rotation.y = time * -0.001
+				
 
 				// CommunicationContainer Animations
 				CommunicationContainer.rotation.x = time * 0.0005

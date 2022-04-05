@@ -5,7 +5,7 @@ const projectProgress = {
 
       PortfolioDesired_FinishDate: ["Tue", '03-28-22'],
       PortfolioActual_FinishDate: ["", ''],
-   }
+   },
 
 
    // Templates
@@ -132,7 +132,7 @@ const projectProgress = {
 
 
    // Entry 05
-   Entry00: {
+   Entry05: {
       Header: {
          Level: ["Goal", 'Objective', 'task'],
          Title: "HustleStruts for Shorcuts",
@@ -155,6 +155,35 @@ const projectProgress = {
             'We took a break from coding yesterday so we could clear our head. Now we need to speed up and see how much we can really get done.',
             'Especially now that we have all of our assets and what not. We still need to name the assets then add them to the library. But as far',
             'as I am concerned, everything is going pretty smoothly. So by the end of the day, I want to have the project completed. Can we do it. Are we up for the task! Try to go as fast as you can! GOOOOO! Try to finish in an hour.'
+         ],
+      },
+   },
+
+
+
+
+   // Entry 06
+   Entry06: {
+      Header: {
+         Level: ["Sizing Realities", 'Add the necessary functions to make this so', 'task'],
+         Title: "Sizing Realities of any shape",
+         EntryDate: '04-05-21',
+         TimeExpectedStart: '09:19',
+         TimeExpectedFinish: '10:19',
+         TimeActualStart: '09:25',
+         TimeActualFinish: '10:30',
+         NumOfCommits: Number,
+      },
+
+      Data: {
+         Chapter00: [
+            "Writing the necessary functions to change the shape of a Reality using dat.GUI",
+            'This shouldnt take longer than an hour to complete.',
+         ],
+
+         TaskList: [
+            [[false], ['Development of Reality Resizing']],
+            [[false], ['Development of a group of Realities sizing']]
          ],
       },
    },
