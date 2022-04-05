@@ -11,6 +11,7 @@
 			}
 
 			#blocker {
+				
 				position: absolute;
 				width: 100%;
 				height: 100%;
@@ -187,9 +188,11 @@
 		
 		#video {
 			
-			position: static;
-  		border: 3px solid rgba(0, 255, 208, 0.75);
-			bottom: 50px;
+			display: block;
+			position: default;
+  			border: 3px solid rgba(0, 255, 208, 0.75);
+			/* bottom: -5550px; */
+			margin-right: 500px;
 			margin-top: 50px;
 			background: rgba(0, 255, 208, 0.2);
 			
@@ -206,8 +209,8 @@
 	<body>
 		<div id="blocker">
 			<div id="VideoContainer" class="videoContainer"></div>
-      <div id="container"></div>
-						<div id="containter2"></div>
+      	<div	div id="container"></div>
+			<div id="containter2"></div>
 
       <!-- Menu -->
       <div id="menu">
@@ -219,9 +222,11 @@
         <button id="helix">HELIX</button>
         <button id="grid">GRID</button>
         <button id="table2">TEST</button><br/>
-				<video id="video" playsinline controls muted webkit-playsinline  autoplay loop width="320" height="240" src="./assets/video/HeartOfWitch.mp4" style="border: 5px 5px black;"></video>
+				
 
       </div>
+
+		<video id="video" playsinline controls muted webkit-playsinline  autoplay loop width="320" height="240" src="./assets/video/HeartOfWitch.mp4" style="display: block; border: 5px 5px black;"></video>
 
       <form>
         <input type="text" name="search" placeholder="Search..">
@@ -1545,9 +1550,9 @@
 
         // sphere
 
-			  const vector = new THREE.Vector3();
+			const vector = new THREE.Vector3();
 
-        for (let i = 0, l = objects.length; i < l; i++) {
+        	for (let i = 0, l = objects.length; i < l; i++) {
 
           const phi = Math.acos(- 1 + (2 * i) / l);
           const theta = Math.sqrt(l * Math.PI) * phi;
@@ -1557,6 +1562,7 @@
           // size of sphere here...
           object.position.setFromSphericalCoords(1500, phi, theta);
           object.translateY(0)
+			 object.position.set(300, 1200, 0)
 
           vector.copy(object.position).multiplyScalar(2);
 
@@ -2457,7 +2463,7 @@
 				const geo_rightHandSphere01 = new THREE.SphereGeometry(20, 32, 32)
 				const mat_rightHandSphere01 = new THREE.MeshBasicMaterial({ map: testImg05, side: THREE.DoubleSide });
 				mesh_rightHandSphere01 = new THREE.Mesh(geo_rightHandSphere01, mat_rightHandSphere01)
-				mat_rightHandSphere01.transparent = false;
+				mat_rightHandSphere01.transparent = true;
 				mat_rightHandSphere01.alphaMap = testImg05
 				mat_rightHandSphere01.wireframe = false;
 				mesh_rightHandSphere01.position.set(0, 0, 0)

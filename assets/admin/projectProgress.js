@@ -20,13 +20,21 @@ const projectProgress = {
             TimeExpectedFinish: '',
             TimeActualStart: '',
             TimeActualFinish: '',
-            NumOfCommits: Number
+            NumOfCommits: Number,
          },
    
          Data: {
             Chapter00: [
                "",
                '',
+
+               // Chapter Commits
+               {
+                  CommitNum: Number,
+                  CommitID: 'commit_date',
+                  CommitMessage: '',
+               },
+
             ],
          },
       },
@@ -171,19 +179,66 @@ const projectProgress = {
          TimeExpectedStart: '09:19',
          TimeExpectedFinish: '10:19',
          TimeActualStart: '09:25',
-         TimeActualFinish: '10:30',
+         TimeActualFinish: '10:40',
          NumOfCommits: Number,
       },
 
       Data: {
+
+         // Chapters
          Chapter00: [
             "Writing the necessary functions to change the shape of a Reality using dat.GUI",
             'This shouldnt take longer than an hour to complete.',
          ],
 
+         // Tasks
          TaskList: [
             [[false], ['Development of Reality Resizing']],
             [[false], ['Development of a group of Realities sizing']]
+         ],
+
+         // Commits
+         commits: [
+            [[{status: 'pushed'}, {code: 'commit_A1_04052022'}], "Developed the resizing of a reality (sphere)"],
+
+         ],
+      },
+   },
+
+
+
+   // Entry 07
+   Entry07: {
+      Header: {
+         Level: ["Goal", 'Objective', 'task'],
+         Title: "Final Sprint",
+         EntryDate: '04-05-2022',
+         TimeExpectedStart: '12:25',
+         TimeExpectedFinish: '13:30-13:40',
+         TimeActualStart: '',
+         TimeActualFinish: '',
+         NumOfCommits: Number,
+         TaskList: {
+            TaskA: [[false], "Decide on plan for ProjectPortfolio"],
+            TaskB: [[false], "Execute Plan: {Plan Here}"],
+            TaskC: [[false], "Add final touches to UI/UX"],
+            TaskD: [[false], "Portfolio, Completed"],
+         },
+      },
+
+      Data: {
+         Chapter00: [
+            "",
+            '',
+
+            // Chapter Commits
+            {
+               CommitNum: 2,
+               CommitID: 'commit_04-05-2022_#2 ::',
+               CommitMessage: 'updating Tree before Sarting Project',
+               FullCommit: "commit_04-05-2022_#2 :: updating Tree before Sarting Project",
+            },
+
          ],
       },
    },
