@@ -228,7 +228,7 @@ const projectProgress = {
 
       Data: {
          Chapter00: [
-            "",
+            "Focus on getting things done!",
             '',
 
             // Chapter Commits
